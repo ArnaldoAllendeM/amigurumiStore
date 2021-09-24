@@ -3,7 +3,9 @@
     <v-app-bar app color="primary" dark>
       <h1>
         Hola, esto es prueba - prueba II asdasdutyretfyuhiokiuytre4trytuhijo
+        holi
       </h1>
+      <Navbar />
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -43,11 +45,13 @@
 </template>
 
 <script>
+import Navbar from "./components/Navbar.vue"
 export default {
   name: "App",
 
   data: () => ({
     //
   }),
+  components:Navbar,
 };
 </script>
