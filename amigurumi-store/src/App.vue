@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-app-bar app color="primary" dark>
-      <h1>Hola, esto es prueba</h1>
+      <h1>Hola, esto es prueba - prueba II</h1>
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
