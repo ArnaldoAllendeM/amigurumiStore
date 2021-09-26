@@ -6,6 +6,7 @@
         holi
       </h1>
       <Navbar />
+      <Carrousel />
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -45,8 +46,10 @@
 </template>
 
 <script>
+import Carrousel from './components/Carrousel.vue';
 import Navbar from "./components/Navbar.vue"
 export default {
+  components: { Carrousel },
   name: "App",
 
   data: () => ({
