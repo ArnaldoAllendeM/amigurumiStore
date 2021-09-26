@@ -64,6 +64,7 @@
         <v-container style="height: 260px"></v-container>
       </v-sheet>
     </v-card>
+    <Carousel />
     <v-container>
     <v-row no-gutters>
       <template v-for="n in 4">
@@ -271,8 +272,15 @@
 
 
 <script>
+import Carousel from './components/Carrousel.vue'
+import Navbar from './components/Navbar.vue'
 export default {
   data: () => ({
+    name:"App",
+    components:{
+      Carousel,
+      Navbar,
+    },
     items: [
       { title: "Click Me" },
       { title: "Click Me" },
