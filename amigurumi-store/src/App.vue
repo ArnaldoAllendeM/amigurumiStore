@@ -1,57 +1,98 @@
 <template>
-  <v-app>
-    <v-app-bar app color="primary" dark>
-      <h1>
-        Hola, esto es prueba - prueba II asdasdutyretfyuhiokiuytre4trytuhijo
-        holi
-      </h1>
-      <Navbar />
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
+  <div>
+    <v-card class="overflow-hidden">
+      <v-app-bar
+        absolute
+        height=""
+        color="#6A76AB"
+        dark
+        shrink-on-scroll
+        prominent
+        src="https://picsum.photos/1920/1080?random"
+        fade-img-on-scroll
+        scroll-target="#scrolling-techniques-4"
       >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
+        <template v-slot:img="{ props }">
+          <v-img
+            v-bind="props"
+            gradient="to top right, rgba(100,115,201,.7), rgba(25,32,72,.7)"
+          ></v-img>
+        </template>
 
-    <v-main>
-      <router-view />
-    </v-main>
-  </v-app>
+        <v-app-bar-nav-icon></v-app-bar-nav-icon>
+
+        <v-toolbar-title>Amigorumi</v-toolbar-title>
+
+        <v-spacer></v-spacer>
+
+        <v-btn icon>
+          <v-icon>mdi-magnify</v-icon>
+        </v-btn>
+
+        <v-btn icon>
+          <v-icon>mdi-heart</v-icon>
+        </v-btn>
+
+        <v-menu bottom left>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn icon color="yellow" v-bind="attrs" v-on="on">
+              <v-icon>mdi-dots-vertical</v-icon>
+            </v-btn>
+          </template>
+
+          <v-list>
+            <v-list-item v-for="(item, i) in items" :key="i">
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+
+        <template v-slot:extension>
+          <v-tabs align-with-title>
+            <v-tab>Tab 1</v-tab>
+            <v-tab>Tab 2</v-tab>
+            <v-tab>Tab 3</v-tab>
+          </v-tabs>
+        </template>
+      </v-app-bar>
+      <v-sheet
+        id="scrolling-techniques-4"
+        class="overflow-y-auto"
+        max-height="600"
+      >
+        <v-container style="height: 260px"></v-container>
+      </v-sheet>
+    </v-card>
+    <Carrousel />
+    <v-container>
+      <v-row no-gutters>
+        <Cards />
+      </v-row>
+    </v-container>
+    <Footer />
+  </div>
 </template>
 
 <script>
-import Navbar from "./components/Navbar.vue"
+import Navbar from "./components/Navbar.vue";
+import Carrousel from "./components/Carrousel.vue";
+import Cards from "./components/Cards.vue";
+import Footer from "./components/Footer.vue";
 export default {
-  name: "App",
-
   data: () => ({
-    //
+    name: "App",
+    items: [
+      { title: "Click Me" },
+      { title: "Click Me" },
+      { title: "Click Me" },
+      { title: "Click Me 2" },
+    ],
   }),
-  components:Navbar,
+  components: {
+    Navbar,
+    Carrousel,
+    Cards,
+    Footer,
+  },
 };
 </script>
