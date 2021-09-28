@@ -1,5 +1,5 @@
-        <template v-for="n in 4">
-  <v-col :key="n">
+<template>
+  <v-col>
     <v-card :loading="loading" class="mx-auto my-12" max-width="260">
       <template slot="progress">
         <v-progress-linear
@@ -67,8 +67,23 @@
   </v-col>
 </template>
 
-<script>
-export default {};
+
+  <script>
+  export default {
+    data: () => ({
+      loading: false,
+      selection: 1,
+      n:null,
+    }),
+
+    methods: {
+      reserve () {
+        this.loading = true
+
+        setTimeout(() => (this.loading = false), 2000)
+      },
+    },
+  }
 </script>
 
 <style>
