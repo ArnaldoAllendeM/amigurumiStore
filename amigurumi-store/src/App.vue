@@ -69,6 +69,7 @@
         <Cards />
       </v-row>
     </v-container>
+     <Form />
     <Footer />
   </div>
 </template>
@@ -77,6 +78,7 @@
 import Navbar from "./components/Navbar.vue";
 import Carrousel from "./components/Carrousel.vue";
 import Cards from "./components/Cards.vue";
+import Form from "./components/Form.vue";
 import Footer from "./components/Footer.vue";
 export default {
   data: () => ({
@@ -93,6 +95,7 @@ export default {
     Carrousel,
     Cards,
     Footer,
+     Form,
   },
 };
 </script>
