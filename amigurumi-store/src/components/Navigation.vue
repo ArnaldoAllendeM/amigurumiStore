@@ -10,10 +10,10 @@
       <v-list>
         <v-list-item>
           <v-list-item-avatar>
-            <img src="@/assets/img/logo.png" alt="Logo" />
+            <img src="@/assets/img/Logo.jpg" alt="Logo" />
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title class="title">Calango</v-list-item-title>
+            <v-list-item-title class="title">Amigurumi</v-list-item-title>
             <v-list-item-subtitle>WEB</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
@@ -59,19 +59,19 @@
       />
       <div v-else>
         <v-btn text @click="$vuetify.goTo('#')">
-          <span class="mr-2">Home</span>
+          <span class="mr-2">Inicio</span>
         </v-btn>
         <v-btn text @click="$vuetify.goTo('#')">
-          <span class="mr-2">Sobre</span>
+          <span class="mr-2">Productos</span>
         </v-btn>
         <v-btn text @click="$vuetify.goTo('#')">
-          <span class="mr-2">Download</span>
+          <span class="mr-2">Patrones</span>
         </v-btn>
         <v-btn text @click="$vuetify.goTo('#')">
-          <span class="mr-2">Preços</span>
+          <span class="mr-2">Crea tu Amigurumi</span>
         </v-btn>
         <v-btn rounded outlined text @click="$vuetify.goTo('#')">
-          <span class="mr-2">Contate-nos</span>
+          <span class="mr-2">Contactanos</span>
         </v-btn>
       </div>
     </v-app-bar>
@@ -87,6 +87,12 @@
   height: 80px !important;
   padding-top: 10px;
 }
+
+.mdi-menu:before {
+    content: "\F35C";
+    left: 180% !important;
+    position: absolute !important;
+}
 </style>
 
 <script>
@@ -96,11 +102,11 @@ export default {
     drawer: null,
     isXs: false,
     items: [
-      ["mdi-home-outline", "Home", "#hero"],
-      ["mdi-information-outline", "Sobre", "#features"],
-      ["mdi-download-box-outline", "Download", "#download"],
-      ["mdi-currency-usd", "Preços", "#pricing"],
-      ["mdi-email-outline", "Contatos", "#contact"],
+      ["mdi-home-outline", "Inicio", "#inicoo"],
+      ["mdi-check-all", "Productos", "#productos"],
+      ["mdi-xbox", "Patrones", "#patrones"],
+      ["mdi-white-balance-incandescent", "Crea tu Amigorumi", "#amigotumi"],
+      ["mdi-message-processing", "Contactanos", "#contacto"],
     ],
   }),
   props: {
