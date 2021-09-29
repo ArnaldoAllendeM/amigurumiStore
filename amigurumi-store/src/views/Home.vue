@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div>
     <Carrousel />
     <v-container>
@@ -45,3 +45,4 @@ export default {
   },
 };
 </script>
+-->
