@@ -1,24 +1,23 @@
 <template>
-  <!-- <div> -->
-    <v-app>
-      <Navbar />
-      <v-main>
-        <router-view />
-      </v-main>
-    </v-app>
-    <!-- <Carrousel />
-    <v-container>
-      <v-row no-gutters>
-        <Cards />
-      </v-row>
-    </v-container>
-     <Form />
+  <v-app>
+    <navigation />
+    <v-main>
+      <router-view />
+
+      <Carrousel />
+      <v-container>
+        <v-row no-gutters>
+          <Cards />
+        </v-row>
+      </v-container>
+      <Form />
+    </v-main>
     <Footer />
-  </div> -->
+  </v-app>
 </template>
 
 <script>
-import Navbar from "./components/Navbar.vue";
+import Navigation from "./components/Navigation.vue";
 import Carrousel from "./components/Carrousel.vue";
 import Cards from "./components/Cards.vue";
 import Form from "./components/Form.vue";
@@ -26,14 +25,17 @@ import Footer from "./components/Footer.vue";
 export default {
   data: () => ({
     name: "App",
-  
+    fab: null,
+    color: "",
+    flat: null,
   }),
+
   components: {
-    Navbar,
+    Navigation,
     Carrousel,
     Cards,
     Footer,
-     Form,
+    Form,
   },
 };
 </script>
