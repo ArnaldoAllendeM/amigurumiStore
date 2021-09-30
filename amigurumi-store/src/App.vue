@@ -1,16 +1,8 @@
 <template>
   <v-app>
-    <navigation />
+    <Navigation />
     <v-main>
       <router-view />
-
-      <Carrousel />
-      <v-container>
-        <v-row no-gutters>
-          <Cards />
-        </v-row>
-      </v-container>
-      <Form />
     </v-main>
     <Footer />
   </v-app>
@@ -18,9 +10,6 @@
 
 <script>
 import Navigation from "./components/Navigation.vue";
-import Carrousel from "./components/Carrousel.vue";
-import Cards from "./components/Cards.vue";
-import Form from "./components/Form.vue";
 import Footer from "./components/Footer.vue";
 export default {
   data: () => ({
@@ -32,10 +21,7 @@ export default {
 
   components: {
     Navigation,
-    Carrousel,
-    Cards,
     Footer,
-    Form,
   },
 };
 </script>
