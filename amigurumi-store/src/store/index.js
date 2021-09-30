@@ -33,6 +33,33 @@ export default new Vuex.Store({
       },
     ],
   },
+  getters:{
+    getProductDetail: state => payload => {
+      const data = state.productos;
+      const rst = data.find(p => p.id === payload);
+      return rst;
+    },
+    getProductos: state => payload => {
+      const data = state.productos;
+      let rst = "";
+      if (payload) {
+        rst = data.filter(pr => pr.type.includes(payload));
+      } else {
+        rst = data;
+      }
+      const result = rst.map(p => {
+        const { nombre, imagen, id } = p;
+        return {
+          nombre,
+          imagen,
+          id
+        };
+      });
+  
+      return result;
+    },
+  },
+
   mutations: {
   },
   actions: {

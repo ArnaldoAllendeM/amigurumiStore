@@ -7,7 +7,7 @@
         <v-col v-for="producto in $store.state.productos" :key="producto.id">
         <CharacterCard 
         :producto="producto"
-        @click="$router.push({ path: `/producto/${$event.id}` })"/>
+        @click="$router.push({ path: `${$event.id}` })"/>
         </v-col>
       </v-row>
     </v-container>

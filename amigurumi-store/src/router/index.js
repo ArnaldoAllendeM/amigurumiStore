@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Home from "../views/Home.vue";
 import VistaProductos from "../views/VistaProductos.vue";
 import CreaTuProducto from "../views/CreaTuProducto.vue";
-import CharacterCard from "../components/CharacterCard.vue";
+import DetalleProducto from "../views/DetalleProducto.vue";
 import Patrones from "../views/Patrones.vue";
 
 
@@ -18,7 +18,7 @@ const routes = [
   {
     path: "/home",
     name: "Home",
-    component: Home,
+    component: Home,  
   },
   {
     path: "/patrones",
@@ -31,20 +31,20 @@ const routes = [
     component: VistaProductos,
   },
   {
-    path: '/creatuamigurumi',
-    name: 'CreaTuProducto',
-    component: CreaTuProducto,
+    path: '/:id',
+    name: 'Producto',
+    component: DetalleProducto,
   },
   {
     path: '/producto',
     name: 'CreaTuProducto',
     component: CreaTuProducto,
-    children:[
-      {
-        path: "/:id",
-        component:CharacterCard,
-      }
-    ]
+    // children:[
+    //   {
+    //     path: ":id",
+    //     component:DetalleProducto,
+    //   }
+    // ]
   }
 ]
 
