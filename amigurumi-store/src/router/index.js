@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from "../views/Home.vue";
 import VistaProductos from "../views/VistaProductos.vue";
 import CreaTuProducto from "../views/CreaTuProducto.vue";
+import CharacterCard from "../components/CharacterCard.vue";
 import Patrones from "../views/Patrones.vue";
 
 
@@ -33,6 +34,17 @@ const routes = [
     path: '/creatuamigurumi',
     name: 'CreaTuProducto',
     component: CreaTuProducto,
+  },
+  {
+    path: '/producto',
+    name: 'CreaTuProducto',
+    component: CreaTuProducto,
+    children:[
+      {
+        path: "/:id",
+        component:CharacterCard,
+      }
+    ]
   }
 ]
 
