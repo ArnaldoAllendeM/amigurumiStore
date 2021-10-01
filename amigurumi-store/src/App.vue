@@ -17,11 +17,17 @@ export default {
     fab: null,
     color: "",
     flat: null,
+    
   }),
 
   components: {
     Navigation,
     Footer,
-  },
+  }, 
+  methods: {
+    updateColor( color ) {
+      this.color = color;
+    }
+  }
 };
 </script>
