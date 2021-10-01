@@ -9,7 +9,8 @@ export default new Vuex.Store({
       {
         id: 1,
         nombre: 'Morty',
-        imagen: 'https://rickandmortyapi.com/api/character/avatar/2.jpeg',
+        //Se agrega Link Externo (cambiar)
+        imagen: 'https://www.elchatea.com/logo.png',
       },
       {
         id: 2,

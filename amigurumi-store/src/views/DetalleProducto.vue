@@ -1,5 +1,12 @@
 <template>
+  <!-- Color Input, CSS Color Picker/> -->
   <div>
+    <input class="red" name="color" type="radio" />
+    <input class="green" name="color" type="radio" />
+    <input class="pink" name="color" type="radio" />
+    <input checked class="yellow" name="color" type="radio" />
+    <input class="purple" name="color" type="radio" />
+
     <!-- <span>
    {{getProductDetail(this.$route.params.id)}}
    </span> -->
@@ -39,12 +46,8 @@ export default {
   data: () => ({
     //color default
     color: "#1CA085",
-    swatches: [
-      ["#F64272", "#F6648B", "#F493A7", "#F891A6", "#FFCCD5"],
-      ["#8b5aff", "#a27bff", "#b99cff", "#d0bdff", "#e8deff"],
-      ["#51e5db", "#74ebe3", "#96f0ea", "#b9f5f1", "#dcfaf8"],
-      ["#ffa51a", "#ffb748", "#ffc976", "#ffdba3", "#ffedd1"],
-    ],
+    // Props, implementacion de colores, posibilidad de agregar custom colors.
+    swatches: [[{ color: "#F493A7" }, { color: "#ff0000" }]],
     producto: null,
     data: {
       detail: {},
@@ -62,4 +65,113 @@ export default {
 };
 </script>
 
-<style></style>
+<!-- CSS Color Picker/> -->
+<style>
+.preview {
+  background: #ccc;
+  width: 415px;
+  height: 430px;
+  border: solid 10px #fff;
+}
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 25px;
+  height: 25px;
+  margin: 5px 0 5px 5px;
+  background-size: 225px 70px;
+  position: relative;
+  float: left;
+  display: inline;
+  top: 0;
+  border-radius: 3px;
+  z-index: 99999;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000;
+}
+
+input[type="radio"]:hover {
+  -webkit-filter: opacity(0.4);
+  filter: opacity(0.4);
+}
+
+.red {
+  background: red;
+}
+
+.red:checked {
+  background: linear-gradient(brown, red);
+}
+
+.green {
+  background: green;
+}
+
+.green:checked {
+  background: linear-gradient(green, lime);
+}
+
+.yellow {
+  background: yellow;
+}
+
+.yellow:checked {
+  background: linear-gradient(orange, yellow);
+}
+
+.purple {
+  background: purple;
+}
+
+.pink {
+  background: pink;
+}
+
+.purple:checked {
+  background: linear-gradient(purple, violet);
+}
+
+.red:checked ~ img {
+  -webkit-filter: opacity(0.5) drop-shadow(0 0 0 red);
+  filter: opacity(0.5) drop-shadow(0 0 0 red);
+}
+
+.green:checked ~ img {
+  -webkit-filter: opacity(0.5) drop-shadow(0 0 0 green);
+  filter: opacity(0.5) drop-shadow(0 0 0 green);
+}
+
+.yellow:checked ~ img {
+  -webkit-filter: opacity(0.5) drop-shadow(0 0 0 yellow);
+  filter: opacity(0.5) drop-shadow(0 0 0 yellow);
+}
+
+.purple:checked ~ img {
+  -webkit-filter: opacity(0.5) drop-shadow(0 0 0 purple);
+  filter: opacity(0.5) drop-shadow(0 0 0 purple);
+}
+
+.pink:checked ~ img {
+  -webkit-filter: opacity(0.5) drop-shadow(0 0 0 pink);
+  filter: opacity(0.5) drop-shadow(0 0 0 pink);
+}
+
+img {
+  width: 394px;
+  height: 375px;
+  position: relative;
+}
+
+.label {
+  width: 150px;
+  height: 75px;
+  position: absolute;
+  top: 170px;
+  margin-left: 130px;
+}
+
+::selection {
+  background: #000;
+}
+</style>
