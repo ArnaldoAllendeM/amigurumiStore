@@ -6,7 +6,12 @@
     <input class="pink" name="color" type="radio" />
     <input checked class="yellow" name="color" type="radio" />
     <input class="purple" name="color" type="radio" />
-
+<div class="original">
+    <h2>background image</h2>
+    <BigSmear :color="color"/>
+  </div>
+  <div class="container">
+    </div>
     <!-- <span>
    {{getProductDetail(this.$route.params.id)}}
    </span> -->
@@ -17,18 +22,11 @@
     <h1>{{ producto.id }}</h1>
     <!-- Implementacion de libreria /> -->
     <div class="form__field">
-      <div class="form__label">
-        <strong>Elige un color:</strong>
-      </div>
-      <div class="form__input">
-        <v-swatches
-          v-model="color"
-          :swatches="swatches"
-          row-length="5"
-          popover-x="left"
-        ></v-swatches>
-      </div>
+    <div class="form__label">
+      <strong>Please choose a color:</strong>
+      <v-swatches v-model="color" inline></v-swatches>
     </div>
+  </div>
   </div>
 </template>
 
@@ -38,11 +36,13 @@ import VSwatches from "vue-swatches";
 // Import the styles too, globally
 import "vue-swatches/dist/vue-swatches.css";
 import CharacterCard from "../components/CharacterCard.vue";
+import Smear from "../components/Smear.vue";
+import BigSmear from "../components/BigSmear.vue";
+
 // import {mapGetters} from "vuex";
 export default {
   //importacion de componente de libreria
-  components: { VSwatches },
-  component: { CharacterCard },
+  components: { CharacterCard, BigSmear, Smear, VSwatches },
   data: () => ({
     //color default
     color: "#1CA085",
@@ -62,6 +62,11 @@ export default {
   // computed:{
   //   ...mapGetters(["getProductDetail"]),
   // }
+  methods:{
+     updateColor( color ) {
+      this.color = color;
+    }
+  }
 };
 </script>
 

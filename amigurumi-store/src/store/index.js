@@ -10,7 +10,7 @@ export default new Vuex.Store({
         id: 1,
         nombre: 'Morty',
         //Se agrega Link Externo (cambiar)
-        imagen: 'https://www.elchatea.com/logo.png',
+        imagen: 'https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg',
       },
       {
         id: 2,
