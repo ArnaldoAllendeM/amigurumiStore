@@ -1,17 +1,18 @@
 <template>
   <div>
-    <Navbar2 />
     <Carrousel />
-    <v-container>
-      <v-row no-gutters>
-        <v-col v-for="producto in $store.state.productos" :key="producto.id">
-          <CharacterCard
-            :producto="producto"
-            @click="$router.push({ path: `${$event.id}` })"
-          />
-        </v-col>
-      </v-row>
-    </v-container>
+    <v-row p-5>
+      <v-col
+        v-for="producto in $store.state.productos"
+        :key="producto.id"
+        class="col-12 col-sm-12 col-md-6 col-lg-3"
+      >
+        <CharacterCard
+          :producto="producto"
+          @click="$router.push({ path: `${$event.id}` })"
+        />
+      </v-col>
+    </v-row>
     <ApiClima />
     <Form />
   </div>

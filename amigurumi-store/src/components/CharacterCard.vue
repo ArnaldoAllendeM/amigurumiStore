@@ -3,18 +3,19 @@
     <v-card
       v-ripple
       class="mx-auto card pb-5"
-      max-width="344"
+      max-width="500px"
       :elevation="hover ? 12 : 2"
       @click="$emit('click', producto)"
     >
       <v-img :src="producto.imagen" height="200px"></v-img>
 
-      <v-card-title class="text-center"> {{ producto.nombre }}</v-card-title>
-      <v-card-text class="text--primary text-center">
-        <div>{{ producto.precio }}</div>
+      <v-card-title> {{ producto.nombre }}</v-card-title>
+      <v-card-subtitle> Amigurumi </v-card-subtitle>
+      <v-card-text class="text--primary">
+        {{ producto.precio }}
       </v-card-text>
       <div class="text-center">
-        <v-btn href="/shop" class="" outlined>Ver amigurumi</v-btn>
+        <v-btn href="/shop" outlined>Ver amigurumi</v-btn>
       </div>
     </v-card>
   </v-hover>
