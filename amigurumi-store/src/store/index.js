@@ -5,8 +5,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    carrito:[],
-    productoCarro:[],
+    carrito: [],
+    productoCarro: [],
     productos: [
       {
         id: 1,
@@ -17,8 +17,8 @@ export default new Vuex.Store({
         price: {
           sm: 10000,
           md: 15000,
-          lg: 20000,
-        },
+          lg: 20000
+        }
       },
       {
         id: 2,
@@ -27,8 +27,8 @@ export default new Vuex.Store({
         price: {
           sm: 10000,
           md: 15000,
-          lg: 20000,
-        },
+          lg: 20000
+        }
       },
       {
         id: 3,
@@ -37,8 +37,8 @@ export default new Vuex.Store({
         price: {
           sm: 10000,
           md: 15000,
-          lg: 20000,
-        },
+          lg: 20000
+        }
       },
       {
         id: 4,
@@ -47,8 +47,8 @@ export default new Vuex.Store({
         price: {
           sm: 10000,
           md: 15000,
-          lg: 20000,
-        },
+          lg: 20000
+        }
       },
       {
         id: 5,
@@ -57,10 +57,10 @@ export default new Vuex.Store({
         price: {
           sm: 10000,
           md: 15000,
-          lg: 20000,
-        },
-      },
-    ],
+          lg: 20000
+        }
+      }
+    ]
   },
   getters: {
     getProductDetail: (state) => (payload) => {
@@ -81,35 +81,37 @@ export default new Vuex.Store({
         return {
           nombre,
           imagen,
-          id,
+          id
         };
       });
 
       return result;
-    },
+    }
   },
 
   mutations: {
-    AUMENTARCANTIDAD(state, id){
+    AUMENTARCANTIDAD(state, id) {
       // agregar logica que busque al producto en el carrito por id y cantidad ++
     },
-    DISMINUIRCANTIDAD(state, id){
+    DISMINUIRCANTIDAD(state, id) {
       // cantidad mayor a 1
       // confirmación a través de un alert, usar action / revisar la vista del carro**
     },
-    ELIMINARDELCARRO(state, id){
+    ELIMINARDELCARRO(state, id) {
       // si cantidad es 1, crear un botón de eliminar
     },
     AGREGARALCARRO(state, producto) {
-      state.productoCarro.push(producto)
-    },
+      state.productoCarro.push(producto);
+    }
   },
   actions: {
     agregarACarrito({ commit, state }, nuevoProducto) {
-      const productoCarro = state.productos.filter((productoCarro)=> productoCarro.id=== nuevoProducto.id)
-      console.log(productoCarro)
+      const productoCarro = state.productos.filter(
+        (productoCarro) => productoCarro.id === nuevoProducto.id
+      );
+      console.log(productoCarro);
       productoCarro.cantidad = 1;
-      commit('AGREGARALCARRO', productoCarro);
+      commit("AGREGARALCARRO", productoCarro);
       // state.carrito.filter(p => {
       //   if(productoCarro.id == producto.id){
       //     commit('AUMENTARCANTIDAD', productoCarro.id)
@@ -118,7 +120,7 @@ export default new Vuex.Store({
       //     commit('AGREGARALCARRO', producto);
       //   }
       // })
-    },
+    }
   },
-  modules: {},
+  modules: {}
 });

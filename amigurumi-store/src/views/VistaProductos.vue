@@ -1,16 +1,16 @@
 <template>
   <div>
     <h1>Vista de Productos</h1>
-    <Cards />
+    <CharacterCard />
   </div>
 </template>
 
 <script>
-import Cards from "../components/Cards.vue";
+import CharacterCard from "../components/CharacterCard.vue";
 export default {
   name: "VistaProductos",
   components: {
-    Cards,
+    CharacterCard,
   },
 };
 </script>

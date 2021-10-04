@@ -21,7 +21,8 @@
       <v-divider></v-divider>
 
       <v-card-text class="white--text">
-        {{ new Date().getFullYear() }} — <strong>©Todos los derechos reservados</strong>
+        {{ new Date().getFullYear() }} —
+        <strong>©Todos los derechos reservados</strong>
       </v-card-text>
     </v-card>
   </v-footer>
@@ -30,6 +31,8 @@
 <style scoped>
 .v-card {
   width: 100%;
+  position: fiex;
+  bottom: 0;
 }
 </style>
 

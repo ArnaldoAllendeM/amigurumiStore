@@ -6,13 +6,13 @@
 
 <script>
 import Carrousel from "../components/Carrousel.vue";
-import Cards from "../components/Cards.vue";
+import CharacterCard from "../components/CharacterCard.vue";
 import Form from "../components/Form.vue";
 export default {
   name: "CreaTuProducto",
   components: {
     Carrousel,
-    Cards,
+    CharacterCard,
     Form,
   },
 };
