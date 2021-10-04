@@ -2,7 +2,7 @@
   <v-hover v-slot="{ hover }">
     <v-card
       v-ripple
-      class="mx-auto card pb-5"
+      class="mx-auto card pb-5 mt-5"
       max-width="500px"
       :elevation="hover ? 12 : 2"
       @click="$emit('click', producto)"
