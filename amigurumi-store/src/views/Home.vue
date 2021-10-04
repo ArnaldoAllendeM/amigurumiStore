@@ -12,6 +12,7 @@
         </v-col>
       </v-row>
     </v-container>
+    <ApiClima />
     <Form />
   </div>
 </template>
@@ -19,6 +20,7 @@
 <script>
 import Carrousel from "../components/Carrousel.vue";
 import CharacterCard from "../components/CharacterCard.vue";
+import ApiClima from "../components/ApiClima.vue";
 import Form from "../components/Form.vue";
 export default {
   data: () => ({
@@ -27,6 +29,7 @@ export default {
   components: {
     Carrousel,
     Form,
+    ApiClima,
     CharacterCard,
   },
 };
