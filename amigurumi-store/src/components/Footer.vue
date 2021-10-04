@@ -31,8 +31,12 @@
 <style scoped>
 .v-card {
   width: 100%;
-  position: fiex;
   bottom: 0;
+}
+
+.v-application .secondary {
+  background-color: #e74f8a !important;
+  border-color: #e74f8a important;
 }
 </style>
 

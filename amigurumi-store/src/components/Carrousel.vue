@@ -16,7 +16,7 @@ export default {
       name: "Carrousel",
       items: [
         {
-          src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwM8ut9b6OED8tVoQiFkLPTUQ9soHsZf43Pw&usqp=CAU",
+          src: "https://i.ibb.co/9gF4GLC/slider-1.jpg",
         },
         {
           src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",

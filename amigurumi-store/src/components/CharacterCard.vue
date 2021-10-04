@@ -9,13 +9,11 @@
     >
       <v-img :src="producto.imagen" height="200px"></v-img>
 
-      <v-card-title> {{ producto.nombre }}</v-card-title>
       <v-card-subtitle> Amigurumi </v-card-subtitle>
-      <v-card-text class="text--primary">
-        {{ producto.precio }}
-      </v-card-text>
+      <v-card-title> {{ producto.nombre }}</v-card-title>
+      <v-card-text> {{ producto.price.sm }} </v-card-text>
       <div class="text-center">
-        <v-btn href="/shop" outlined>Ver amigurumi</v-btn>
+        <v-btn href="/shop" class="button">Ver amigurumi</v-btn>
       </div>
     </v-card>
   </v-hover>
@@ -33,5 +31,12 @@ export default {
 .card {
   transition: all 0.2s linear;
   cursor: pointer;
+}
+
+.button {
+  background: #e74f8a !important;
+  color: #ffff;
+  text-decoration: none;
+  box-shadow: none;
 }
 </style>
