@@ -73,6 +73,9 @@
         <v-btn rounded outlined text @click="$vuetify.goTo('#')">
           <span class="mr-2">Contactanos</span>
         </v-btn>
+        <v-btn to="/carrito" text @click="$vuetify.goTo('#')">
+          <v-icon>mdi-cart</v-icon>
+        </v-btn>
       </div>
     </v-app-bar>
   </div>
@@ -89,9 +92,9 @@
 }
 
 .mdi-menu:before {
-    content: "\F35C";
-    left: 180% !important;
-    position: absolute !important;
+  content: "\F35C";
+  left: 180% !important;
+  position: absolute !important;
 }
 </style>
 
@@ -102,11 +105,12 @@ export default {
     drawer: null,
     isXs: false,
     items: [
-      ["mdi-home-outline", "Inicio", "#inicoo"],
+      ["mdi-home-outline", "Inicio", "#inicio"],
       ["mdi-check-all", "Productos", "#productos"],
       ["mdi-xbox", "Patrones", "#patrones"],
-      ["mdi-white-balance-incandescent", "Crea tu Amigorumi", "#amigotumi"],
+      ["mdi-white-balance-incandescent", "Crea tu Amigurumi", "#amigotumi"],
       ["mdi-message-processing", "Contactanos", "#contacto"],
+      ["mdi-cart", "Ver Carrito", "#carrito"],
     ],
   }),
   props: {
