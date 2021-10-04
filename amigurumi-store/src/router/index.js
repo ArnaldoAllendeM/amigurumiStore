@@ -5,6 +5,7 @@ import VistaProductos from "../views/VistaProductos.vue";
 import CreaTuProducto from "../views/CreaTuProducto.vue";
 import DetalleProducto from "../views/DetalleProducto.vue";
 import Patrones from "../views/Patrones.vue";
+import Carrito from "../views/Carrito.vue";
 
 
 Vue.use(VueRouter)
@@ -34,6 +35,12 @@ const routes = [
     path: '/:id',
     name: 'Producto',
     component: DetalleProducto,
+  },
+  
+  {
+    path: 'carrito',
+    name: 'Carrito',
+    component: Carrito,
   },
   {
     path: '/producto',

@@ -1,32 +1,59 @@
 <template>
   <!-- Color Input, CSS Color Picker/> -->
   <div>
-    <input class="red" name="color" type="radio" />
-    <input class="green" name="color" type="radio" />
-    <input class="pink" name="color" type="radio" />
-    <input checked class="yellow" name="color" type="radio" />
-    <input class="purple" name="color" type="radio" />
-<div class="original">
-    <h2>background image</h2>
-    <BigSmear :color="color"/>
-  </div>
-  <div class="container">
+    <div class="original">
+      <h2>background image</h2>
     </div>
-    <!-- <span>
-   {{getProductDetail(this.$route.params.id)}}
-   </span> -->
-    <h1>Hola {{ this.$route.params.id }}</h1>
-    <!-- <CharacterCard  :producto="producto" /> -->
-    <h1>{{ producto.nombre }}</h1>
-    <img :src="producto.imagen" />
-    <h1>{{ producto.id }}</h1>
-    <!-- Implementacion de libreria /> -->
-    <div class="form__field">
-    <div class="form__label">
-      <strong>Please choose a color:</strong>
-      <v-swatches v-model="color" inline></v-swatches>
-    </div>
-  </div>
+    <v-card class="mx-auto" max-width="500">
+      <v-container>
+        <v-flex>
+          <v-img text-center>
+            <BigSmear :color="color" />
+            <v-card-title>{{ producto.nombre }}</v-card-title>
+          </v-img>
+        </v-flex>
+        <v-container class="px-0" fluid>
+          <v-radio-group v-model="size" row>
+            <v-radio label="SM (10 cm) $10.000" value="sm"></v-radio>
+            <v-radio label="MD (15 cm) $15.000" value="md"></v-radio>
+            <v-radio label="LG (20 cm) $20.000" value="lg"></v-radio>
+          </v-radio-group>
+        </v-container>
+        <v-card-subtitle class="pb-0">
+          Amigurumi
+        </v-card-subtitle>
+
+        <v-card-text class="text--primary">
+          <div>Whitehaven Beach</div>
+
+          <div>Whitsunday Island, Whitsunday Islands</div>
+        </v-card-text>
+        <!-- Implementacion de libreria /> -->
+        <div class="form__field">
+          <div class="form__label">
+            <strong>Please choose a color:</strong>
+            <v-swatches v-model="color" inline></v-swatches>
+          </div>
+        </div>
+        <v-textarea
+          outlined
+          auto-grow
+          name="input-7-4"
+          label="Outlined textarea"
+          value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
+        ></v-textarea>
+
+        <v-card-actions>
+          <v-btn @click="addToCart()" color="orange" text>
+            Agregar al Carro
+          </v-btn>
+
+          <v-btn color="orange" text>
+            Añadir a Favoritos
+          </v-btn>
+        </v-card-actions>
+      </v-container>
+    </v-card>
   </div>
 </template>
 
@@ -39,7 +66,7 @@ import CharacterCard from "../components/CharacterCard.vue";
 import Smear from "../components/Smear.vue";
 import BigSmear from "../components/BigSmear.vue";
 
-// import {mapGetters} from "vuex";
+import {mapActions} from "vuex";
 export default {
   //importacion de componente de libreria
   components: { CharacterCard, BigSmear, Smear, VSwatches },
@@ -49,9 +76,8 @@ export default {
     // Props, implementacion de colores, posibilidad de agregar custom colors.
     swatches: [[{ color: "#F493A7" }, { color: "#ff0000" }]],
     producto: null,
-    data: {
-      detail: {},
-    },
+    size: "",
+    price: 0,
   }),
   mounted() {
     const producto = this.$store.state.productos.find(
@@ -62,121 +88,46 @@ export default {
   // computed:{
   //   ...mapGetters(["getProductDetail"]),
   // }
-  methods:{
-     updateColor( color ) {
+  methods: {
+    ...mapActions(["agregarACarrito"]),
+    updateColor(color) {
       this.color = color;
+    },
+    // el usuario ya debe haber elegido un tamaño y un color (Validar)
+    // Tamaño, color y precio, que el precio varíe según el tamaño
+    // agregar cantidad, debe comenzar en 1 (si cambia color o tamaño se vuelve un nuevo producto) find en la store con los 3 parámetros
+    
+    addToCart() {
+      // if()si estan seleccionadas todas las opciones
+      this.priceBySize
+      const nuevoProducto = {
+        nombre: this.producto.nombre,
+        id: this.producto.id + this.size + this.color,
+        imagen: this.producto.imagen,
+        color: this.color,
+        size: this.size,
+        price: this.price,
+        cantidad: 1,
+      };
+      console.log(nuevoProducto)
+      this.agregarACarrito(nuevoProducto)
+    },
+  },
+  computed:{
+    // traer un arreglo de price
+    priceBySize(){
+      console.log(this.producto.price.sm)
+      if(this.size == "sm"){
+        this.price = this.producto.price.sm;
+      }else if(this.size == "md"){
+        this.price = this.producto.price.md;
+      }else{
+        this.price = this.producto.price.lg;
+      }
     }
   }
 };
 </script>
 
 <!-- CSS Color Picker/> -->
-<style>
-.preview {
-  background: #ccc;
-  width: 415px;
-  height: 430px;
-  border: solid 10px #fff;
-}
-
-input[type="radio"] {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  width: 25px;
-  height: 25px;
-  margin: 5px 0 5px 5px;
-  background-size: 225px 70px;
-  position: relative;
-  float: left;
-  display: inline;
-  top: 0;
-  border-radius: 3px;
-  z-index: 99999;
-  cursor: pointer;
-  box-shadow: 1px 1px 1px #000;
-}
-
-input[type="radio"]:hover {
-  -webkit-filter: opacity(0.4);
-  filter: opacity(0.4);
-}
-
-.red {
-  background: red;
-}
-
-.red:checked {
-  background: linear-gradient(brown, red);
-}
-
-.green {
-  background: green;
-}
-
-.green:checked {
-  background: linear-gradient(green, lime);
-}
-
-.yellow {
-  background: yellow;
-}
-
-.yellow:checked {
-  background: linear-gradient(orange, yellow);
-}
-
-.purple {
-  background: purple;
-}
-
-.pink {
-  background: pink;
-}
-
-.purple:checked {
-  background: linear-gradient(purple, violet);
-}
-
-.red:checked ~ img {
-  -webkit-filter: opacity(0.5) drop-shadow(0 0 0 red);
-  filter: opacity(0.5) drop-shadow(0 0 0 red);
-}
-
-.green:checked ~ img {
-  -webkit-filter: opacity(0.5) drop-shadow(0 0 0 green);
-  filter: opacity(0.5) drop-shadow(0 0 0 green);
-}
-
-.yellow:checked ~ img {
-  -webkit-filter: opacity(0.5) drop-shadow(0 0 0 yellow);
-  filter: opacity(0.5) drop-shadow(0 0 0 yellow);
-}
-
-.purple:checked ~ img {
-  -webkit-filter: opacity(0.5) drop-shadow(0 0 0 purple);
-  filter: opacity(0.5) drop-shadow(0 0 0 purple);
-}
-
-.pink:checked ~ img {
-  -webkit-filter: opacity(0.5) drop-shadow(0 0 0 pink);
-  filter: opacity(0.5) drop-shadow(0 0 0 pink);
-}
-
-img {
-  width: 394px;
-  height: 375px;
-  position: relative;
-}
-
-.label {
-  width: 150px;
-  height: 75px;
-  position: absolute;
-  top: 170px;
-  margin-left: 130px;
-}
-
-::selection {
-  background: #000;
-}
-</style>
+<style></style>
