@@ -23,7 +23,8 @@ export default new Vuex.Store({
       {
         id: 2,
         nombre: "Rick",
-        imagen: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+        imagen:
+          "https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg",
         price: {
           sm: 10000,
           md: 15000,
@@ -33,7 +34,8 @@ export default new Vuex.Store({
       {
         id: 3,
         nombre: "Summer",
-        imagen: "https://rickandmortyapi.com/api/character/avatar/3.jpeg",
+        imagen:
+          "https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg",
         price: {
           sm: 10000,
           md: 15000,
@@ -43,7 +45,8 @@ export default new Vuex.Store({
       {
         id: 4,
         nombre: "Beth",
-        imagen: "https://rickandmortyapi.com/api/character/avatar/4.jpeg",
+        imagen:
+          "https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg",
         price: {
           sm: 10000,
           md: 15000,
@@ -53,7 +56,8 @@ export default new Vuex.Store({
       {
         id: 5,
         nombre: "Jerry",
-        imagen: "https://rickandmortyapi.com/api/character/avatar/5.jpeg",
+        imagen:
+          "https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg",
         price: {
           sm: 10000,
           md: 15000,
