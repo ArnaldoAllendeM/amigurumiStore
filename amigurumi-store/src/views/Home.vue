@@ -1,7 +1,11 @@
 <template>
   <div>
     <Carrousel />
-    <v-row p-5>
+    <div class="contenedor-titulo">
+      <h2 class="titulo-h2">Productos</h2>
+    </div>
+
+    <v-row class="p-5">
       <v-col
         v-for="producto in $store.state.productos"
         :key="producto.id"
@@ -35,3 +39,12 @@ export default {
   },
 };
 </script>
+<style scoped>
+.contenedor-titulo {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+.titulo-h2 {
+}
+</style>
