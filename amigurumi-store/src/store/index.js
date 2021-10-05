@@ -1,8 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
 // este firebase se puede mover
-import Firebase from 'firebase'
-import { firebaseConfig } from '../../firebase-config'
+import Firebase from "firebase";
+import { firebaseConfig } from "../../firebase-config";
 export const firebaseApp = Firebase.initializeApp(firebaseConfig);
 Vue.use(Vuex);
 
@@ -98,26 +98,21 @@ export default new Vuex.Store({
   mutations: {
     AUMENTARCANTIDAD(state, id) {
       // agregar logica que busque al producto en el carrito por id y cantidad ++
-
     },
     DISMINUIRCANTIDAD(state, id) {
-
-        // cantidad mayor a 1
-        // confirmación a través de un alert, usar action / revisar la vista del carro**
-        
+      // cantidad mayor a 1
+      // confirmación a través de un alert, usar action / revisar la vista del carro**
     },
     ELIMINARDELCARRO(state, producto) {
-
       // si cantidad es 1, crear un botón de eliminar
       const index = state.carrito.findIndex((item) => item.id === producto.id);
       state.carrito.splice(index, 1);
     },
     AGREGARALCARRO(state, producto) {
-
       console.log("hola");
       state.carrito.push(producto);
       console.log(state.carrito);
-    },
+    }
   },
   actions: {
     agregarACarrito({ commit, state }, producto) {
@@ -141,21 +136,18 @@ export default new Vuex.Store({
     borrarDelCarrito({ commit, state }, nuevoProducto) {
       commit("ELIMINARDELCARRO", nuevoProducto.id);
     },
-    bajarCantidad({commit},id){
-      
-      state.carrito.map(producto => {
-        if(producto.id == id && cantidad<1){
-          producto.cantidad--
-          commit("DISMINUIRCANTIDAD", id)
-        }else if(producto.id == id && cantidad==1){
-          producto.cantidad
-
-        }else{
+    bajarCantidad({ commit }, id) {
+      state.carrito.map((producto) => {
+        if (producto.id == id && cantidad < 1) {
+          producto.cantidad--;
+          commit("DISMINUIRCANTIDAD", id);
+        } else if (producto.id == id && cantidad == 1) {
+          producto.cantidad;
+        } else {
           // se elimina
-          commit("ELIMINARDELCARRO", id)
+          commit("ELIMINARDELCARRO", id);
         }
-      })
-
+      });
     }
   },
   modules: {}
