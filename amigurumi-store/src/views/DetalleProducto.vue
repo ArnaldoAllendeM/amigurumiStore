@@ -9,7 +9,7 @@
         <v-flex>
           <v-img text-center>
             <BigSmear :color="color" />
-            <v-card-title>{{ producto.nombre }}</v-card-title>
+            <v-card-title >{{producto.nombre }}</v-card-title>
           </v-img>
         </v-flex>
         <v-container class="px-0" fluid>
@@ -75,7 +75,7 @@ export default {
     color: "#1CA085",
     // Props, implementacion de colores, posibilidad de agregar custom colors.
     swatches: [[{ color: "#F493A7" }, { color: "#ff0000" }]],
-    producto: null,
+    producto: "",
     size: "",
     price: 0,
   }),
@@ -84,6 +84,7 @@ export default {
       (producto) => producto.id === Number.parseInt(this.$route.params.id)
     );
     this.producto = producto;
+    console.log(this.producto);
   },
   // computed:{
   //   ...mapGetters(["getProductDetail"]),

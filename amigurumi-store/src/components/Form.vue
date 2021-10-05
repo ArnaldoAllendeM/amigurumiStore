@@ -52,7 +52,7 @@
             required
           ></textarea>
         </div>
-        <v-button type="submit" class="btn button">Enviar</v-button>
+        <v-btn type="submit" class="btn button">Enviar</v-btn>
       </form>
     </div>
   </div>
@@ -61,7 +61,7 @@
 <style lang="scss">
 .button {
   background: #e74f8a !important;
-  color: #ffff;
+  color: #ffff !important;
   text-decoration: none;
   text-transform: uppercase;
   &:hover {

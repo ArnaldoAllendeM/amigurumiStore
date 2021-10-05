@@ -32,13 +32,13 @@ const routes = [
     component: VistaProductos,
   },
   {
-    path: '/:id',
-    name: 'Producto',
+    path: '/detalle/:id',
+    name: 'detalleProducto',
     component: DetalleProducto,
   },
   
   {
-    path: 'carrito',
+    path: '/carrito',
     name: 'Carrito',
     component: Carrito,
   },
