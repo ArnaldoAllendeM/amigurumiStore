@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
-
+import { initializeApp } from "firebase/app";
+export const firebaseApp = initializeApp(firebaseConfig);
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -101,11 +102,7 @@ export default new Vuex.Store({
 
         // cantidad mayor a 1
         // confirmación a través de un alert, usar action / revisar la vista del carro**
-        state.carrito.map(producto => {
-        if(producto.id == id && cantidad!=0){
-          producto.cantidad--
-        }
-      })
+        
     },
     ELIMINARDELCARRO(state, producto) {
 
@@ -143,7 +140,19 @@ export default new Vuex.Store({
       commit("ELIMINARDELCARRO", nuevoProducto.id);
     },
     bajarCantidad({commit},id){
-      commit("DISMINUIRCANTIDAD", id)
+      
+      state.carrito.map(producto => {
+        if(producto.id == id && cantidad<1){
+          producto.cantidad--
+          commit("DISMINUIRCANTIDAD", id)
+        }else if(producto.id == id && cantidad==1){
+          producto.cantidad
+
+        }else{
+          // se elimina
+          commit("ELIMINARDELCARRO", id)
+        }
+      })
 
     }
   },

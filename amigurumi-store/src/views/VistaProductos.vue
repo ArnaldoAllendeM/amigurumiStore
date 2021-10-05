@@ -1,7 +1,17 @@
 <template>
-  <div>
-    <h1>Vista de Productos</h1>
-    <CharacterCard />
+  <div>    
+    <v-row class="p-5">
+      <v-col
+        v-for="producto in $store.state.productos"
+        :key="producto.id"
+        class="col-12 col-sm-12 col-md-6 col-lg-3"
+      >
+        <CharacterCard
+          :producto="producto"
+          @click="$router.push({ path: `/detalle/${$event.id}` })"
+        />
+      </v-col>
+    </v-row>
   </div>
 </template>
 
