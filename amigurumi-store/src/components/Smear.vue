@@ -44,10 +44,6 @@ export default {
 </script>
 
 <style lang="scss">
-
-
-
-
 .smear {
   
   background-image: url("https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg");
@@ -63,7 +59,6 @@ export default {
 }
 
 .smear {
-
   position: relative;
   display: inline-block;
   width: 42px;
@@ -78,14 +73,11 @@ export default {
   cursor: pointer;
 
   &.small {
-
     width: 28px;
     height: 28px;
-
   }
 
   &.big {
-
     width: 300px;
     height: 300px;
     cursor: default;
@@ -95,11 +87,9 @@ export default {
       margin-top: -10px;
       text-shadow: 0px 2px 0 white;
     }
-
   }
 
   &.circle {
-
     border-radius: 100px;
     box-shadow: 0 0 0 1px #ccc, 0 0 0 2px white inset;
     background-position: 2px 0px;
@@ -112,14 +102,12 @@ export default {
     &.small {
       background-position: 1px;
     }
-
   }
 
   &:focus {
     box-shadow: 0 0 0 2px black, 0 0 0 3px white inset;
     outline: none;
   }
-
 }
 
 .overlay {

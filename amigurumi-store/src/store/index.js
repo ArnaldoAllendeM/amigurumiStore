@@ -6,6 +6,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     carrito: [],
+
+
     productos: [
       {
         id: 1,
@@ -16,8 +18,8 @@ export default new Vuex.Store({
         price: {
           sm: 10000,
           md: 15000,
-          lg: 20000,
-        },
+          lg: 20000
+        }
       },
       {
         id: 2,
@@ -27,8 +29,8 @@ export default new Vuex.Store({
         price: {
           sm: 10000,
           md: 15000,
-          lg: 20000,
-        },
+          lg: 20000
+        }
       },
       {
         id: 3,
@@ -38,8 +40,8 @@ export default new Vuex.Store({
         price: {
           sm: 10000,
           md: 15000,
-          lg: 20000,
-        },
+          lg: 20000
+        }
       },
       {
         id: 4,
@@ -49,8 +51,8 @@ export default new Vuex.Store({
         price: {
           sm: 10000,
           md: 15000,
-          lg: 20000,
-        },
+          lg: 20000
+        }
       },
       {
         id: 5,
@@ -60,10 +62,10 @@ export default new Vuex.Store({
         price: {
           sm: 10000,
           md: 15000,
-          lg: 20000,
-        },
-      },
-    ],
+          lg: 20000
+        }
+      }
+    ]
   },
   getters: {
     getProductDetail: (state) => (payload) => {
@@ -84,12 +86,12 @@ export default new Vuex.Store({
         return {
           nombre,
           imagen,
-          id,
+          id
         };
       });
 
       return result;
-    },
+    }
   },
 
   mutations: {
@@ -98,6 +100,7 @@ export default new Vuex.Store({
 
     },
     DISMINUIRCANTIDAD(state, id) {
+
         // cantidad mayor a 1
         // confirmación a través de un alert, usar action / revisar la vista del carro**
         state.carrito.map(producto => {
@@ -107,11 +110,13 @@ export default new Vuex.Store({
       })
     },
     ELIMINARDELCARRO(state, producto) {
+
       // si cantidad es 1, crear un botón de eliminar
       const index = state.carrito.findIndex((item) => item.id === producto.id);
       state.carrito.splice(index, 1);
     },
     AGREGARALCARRO(state, producto) {
+
       console.log("hola");
       state.carrito.push(producto);
       console.log(state.carrito);
@@ -141,7 +146,8 @@ export default new Vuex.Store({
     },
     bajarCantidad({commit},id){
       commit("DISMINUIRCANTIDAD", id)
+
     }
   },
-  modules: {},
+  modules: {}
 });
