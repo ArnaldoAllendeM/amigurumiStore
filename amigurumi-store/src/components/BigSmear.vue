@@ -6,7 +6,7 @@
         'background-color': this.$attrs.color,
       }"
     ></span>
-    <h3>{{ color }} </h3>
+    <h3>{{ color }}</h3>
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
   props: {},
   computed: {
     color() {
-      console.log(this.$attrs)
+      console.log(this.$attrs);
       return this.$root.color;
     },
   },
