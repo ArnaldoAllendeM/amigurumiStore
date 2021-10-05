@@ -17,7 +17,7 @@
       >
         <CharacterCard
           :producto="producto"
-          @click="$router.push({ path: `${$event.id}` })"
+          @click="$router.push({ path: `/detalle/${$event.id}` })"
         />
       </v-col>
     </v-row>
