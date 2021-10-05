@@ -109,7 +109,7 @@ export default {
         price: this.price,
         cantidad: 1,
       };
-      console.log(nuevoProducto)
+      // console.log(nuevoProducto)
       this.agregarACarrito(nuevoProducto)
     },
   },
