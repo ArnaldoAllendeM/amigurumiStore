@@ -5,8 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    carrito:[],
-    productoCarro:[],
+    carrito: [],
     productos: [
       {
         id: 1,
@@ -23,7 +22,8 @@ export default new Vuex.Store({
       {
         id: 2,
         nombre: "Rick",
-        imagen: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+        imagen:
+          "https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg",
         price: {
           sm: 10000,
           md: 15000,
@@ -33,7 +33,8 @@ export default new Vuex.Store({
       {
         id: 3,
         nombre: "Summer",
-        imagen: "https://rickandmortyapi.com/api/character/avatar/3.jpeg",
+        imagen:
+          "https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg",
         price: {
           sm: 10000,
           md: 15000,
@@ -43,7 +44,8 @@ export default new Vuex.Store({
       {
         id: 4,
         nombre: "Beth",
-        imagen: "https://rickandmortyapi.com/api/character/avatar/4.jpeg",
+        imagen:
+          "https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg",
         price: {
           sm: 10000,
           md: 15000,
@@ -53,7 +55,8 @@ export default new Vuex.Store({
       {
         id: 5,
         nombre: "Jerry",
-        imagen: "https://rickandmortyapi.com/api/character/avatar/5.jpeg",
+        imagen:
+          "https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg",
         price: {
           sm: 10000,
           md: 15000,
@@ -90,35 +93,55 @@ export default new Vuex.Store({
   },
 
   mutations: {
-    AUMENTARCANTIDAD(state, id){
+    AUMENTARCANTIDAD(state, id) {
       // agregar logica que busque al producto en el carrito por id y cantidad ++
+
     },
-    DISMINUIRCANTIDAD(state, id){
-      // cantidad mayor a 1
-      // confirmación a través de un alert, usar action / revisar la vista del carro**
+    DISMINUIRCANTIDAD(state, id) {
+        // cantidad mayor a 1
+        // confirmación a través de un alert, usar action / revisar la vista del carro**
+        state.carrito.map(producto => {
+        if(producto.id == id && cantidad!=0){
+          producto.cantidad--
+        }
+      })
     },
-    ELIMINARDELCARRO(state, id){
+    ELIMINARDELCARRO(state, producto) {
       // si cantidad es 1, crear un botón de eliminar
+      const index = state.carrito.findIndex((item) => item.id === producto.id);
+      state.carrito.splice(index, 1);
     },
     AGREGARALCARRO(state, producto) {
-      state.productoCarro.push(producto)
+      console.log("hola");
+      state.carrito.push(producto);
+      console.log(state.carrito);
     },
   },
   actions: {
-    agregarACarrito({ commit, state }, nuevoProducto) {
-      const productoCarro = state.productos.filter((productoCarro)=> productoCarro.id=== nuevoProducto.id)
-      console.log(productoCarro)
-      productoCarro.cantidad = 1;
-      commit('AGREGARALCARRO', productoCarro);
-      // state.carrito.filter(p => {
-      //   if(productoCarro.id == producto.id){
-      //     commit('AUMENTARCANTIDAD', productoCarro.id)
-      //   }
-      //   else{
-      //     commit('AGREGARALCARRO', producto);
-      //   }
-      // })
+    agregarACarrito({ commit, state }, producto) {
+      let nuevoProducto = { ...producto };
+      // console.log(nuevoProducto)
+      // const productoCarro = state.productos.filter((productoCarro)=> productoCarro.id === nuevoProducto.id)
+      // // console.log(productoCarro)
+      // productoCarro.cantidad = 1;
+      // commit('AGREGARALCARRO', productoCarro);
+      let verifica = null;
+      verifica = state.carrito.filter(({ id }) => id == nuevoProducto.id);
+      console.log(verifica);
+      if (verifica.length != 0) {
+        console.log("aumentarcantidad");
+        commit("AUMENTARCANTIDAD", nuevoProducto.id);
+      } else {
+        console.log("agregaralcarro");
+        commit("AGREGARALCARRO", nuevoProducto);
+      }
     },
+    borrarDelCarrito({ commit, state }, nuevoProducto) {
+      commit("ELIMINARDELCARRO", nuevoProducto.id);
+    },
+    bajarCantidad({commit},id){
+      commit("DISMINUIRCANTIDAD", id)
+    }
   },
   modules: {},
 });
