@@ -1,7 +1,9 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { initializeApp } from "firebase/app";
-export const firebaseApp = initializeApp(firebaseConfig);
+// este firebase se puede mover
+import Firebase from 'firebase'
+import { firebaseConfig } from '../../firebase-config'
+export const firebaseApp = Firebase.initializeApp(firebaseConfig);
 Vue.use(Vuex);
 
 export default new Vuex.Store({
