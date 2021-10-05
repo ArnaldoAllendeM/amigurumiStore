@@ -15,7 +15,7 @@
       </v-card-text>
 
       <v-card-text class="white--text pt-0">
-        Contacta con nosotros, crea tu propio Amigurumi 2021.
+        Contacta con nosotros, crea tu propio Amigurumi.
       </v-card-text>
 
       <v-divider></v-divider>
