@@ -13,7 +13,7 @@
       <v-card-title class="card-title"> {{ producto.nombre }}</v-card-title>
       <v-card-text class="card-price"> ${{ producto.price.sm }} </v-card-text>
       <div class="text-center">
-        <v-btn href="/shop" class="button">Ver amigurumi</v-btn>
+        <v-btn  @click="$router.push({ path: `/detalle/${getId}` })" class="button">Ver amigurumi</v-btn>
       </div>
     </v-card>
   </v-hover>
@@ -24,6 +24,11 @@ export default {
   props: {
     producto: { type: Object, required: true },
   },
+  computed:{
+     getId(){
+       return this.producto.id
+     }
+  }
 };
 </script>
 
