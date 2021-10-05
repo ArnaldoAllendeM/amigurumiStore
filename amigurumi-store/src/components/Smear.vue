@@ -1,6 +1,7 @@
 <template>
   <div
     class="smear"
+    :style="(backgroundColor = {})"
     :class="{
       circle: circle,
       small: small,
@@ -33,21 +34,23 @@ export default {
       default: false,
     },
   },
-  computed: {},
+  computed: {
+    getBackgroundCard() {
+      return $store.state.productos;
+    },
+  },
   methods: {
     updateColor(color) {
       this.$root.color = color;
     },
   },
 };
-
 </script>
 
 <style lang="scss">
 .smear {
-  
   background-image: url("https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg");
-// filter: grayscale(100%);
+  // filter: grayscale(100%);
 }
 
 .overlay {

@@ -1,22 +1,30 @@
 <template>
-  <v-hover v-slot="{ hover }">
-    <v-card
-      v-ripple
-      class="mx-auto card pb-5"
-      max-width="500px"
-      :elevation="hover ? 12 : 2"
-      @click="$emit('click', producto)"
-    >
-      <v-img :src="producto.imagen" height="200px"></v-img>
+  <div>
+    <v-hover v-slot="{ hover }">
+      <v-card
+        v-ripple
+        class="mx-auto card pb-5"
+        max-width="500px"
+        :elevation="hover ? 12 : 2"
+        @click="$emit('click', producto)"
+      >
+        <v-img :src="producto.imagen" height="200px"></v-img>
 
-      <v-card-subtitle class="card-subtitle"> Amigurumi </v-card-subtitle>
-      <v-card-title class="card-title"> {{ producto.nombre }}</v-card-title>
-      <v-card-text class="card-price"> ${{ producto.price.sm }} </v-card-text>
-      <div class="text-center">
-        <v-btn  @click="$router.push({ path: `/detalle/${getId}` })" class="button">Ver amigurumi</v-btn>
-      </div>
-    </v-card>
-  </v-hover>
+        <v-card-subtitle class="card-subtitle"> Amigurumi </v-card-subtitle>
+        <v-card-title class="card-title"> {{ producto.nombre }}</v-card-title>
+        <v-card-text class="card-price">
+          ${{ producto.precio.sm }}
+        </v-card-text>
+        <div class="text-center">
+          <v-btn
+            @click="$router.push({ path: `/detalle/${getId}` })"
+            class="button"
+            >Ver amigurumi</v-btn
+          >
+        </div>
+      </v-card>
+    </v-hover>
+  </div>
 </template>
 
 <script>
@@ -24,11 +32,11 @@ export default {
   props: {
     producto: { type: Object, required: true },
   },
-  computed:{
-     getId(){
-       return this.producto.id
-     }
-  }
+  computed: {
+    getId() {
+      return this.producto.id;
+    },
+  },
 };
 </script>
 
