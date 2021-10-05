@@ -96,6 +96,10 @@
   left: 180% !important;
   position: absolute !important;
 }
+
+.v-app-bar {
+  background-color: #e74f8a !important;
+}
 </style>
 
 <script>
