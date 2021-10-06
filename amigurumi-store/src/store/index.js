@@ -1,8 +1,8 @@
 import Vue from "vue";
-import Vuex from "vuex";
+import Vuex, { createLogger } from "vuex";
 // este firebase se puede mover
-import Firebase from 'firebase'
-import { firebaseConfig } from '../../firebase-config'
+import Firebase from "firebase";
+import { firebaseConfig } from "../../firebase-config";
 export const firebaseApp = Firebase.initializeApp(firebaseConfig);
 Vue.use(Vuex);
 
@@ -10,62 +10,63 @@ export default new Vuex.Store({
   state: {
     carrito: [],
     productos: [
-      {
-        id: 1,
-        nombre: "Morty",
-        //Se agrega Link Externo (cambiar)
-        imagen:
-          "https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg",
-        price: {
-          sm: 10000,
-          md: 15000,
-          lg: 20000
-        }
-      },
-      {
-        id: 2,
-        nombre: "Rick",
-        imagen:
-          "https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg",
-        price: {
-          sm: 10000,
-          md: 15000,
-          lg: 20000
-        }
-      },
-      {
-        id: 3,
-        nombre: "Summer",
-        imagen:
-          "https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg",
-        price: {
-          sm: 10000,
-          md: 15000,
-          lg: 20000
-        }
-      },
-      {
-        id: 4,
-        nombre: "Beth",
-        imagen:
-          "https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg",
-        price: {
-          sm: 10000,
-          md: 15000,
-          lg: 20000
-        }
-      },
-      {
-        id: 5,
-        nombre: "Jerry",
-        imagen:
-          "https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg",
-        price: {
-          sm: 10000,
-          md: 15000,
-          lg: 20000
-        }
-      }
+      //para los datos de firestore
+      //   {
+      //     id: 1,
+      //     nombre: "Morty",
+      //     //Se agrega Link Externo (cambiar)
+      //     imagen:
+      //       "https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg",
+      //     price: {
+      //       sm: 10000,
+      //       md: 15000,
+      //       lg: 20000
+      //     }
+      //   },
+      //   {
+      //     id: 2,
+      //     nombre: "Rick",
+      //     imagen:
+      //       "https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg",
+      //     price: {
+      //       sm: 10000,
+      //       md: 15000,
+      //       lg: 20000
+      //     }
+      //   },
+      //   {
+      //     id: 3,
+      //     nombre: "Summer",
+      //     imagen:
+      //       "https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg",
+      //     price: {
+      //       sm: 10000,
+      //       md: 15000,
+      //       lg: 20000
+      //     }
+      //   },
+      //   {
+      //     id: 4,
+      //     nombre: "Beth",
+      //     imagen:
+      //       "https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg",
+      //     price: {
+      //       sm: 10000,
+      //       md: 15000,
+      //       lg: 20000
+      //     }
+      //   },
+      //   {
+      //     id: 5,
+      //     nombre: "Jerry",
+      //     imagen:
+      //       "https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg",
+      //     price: {
+      //       sm: 10000,
+      //       md: 15000,
+      //       lg: 20000
+      //     }
+      //   }
     ]
   },
   getters: {
@@ -96,7 +97,16 @@ export default new Vuex.Store({
   },
 
   mutations: {
-    SET_FORM(state){
+
+    //PARA CARDS de firestore
+    SET_DATA(state, newData) {
+      console.log(newData); //borrame
+      state.productos = newData;
+      console.log(state.productos);
+    },
+
+    AUMENTARCANTIDAD(state, id) {
+      // agregar logica que busque al producto en el carrito por id y cantidad ++
 
     },
     AUMENTARCANTIDAD(state, producto) {
@@ -105,25 +115,38 @@ export default new Vuex.Store({
  console.log(producto)
     },
     DISMINUIRCANTIDAD(state, id) {
-
-        // cantidad mayor a 1
-        // confirmación a través de un alert, usar action / revisar la vista del carro**
-        
+      // cantidad mayor a 1
+      // confirmación a través de un alert, usar action / revisar la vista del carro**
     },
     ELIMINARDELCARRO(state, producto) {
-
       // si cantidad es 1, crear un botón de eliminar
       const index = state.carrito.findIndex((item) => item.id === producto.id);
       state.carrito.splice(index, 1);
     },
     AGREGARALCARRO(state, producto) {
-
       console.log("hola");
       state.carrito.push(producto);
       console.log(state.carrito);
-    },
+    }
   },
   actions: {
+    //action para traer datos de firestore
+    getAmigurumis(context) {
+      //const firebaseApp = context.rootState.firebase;
+      console.log(firebaseApp);
+      Firebase.firestore(firebaseApp)
+        .collection("amigurumis")
+        .get()
+        .then((querySnapshot) => {
+          let productos = [];
+          querySnapshot.forEach(
+            (doc) => productos.push({ id: doc.id, ...doc.data() }),
+            console.log(productos)
+          );
+          context.commit("SET_DATA", productos);
+        });
+    },
+
     agregarACarrito({ commit, state }, producto) {
       let nuevoProducto = { ...producto };
       // console.log(nuevoProducto)
@@ -147,6 +170,7 @@ export default new Vuex.Store({
     borrarDelCarrito({ commit, state }, id) {
       commit('ELIMINARDELCARRO', id);
     },
+
     subirLaCantidad({commit, state},id){
       state.carrito.map(producto => {
         if(producto.id == id){
@@ -170,6 +194,7 @@ export default new Vuex.Store({
       return new Promise((resolve, reject) => {
         Firebase.firestore(firebaseApp).collection('formulario').add(dataForm).then(resolve, reject)
       })
+
     }
   },
   modules: {}

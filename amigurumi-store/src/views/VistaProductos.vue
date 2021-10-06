@@ -1,5 +1,5 @@
 <template>
-  <div>    
+  <div>
     <v-row class="p-5">
       <v-col
         v-for="producto in $store.state.productos"
@@ -16,11 +16,18 @@
 </template>
 
 <script>
+import Store from "../store";
 import CharacterCard from "../components/CharacterCard.vue";
 export default {
   name: "VistaProductos",
   components: {
     CharacterCard,
+  },
+
+  //añadido para firestore
+  async beforeRouteEnter(to, from, next) {
+    await Store.dispatch("getAmigurumis");
+    next();
   },
 };
 </script>

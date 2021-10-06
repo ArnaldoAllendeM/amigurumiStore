@@ -4,6 +4,7 @@
       class="overlay"
       :style="{
         'background-color': this.$attrs.color,
+        'background-image': this.$store.state.producto.imagen,
       }"
     ></span>
     <h3>{{ color }}</h3>
