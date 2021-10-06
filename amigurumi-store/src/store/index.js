@@ -97,6 +97,7 @@ export default new Vuex.Store({
   },
 
   mutations: {
+
     //PARA CARDS de firestore
     SET_DATA(state, newData) {
       console.log(newData); //borrame
@@ -106,6 +107,12 @@ export default new Vuex.Store({
 
     AUMENTARCANTIDAD(state, id) {
       // agregar logica que busque al producto en el carrito por id y cantidad ++
+
+    },
+    AUMENTARCANTIDAD(state, producto) {
+      // agregar logica que busque al producto en el carrito por id y cantidad ++
+//  state.carrito.push(producto)
+ console.log(producto)
     },
     DISMINUIRCANTIDAD(state, id) {
       // cantidad mayor a 1
@@ -152,27 +159,42 @@ export default new Vuex.Store({
       console.log(verifica);
       if (verifica.length != 0) {
         console.log("aumentarcantidad");
-        commit("AUMENTARCANTIDAD", nuevoProducto.id);
+        nuevoProducto.cantidad++
+        console.log(nuevoProducto);
+        commit("AUMENTARCANTIDAD", nuevoProducto);
       } else {
         console.log("agregaralcarro");
         commit("AGREGARALCARRO", nuevoProducto);
       }
     },
-    borrarDelCarrito({ commit, state }, nuevoProducto) {
-      commit("ELIMINARDELCARRO", nuevoProducto.id);
+    borrarDelCarrito({ commit, state }, id) {
+      commit('ELIMINARDELCARRO', id);
     },
-    bajarCantidad({ commit }, id) {
-      state.carrito.map((producto) => {
-        if (producto.id == id && cantidad < 1) {
-          producto.cantidad--;
-          commit("DISMINUIRCANTIDAD", id);
-        } else if (producto.id == id && cantidad == 1) {
-          producto.cantidad;
-        } else {
-          // se elimina
-          commit("ELIMINARDELCARRO", id);
-        }
-      });
+
+    subirLaCantidad({commit, state},id){
+      state.carrito.map(producto => {
+        if(producto.id == id){
+          producto.cantidad++
+          commit("AUMENTARCANTIDAD", id)
+      }})},
+    bajarLaCantidad({commit, state},id){
+      
+      state.carrito.map(producto => {
+        if(producto.id == id && producto.cantidad>1){
+          producto.cantidad--
+          commit("DISMINUIRCANTIDAD", id)
+        }else if(producto.id == id && producto.cantidad==1){
+          producto.cantidad
+          commit("ELIMINARDELCARRO", id)
+        }       
+      })
+    },
+    traerFormDataFromHome(context, dataForm){ 
+      const firebaseApp = context.rootState.firebase
+      return new Promise((resolve, reject) => {
+        Firebase.firestore(firebaseApp).collection('formulario').add(dataForm).then(resolve, reject)
+      })
+
     }
   },
   modules: {}
