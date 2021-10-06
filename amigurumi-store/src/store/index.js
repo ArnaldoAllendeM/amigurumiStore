@@ -9,6 +9,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     carrito: [],
+    patrones:[],
     productos: [
       //para los datos de firestore
       //   {
@@ -99,12 +100,12 @@ export default new Vuex.Store({
   mutations: {
 
     //PARA CARDS de firestore
-    SET_DATA(state, newData) {
-      console.log(newData); //borrame
+    SET_DATA(state, newData) {      
       state.productos = newData;
-      console.log(state.productos);
     },
-
+    SET_DATA_PATRONES(state, newData) {      
+      state.patrones = newData;
+    },
     AUMENTARCANTIDAD(state, id) {
       // agregar logica que busque al producto en el carrito por id y cantidad ++
 
@@ -146,7 +147,21 @@ export default new Vuex.Store({
           context.commit("SET_DATA", productos);
         });
     },
-
+    getPatrones(context) {
+      //const firebaseApp = context.rootState.firebase;
+      console.log(firebaseApp);
+      Firebase.firestore(firebaseApp)
+        .collection("patrones")
+        .get()
+        .then((querySnapshot) => {
+          let patrones = [];
+          querySnapshot.forEach(
+            (doc) => patrones.push({ id: doc.id, ...doc.data() }),
+            console.log(patrones)
+          );
+          context.commit("SET_DATA_PATRONES", patrones);
+        });
+    },
     agregarACarrito({ commit, state }, producto) {
       let nuevoProducto = { ...producto };
       // console.log(nuevoProducto)
@@ -195,7 +210,23 @@ export default new Vuex.Store({
         Firebase.firestore(firebaseApp).collection('formulario').add(dataForm).then(resolve, reject)
       })
 
-    }
+    },
+    agregarPatrones({ commit, state }, patron) {
+      let nuevoProducto = { ...patron };
+      
+      let verifica = null;
+      verifica = state.carrito.filter(({ id }) => id == nuevoProducto.id);
+      console.log(verifica);
+      if (verifica.length != 0) {
+        console.log("aumentarcantidad");
+        nuevoProducto.cantidad++
+        console.log(nuevoProducto);
+        commit("AUMENTARCANTIDAD", nuevoProducto);
+      } else {
+        console.log("agregaralcarro");
+        commit("AGREGARALCARRO", nuevoProducto);
+      }
+    },
   },
   modules: {}
 });
