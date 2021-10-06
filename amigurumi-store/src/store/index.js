@@ -96,9 +96,13 @@ export default new Vuex.Store({
   },
 
   mutations: {
-    AUMENTARCANTIDAD(state, id) {
-      // agregar logica que busque al producto en el carrito por id y cantidad ++
+    SET_FORM(state){
 
+    },
+    AUMENTARCANTIDAD(state, producto) {
+      // agregar logica que busque al producto en el carrito por id y cantidad ++
+//  state.carrito.push(producto)
+ console.log(producto)
     },
     DISMINUIRCANTIDAD(state, id) {
 
@@ -132,30 +136,40 @@ export default new Vuex.Store({
       console.log(verifica);
       if (verifica.length != 0) {
         console.log("aumentarcantidad");
-        commit("AUMENTARCANTIDAD", nuevoProducto.id);
+        nuevoProducto.cantidad++
+        console.log(nuevoProducto);
+        commit("AUMENTARCANTIDAD", nuevoProducto);
       } else {
         console.log("agregaralcarro");
         commit("AGREGARALCARRO", nuevoProducto);
       }
     },
-    borrarDelCarrito({ commit, state }, nuevoProducto) {
-      commit("ELIMINARDELCARRO", nuevoProducto.id);
+    borrarDelCarrito({ commit, state }, id) {
+      commit('ELIMINARDELCARRO', id);
     },
-    bajarCantidad({commit},id){
+    subirLaCantidad({commit, state},id){
+      state.carrito.map(producto => {
+        if(producto.id == id){
+          producto.cantidad++
+          commit("AUMENTARCANTIDAD", id)
+      }})},
+    bajarLaCantidad({commit, state},id){
       
       state.carrito.map(producto => {
-        if(producto.id == id && cantidad<1){
+        if(producto.id == id && producto.cantidad>1){
           producto.cantidad--
           commit("DISMINUIRCANTIDAD", id)
-        }else if(producto.id == id && cantidad==1){
+        }else if(producto.id == id && producto.cantidad==1){
           producto.cantidad
-
-        }else{
-          // se elimina
           commit("ELIMINARDELCARRO", id)
-        }
+        }       
       })
-
+    },
+    traerFormDataFromHome(context, dataForm){ 
+      const firebaseApp = context.rootState.firebase
+      return new Promise((resolve, reject) => {
+        Firebase.firestore(firebaseApp).collection('formulario').add(dataForm).then(resolve, reject)
+      })
     }
   },
   modules: {}

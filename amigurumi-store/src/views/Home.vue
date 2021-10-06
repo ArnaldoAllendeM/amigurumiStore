@@ -22,7 +22,7 @@
       </v-col>
     </v-row>
     <ApiClima />
-    <Form />
+    <Form @submit="handleFormSubmit"/>
   </div>
 </template>
 
@@ -41,6 +41,17 @@ export default {
     ApiClima,
     CharacterCard,
   },
+  methods:{
+    async handleFormSubmit(dataForm) {
+      try {
+        const response = await this.$store.dispatch('traerFormDataFromHome', dataForm)
+        console.log({ response, dataForm })
+        this.dialog = false
+      } catch (e) {
+        console.error(e)
+      }
+    }
+  }
 };
 </script>
 <style scoped>
