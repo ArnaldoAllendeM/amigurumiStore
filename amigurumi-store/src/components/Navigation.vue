@@ -58,24 +58,26 @@
         v-if="isXs"
       />
       <div v-else>
-        <v-btn to="/home" text >
+        <v-btn to="/home" text>
           <span class="mr-2">Inicio</span>
         </v-btn>
-        <v-btn to="/productos" text >
+        <v-btn to="/productos" text>
           <span class="mr-2">Productos</span>
         </v-btn>
-        <v-btn to="/patrones" text >
+        <v-btn to="/patrones" text>
           <span class="mr-2">Patrones</span>
         </v-btn>
-        <v-btn to="/creatuamigurumi" text >
+        <v-btn to="/creatuamigurumi" text>
           <span class="mr-2">Crea tu Amigurumi</span>
         </v-btn>
-        <v-btn to="/contactanos" text >
+        <v-btn to="/contactanos" text>
           <span class="mr-2">Contactanos</span>
         </v-btn>
-        <v-btn to="/carrito"
-        text >        
+        <v-btn to="/carrito" text>
           <v-icon>mdi-cart</v-icon>
+        </v-btn>
+        <v-btn to="/login" text>
+          <v-icon>mdi-login</v-icon>
         </v-btn>
       </div>
     </v-app-bar>
@@ -116,6 +118,7 @@ export default {
       ["mdi-white-balance-incandescent", "Crea tu Amigurumi", "#amigotumi"],
       ["mdi-message-processing", "Contactanos", "#contacto"],
       ["mdi-cart", "Ver Carrito", "#carrito"],
+      ["mdi-login", "Login", "#login"],
     ],
   }),
   props: {

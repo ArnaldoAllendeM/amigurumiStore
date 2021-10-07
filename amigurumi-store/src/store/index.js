@@ -8,6 +8,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    user: null, //variable para sesión
     carrito: [],
     patrones:[],
     productos: [
@@ -98,6 +99,10 @@ export default new Vuex.Store({
   },
 
   mutations: {
+    //mutation de login:
+    SET_USER(state, newUser) {
+      state.user = newUser;
+    },
 
     //PARA CARDS de firestore
     SET_DATA(state, newData) {      
@@ -108,12 +113,11 @@ export default new Vuex.Store({
     },
     AUMENTARCANTIDAD(state, id) {
       // agregar logica que busque al producto en el carrito por id y cantidad ++
-
     },
     AUMENTARCANTIDAD(state, producto) {
       // agregar logica que busque al producto en el carrito por id y cantidad ++
-//  state.carrito.push(producto)
- console.log(producto)
+      //  state.carrito.push(producto)
+      console.log(producto);
     },
     DISMINUIRCANTIDAD(state, id) {
       // cantidad mayor a 1
@@ -131,6 +135,19 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    //actions del Login
+    login(context, credentials) {
+      return new Promise((resolve, reject) => {
+        Firebase.auth()
+          .signInWithEmailAndPassword(credentials.email, credentials.password)
+          .then((data) => {
+            //enviar datos a las mutaciones
+            context.commit("SET_USER", data.user);
+            resolve();
+          }, reject);
+      });
+    },
+
     //action para traer datos de firestore
     getAmigurumis(context) {
       //const firebaseApp = context.rootState.firebase;
@@ -174,7 +191,7 @@ export default new Vuex.Store({
       console.log(verifica);
       if (verifica.length != 0) {
         console.log("aumentarcantidad");
-        nuevoProducto.cantidad++
+        nuevoProducto.cantidad++;
         console.log(nuevoProducto);
         commit("AUMENTARCANTIDAD", nuevoProducto);
       } else {
@@ -183,30 +200,32 @@ export default new Vuex.Store({
       }
     },
     borrarDelCarrito({ commit, state }, id) {
-      commit('ELIMINARDELCARRO', id);
+      commit("ELIMINARDELCARRO", id);
     },
 
-    subirLaCantidad({commit, state},id){
-      state.carrito.map(producto => {
-        if(producto.id == id){
-          producto.cantidad++
-          commit("AUMENTARCANTIDAD", id)
-      }})},
-    bajarLaCantidad({commit, state},id){
-      
-      state.carrito.map(producto => {
-        if(producto.id == id && producto.cantidad>1){
-          producto.cantidad--
-          commit("DISMINUIRCANTIDAD", id)
-        }else if(producto.id == id && producto.cantidad==1){
-          producto.cantidad
-          commit("ELIMINARDELCARRO", id)
-        }       
-      })
+    subirLaCantidad({ commit, state }, id) {
+      state.carrito.map((producto) => {
+        if (producto.id == id) {
+          producto.cantidad++;
+          commit("AUMENTARCANTIDAD", id);
+        }
+      });
     },
-    traerFormDataFromHome(context, dataForm){ 
-      const firebaseApp = context.rootState.firebase
+    bajarLaCantidad({ commit, state }, id) {
+      state.carrito.map((producto) => {
+        if (producto.id == id && producto.cantidad > 1) {
+          producto.cantidad--;
+          commit("DISMINUIRCANTIDAD", id);
+        } else if (producto.id == id && producto.cantidad == 1) {
+          producto.cantidad;
+          commit("ELIMINARDELCARRO", id);
+        }
+      });
+    },
+    traerFormDataFromHome(context, dataForm) {
+      const firebaseApp = context.rootState.firebase;
       return new Promise((resolve, reject) => {
+
         Firebase.firestore(firebaseApp).collection('formulario').add(dataForm).then(resolve, reject)
       })
 
@@ -227,6 +246,7 @@ export default new Vuex.Store({
         commit("AGREGARALCARRO", nuevoProducto);
       }
     },
+
   },
   modules: {}
 });

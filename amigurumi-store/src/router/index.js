@@ -1,5 +1,5 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from "vue";
+import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import VistaProductos from "../views/VistaProductos.vue";
 import CreaTuProducto from "../views/CreaTuProducto.vue";
@@ -8,70 +8,80 @@ import DetallePatrones from "../views/DetallePatrones.vue";
 import Patrones from "../views/Patrones.vue";
 import Carrito from "../views/Carrito.vue";
 import Contactanos from "../views/Contactanos.vue";
+import Login from "../views/Login.vue";
 
-
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
-
   {
     path: "",
-    redirect: "/home",
+    redirect: "/home"
   },
   {
     path: "/home",
     name: "Home",
-    component: Home,  
+    component: Home
   },
   {
     path: "/patrones",
     name: "Patrones",
-    component: Patrones,
+    component: Patrones
   },
   {
-    path: '/productos',
-    name: 'Productos',
-    component: VistaProductos,
+    path: "/productos",
+    name: "Productos",
+    component: VistaProductos
   },
   {
-    path: '/detalle/:id',
-    name: 'detalleProducto',
-    component: DetalleProducto,
+    path: "/detalle/:id",
+    name: "detalleProducto",
+    component: DetalleProducto
   },
   {
     path: '/patrones/:id',
     name: 'DetallePatrones',
     component: DetallePatrones,
   },
-  
-  
   {
-    path: '/carrito',
-    name: 'Carrito',
-    component: Carrito,
+    path: "/carrito",
+    name: "Carrito",
+    component: Carrito
   },
   {
-    path: '/contactanos',
-    name: 'Contactanos',
-    component: Contactanos,
+    path: "/contactanos",
+    name: "Contactanos",
+    component: Contactanos
   },
   {
-    path: '/producto',
-    name: 'CreaTuProducto',
-    component: CreaTuProducto,
+    path: "/producto",
+    name: "CreaTuProducto",
+    component: CreaTuProducto
     // children:[
     //   {
     //     path: ":id",
     //     component:DetalleProducto,
     //   }
     // ]
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login
+  },
+  {
+    path: "/admin",
+    name: "Admin",
+    component: () => import("../views/Admin.vue"),
+    meta: {
+      login: true
+    }
   }
-]
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
   routes
-})
+});
 
-export default router
+export default router;
