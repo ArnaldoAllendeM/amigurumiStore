@@ -9,6 +9,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     user: null, //variable para sesión
+    productoEnVista:null,
     carrito: [],
     patrones:[],
     productos: [
@@ -95,6 +96,16 @@ export default new Vuex.Store({
       });
 
       return result;
+    },
+    getProduct:(state)=>(id)=>{
+      console.log('producto')
+
+      const producto = state.productos.filter(
+        (producto) => producto.id == id
+        );
+        console.log(producto)
+        console.log(id)
+      return producto;
     }
   },
 
@@ -132,9 +143,16 @@ export default new Vuex.Store({
       console.log("hola");
       state.carrito.push(producto);
       console.log(state.carrito);
+    },
+    GUARDAR_PRODUCTO(state, producto){
+      state.productoEnVista = producto;
     }
   },
   actions: {
+    guardarProducto(context, productoEnVista){
+      let productoenVista = { ...productoenVista };
+      context.commit("GUARDAR_PRODUCTO", productoEnVista)
+    },
     //actions del Login
     login(context, credentials) {
       return new Promise((resolve, reject) => {

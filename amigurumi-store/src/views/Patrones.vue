@@ -23,7 +23,6 @@ export default {
   components: {
     CharacterCardPatron,
   },
-
   //añadido para firestore
   async beforeRouteEnter(to, from, next) {
     await Store.dispatch("getPatrones");
