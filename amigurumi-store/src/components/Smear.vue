@@ -49,7 +49,7 @@ export default {
 
 <style lang="scss">
 .smear {
-  background-image: url("https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg");
+  // background-image: url("https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg");
   // filter: grayscale(100%);
 }
 

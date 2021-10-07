@@ -8,8 +8,8 @@
       <v-container>
         <v-flex>
           <v-img text-center>
-            <BigSmear :color="color" />
-            <v-card-title >{{producto.nombre }}</v-card-title>
+            <BigSmear :color="color" :producto="producto" />
+            <v-card-title>{{ producto.nombre }}</v-card-title>
           </v-img>
         </v-flex>
         <v-container class="px-0" fluid>
@@ -66,7 +66,7 @@ import CharacterCard from "../components/CharacterCard.vue";
 import Smear from "../components/Smear.vue";
 import BigSmear from "../components/BigSmear.vue";
 
-import {mapActions} from "vuex";
+import { mapActions } from "vuex";
 export default {
   //importacion de componente de libreria
   components: { CharacterCard, BigSmear, Smear, VSwatches },
@@ -79,28 +79,32 @@ export default {
     size: "",
     precio: 0,
   }),
+  props: {
+    getId: String,
+  },
   mounted() {
     const producto = this.$store.state.productos.find(
       (producto) => producto.id === Number.parseInt(this.$route.params.id)
     );
     this.producto = producto;
+    this.guardarProducto(producto)
     console.log(this.producto);
   },
   // computed:{
   //   ...mapGetters(["getProductDetail"]),
   // }
   methods: {
-    ...mapActions(["agregarACarrito"]),
+    ...mapActions(["agregarACarrito", "guardarProducto"]),
     updateColor(color) {
       this.color = color;
     },
     // el usuario ya debe haber elegido un tamaño y un color (Validar)
     // Tamaño, color y precio, que el precio varíe según el tamaño
     // agregar cantidad, debe comenzar en 1 (si cambia color o tamaño se vuelve un nuevo producto) find en la store con los 3 parámetros
-    
+
     addToCart() {
       // if()si estan seleccionadas todas las opciones
-      this.priceBySize
+      this.priceBySize;
       const nuevoProducto = {
         nombre: this.producto.nombre,
         id: this.producto.id + this.size + this.color,
@@ -113,22 +117,23 @@ export default {
         cantidad: 1,
       };
       // console.log(nuevoProducto)
-      this.agregarACarrito(nuevoProducto)
+      this.agregarACarrito(nuevoProducto);
     },
   },
-  computed:{
+  computed: {
+  
     // traer un arreglo de price
-    priceBySize(){
-      console.log(this.producto.precio.sm)
-      if(this.size == "sm"){
+    priceBySize() {
+      console.log(this.producto.precio.sm);
+      if (this.size == "sm") {
         this.precio_sm = this.producto.precio.sm;
-      }else if(this.size == "md"){
+      } else if (this.size == "md") {
         this.precio_md = this.producto.precio.md;
-      }else{
+      } else {
         this.precio_lg = this.producto.precio.lg;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
