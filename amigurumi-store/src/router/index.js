@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import VistaProductos from "../views/VistaProductos.vue";
 import CreaTuProducto from "../views/CreaTuProducto.vue";
 import DetalleProducto from "../views/DetalleProducto.vue";
+import DetallePatrones from "../views/DetallePatrones.vue";
 import Patrones from "../views/Patrones.vue";
 import Carrito from "../views/Carrito.vue";
 import Contactanos from "../views/Contactanos.vue";
@@ -36,7 +37,11 @@ const routes = [
     name: "detalleProducto",
     component: DetalleProducto
   },
-
+  {
+    path: '/patrones/:id',
+    name: 'DetallePatrones',
+    component: DetallePatrones,
+  },
   {
     path: "/carrito",
     name: "Carrito",
