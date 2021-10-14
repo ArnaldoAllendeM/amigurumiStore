@@ -73,9 +73,21 @@
         <v-btn to="/contactanos" text>
           <span class="mr-2">Contactanos</span>
         </v-btn>
-        <v-btn to="/carrito" text>
+        <!-- <v-btn to="/carrito" text>
           <v-icon>mdi-cart</v-icon>
+        </v-btn> -->
+        <v-badge
+        :content="this.$store.state.mensajes"
+        :value="this.$store.state.mensajes"
+        color="green"
+        overlap
+      >
+      <v-btn to="/carrito" text>
+        <v-icon large>
+          mdi-cart
+        </v-icon>
         </v-btn>
+      </v-badge>
         <v-btn to="/login" text>
           <v-icon>mdi-login</v-icon>
         </v-btn>
@@ -143,6 +155,7 @@ export default {
   mounted() {
     this.onResize();
     window.addEventListener("resize", this.onResize, { passive: true });
+    console.log(this.$store.state.mensajes)
   },
 };
 </script>

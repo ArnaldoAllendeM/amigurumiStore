@@ -8,7 +8,7 @@
       <v-container>
         <v-flex>
           <v-img text-center>
-            <BigSmear :color="color"  />
+            <BigSmear :color="color" :producto="patron" />
             <v-card-title >{{patron.nombre }}</v-card-title>
             <v-card-title >{{patron.precio }}</v-card-title>
           </v-img>

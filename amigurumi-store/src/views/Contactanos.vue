@@ -1,12 +1,12 @@
 <template>
-  <Form />
+  <FormInput />
 </template>
 
 <script>
-import Form from "../components/Form.vue"
+import FormInput from "../components/FormInput.vue"
 export default {
 components:{
-    Form,
+    FormInput,
 }
 }
 </script>

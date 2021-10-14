@@ -34,7 +34,7 @@
 import Carrousel from "../components/Carrousel.vue";
 import CharacterCard from "../components/CharacterCard.vue";
 import ApiClima from "../components/ApiClima.vue";
-import Form from "../components/Form.vue";
+import FormInput from "../components/FormInput.vue";
 import SectionCallToAction from "../components/SectionCallToAction.vue";
 import Testimonials from "../components/Testimonials.vue";
 export default {
@@ -43,7 +43,7 @@ export default {
   }),
   components: {
     Carrousel,
-    Form,
+    FormInput,
     ApiClima,
     CharacterCard,
     SectionCallToAction,
