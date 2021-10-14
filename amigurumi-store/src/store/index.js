@@ -1,5 +1,5 @@
 import Vue from "vue";
-import Vuex, { createLogger } from "vuex";
+import Vuex, { createLogger, Store } from "vuex";
 // este firebase se puede mover
 import Firebase from "firebase";
 import { firebaseConfig } from "../../firebase-config";
@@ -10,67 +10,11 @@ export default new Vuex.Store({
   state: {
     user: null, //variable para sesión
     productoEnVista:null,
+    count: 0,
     carrito: [],
     patrones:[],
-    productos: [
-      //para los datos de firestore
-      //   {
-      //     id: 1,
-      //     nombre: "Morty",
-      //     //Se agrega Link Externo (cambiar)
-      //     imagen:
-      //       "https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg",
-      //     price: {
-      //       sm: 10000,
-      //       md: 15000,
-      //       lg: 20000
-      //     }
-      //   },
-      //   {
-      //     id: 2,
-      //     nombre: "Rick",
-      //     imagen:
-      //       "https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg",
-      //     price: {
-      //       sm: 10000,
-      //       md: 15000,
-      //       lg: 20000
-      //     }
-      //   },
-      //   {
-      //     id: 3,
-      //     nombre: "Summer",
-      //     imagen:
-      //       "https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg",
-      //     price: {
-      //       sm: 10000,
-      //       md: 15000,
-      //       lg: 20000
-      //     }
-      //   },
-      //   {
-      //     id: 4,
-      //     nombre: "Beth",
-      //     imagen:
-      //       "https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg",
-      //     price: {
-      //       sm: 10000,
-      //       md: 15000,
-      //       lg: 20000
-      //     }
-      //   },
-      //   {
-      //     id: 5,
-      //     nombre: "Jerry",
-      //     imagen:
-      //       "https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg",
-      //     price: {
-      //       sm: 10000,
-      //       md: 15000,
-      //       lg: 20000
-      //     }
-      //   }
-    ]
+    productos: [],
+    mensajes:0,
   },
   getters: {
     getProductDetail: (state) => (payload) => {
@@ -110,6 +54,8 @@ export default new Vuex.Store({
   },
 
   mutations: {
+
+    
     //mutation de login:
     SET_USER(state, newUser) {
       state.user = newUser;
@@ -122,14 +68,18 @@ export default new Vuex.Store({
     SET_DATA_PATRONES(state, newData) {      
       state.patrones = newData;
     },
-    AUMENTARCANTIDAD(state, id) {
-      // agregar logica que busque al producto en el carrito por id y cantidad ++
-    },
     AUMENTARCANTIDAD(state, producto) {
       // agregar logica que busque al producto en el carrito por id y cantidad ++
-      //  state.carrito.push(producto)
-      console.log(producto);
+      // const agregarCantidad = state.carrito.
+      // state.carrito.push(producto)
+      // state.count++;
+      // console.log(count)
     },
+    // AUMENTARCANTIDAD(state, producto) {
+    //   // agregar logica que busque al producto en el carrito por id y cantidad ++
+    //   //  state.carrito.push(producto)
+    //   console.log(producto);
+    // },
     DISMINUIRCANTIDAD(state, id) {
       // cantidad mayor a 1
       // confirmación a través de un alert, usar action / revisar la vista del carro**
@@ -140,9 +90,20 @@ export default new Vuex.Store({
       state.carrito.splice(index, 1);
     },
     AGREGARALCARRO(state, producto) {
-      console.log("hola");
-      state.carrito.push(producto);
-      console.log(state.carrito);
+      // console.log("hola");
+      // state.carrito.push(producto);
+      // console.log(state.carrito);
+      // console.log(messages)
+      // state.mensajes=messages;
+      console.log(state.mensajes)
+      const index = state.carrito.findIndex((p) => p.id === producto.id);
+      if (index != -1) {
+        const { ...productoActualizado } = state.carrito[index];
+        productoActualizado.cantidad++;
+        state.carrito[index] = productoActualizado;
+      } else {
+        state.carrito.push(producto);
+      }
     },
     GUARDAR_PRODUCTO(state, producto){
       state.productoEnVista = producto;
@@ -197,8 +158,16 @@ export default new Vuex.Store({
           context.commit("SET_DATA_PATRONES", patrones);
         });
     },
+    enviarDataCarrito(context, carrito) {
+      const firebaseApp = context.rootState.firebase
+      return new Promise((resolve, reject) => {
+        Firebase.firestore(firebaseApp).collection('pedidos').add(carrito).then(resolve, reject)
+      })
+    },
     agregarACarrito({ commit, state }, producto) {
-      let nuevoProducto = { ...producto };
+      let nuevoProducto = { ...producto};
+      // let messagesAux = {...messages}
+      // console.log(messagesAux)
       // console.log(nuevoProducto)
       // const productoCarro = state.productos.filter((productoCarro)=> productoCarro.id === nuevoProducto.id)
       // // console.log(productoCarro)
@@ -207,15 +176,17 @@ export default new Vuex.Store({
       let verifica = null;
       verifica = state.carrito.filter(({ id }) => id == nuevoProducto.id);
       console.log(verifica);
-      if (verifica.length != 0) {
-        console.log("aumentarcantidad");
-        nuevoProducto.cantidad++;
-        console.log(nuevoProducto);
-        commit("AUMENTARCANTIDAD", nuevoProducto);
-      } else {
-        console.log("agregaralcarro");
+      // if (verifica.length != 0) {
+      //   console.log("aumentarcantidad");
+      //   nuevoProducto.cantidad++;
+      //   let cantidadTotal = cantidadTotal++;
+      //   console.log(cantidadTotal)
+      //   console.log(nuevoProducto);
+      //   commit("AUMENTARCANTIDAD", nuevoProducto);
+      // } else {
+      //   console.log("agregaralcarro");
         commit("AGREGARALCARRO", nuevoProducto);
-      }
+      // }
     },
     borrarDelCarrito({ commit, state }, id) {
       commit("ELIMINARDELCARRO", id);
@@ -264,6 +235,7 @@ export default new Vuex.Store({
         commit("AGREGARALCARRO", nuevoProducto);
       }
     },
+    
 
   },
   modules: {}
