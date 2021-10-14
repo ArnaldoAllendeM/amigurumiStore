@@ -7,13 +7,13 @@
 <script>
 import Carrousel from "../components/Carrousel.vue";
 import CharacterCard from "../components/CharacterCard.vue";
-import Form from "../components/Form.vue";
+import FormInput from "../components/FormInput.vue";
 export default {
   name: "CreaTuProducto",
   components: {
     Carrousel,
     CharacterCard,
-    Form,
+    FormInput,
   },
 };
 </script>

@@ -42,7 +42,7 @@
         ></v-textarea>
 
         <v-card-actions>
-          <v-btn @click="addToCart()" color="orange" text>
+          <v-btn @click="addToCart()"  color="orange" text>
             Agregar al Carro
           </v-btn>
 
@@ -74,6 +74,7 @@ export default {
     producto: "",
     size: "",
     precio: 0,
+    // messages:0,
   }),
   props: {
     getId: String,
@@ -101,18 +102,17 @@ export default {
     addToCart() {
       // if()si estan seleccionadas todas las opciones
       this.priceBySize;
+      this.messages++;
       const nuevoProducto = {
         nombre: this.producto.nombre,
         id: this.producto.id + this.size + this.color,
         imagen: this.producto.imagen,
         color: this.color,
         size: this.size,
-        precio_sm: this.precio.sm,
-        precio_md: this.precio.md,
-        precio_lg: this.precio.lg,
-        cantidad: 1,
+        precio: this.precio,
+        cantidad: 1,        
       };
-      // console.log(nuevoProducto)
+      console.log(this.messages)
       this.agregarACarrito(nuevoProducto);
     },
   },
@@ -121,11 +121,11 @@ export default {
     priceBySize() {
       console.log(this.producto.precio.sm);
       if (this.size == "sm") {
-        this.precio_sm = this.producto.precio.sm;
+        this.precio = this.producto.precio.sm;
       } else if (this.size == "md") {
-        this.precio_md = this.producto.precio.md;
+        this.precio = this.producto.precio.md;
       } else {
-        this.precio_lg = this.producto.precio.lg;
+        this.precio = this.producto.precio.lg;
       }
     },
   },
