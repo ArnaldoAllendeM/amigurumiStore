@@ -19,9 +19,7 @@
             <v-radio label="LG (20 cm) $20.000" value="lg"></v-radio>
           </v-radio-group>
         </v-container>
-        <v-card-subtitle class="pb-0">
-          Amigurumi
-        </v-card-subtitle>
+        <v-card-subtitle class="pb-0"> Amigurumi </v-card-subtitle>
 
         <v-card-text class="text--primary">
           <div>Whitehaven Beach</div>
@@ -48,9 +46,7 @@
             Agregar al Carro
           </v-btn>
 
-          <v-btn color="orange" text>
-            Añadir a Favoritos
-          </v-btn>
+          <v-btn color="orange" text> Añadir a Favoritos </v-btn>
         </v-card-actions>
       </v-container>
     </v-card>
@@ -88,7 +84,7 @@ export default {
       (producto) => producto.id === Number.parseInt(this.$route.params.id)
     );
     this.producto = producto;
-    this.guardarProducto(producto)
+    this.guardarProducto(producto);
     console.log(this.producto);
   },
   // computed:{
@@ -121,7 +117,6 @@ export default {
     },
   },
   computed: {
-  
     // traer un arreglo de price
     priceBySize() {
       console.log(this.producto.precio.sm);

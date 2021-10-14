@@ -52,8 +52,9 @@ h6 {
 
 body {
   font-family: "Karla", sans-serif;
-  color: #000;
+  color: #677294 !important;
   font-weight: 400;
   font-size: 1rem;
+  letter-spacing: 0px;
 }
 </style>

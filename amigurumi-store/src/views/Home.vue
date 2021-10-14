@@ -1,7 +1,9 @@
 <template>
   <div>
     <Carrousel />
+    <SectionCallToAction />
     <div class="contenedor-titulo">
+      <!-- titles -->
       <h2 class="titulo-h2">Productos</h2>
       <p class="title-desc">
         Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris
@@ -9,6 +11,7 @@
       </p>
     </div>
 
+    <!-- sección cards -->
     <v-row class="p-5">
       <v-col
         v-for="producto in $store.state.productos"
@@ -31,6 +34,8 @@ import Carrousel from "../components/Carrousel.vue";
 import CharacterCard from "../components/CharacterCard.vue";
 import ApiClima from "../components/ApiClima.vue";
 import FormInput from "../components/FormInput.vue";
+import SectionCallToAction from "../components/SectionCallToAction.vue";
+
 export default {
   data: () => ({
     name: "Home",
@@ -40,18 +45,22 @@ export default {
     FormInput,
     ApiClima,
     CharacterCard,
+    SectionCallToAction,
   },
-  methods:{
+  methods: {
     async handleFormSubmit(dataForm) {
       try {
-        const response = await this.$store.dispatch('traerFormDataFromHome', dataForm)
-        console.log({ response, dataForm })
-        this.dialog = false
+        const response = await this.$store.dispatch(
+          "traerFormDataFromHome",
+          dataForm
+        );
+        console.log({ response, dataForm });
+        this.dialog = false;
       } catch (e) {
-        console.error(e)
+        console.error(e);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>
