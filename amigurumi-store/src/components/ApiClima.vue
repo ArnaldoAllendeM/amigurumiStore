@@ -165,11 +165,11 @@ $(document).ready(function () {
               $("#ciudad").html(datos.name + ", " + datos.sys.country);
               $("#humedad").html(datos.main.humidity + "%");
               $("#temp-celsius").html(temp[0]);
-              $("#temp-fahrenheit").html(temp[1]);
-              $(".unit-change").click(function () {
-                $("#temp-fahrenheit").toggle();
-                $("#temp-celsius").toggle();
-              });
+              // $("#temp-fahrenheit").html(temp[1]);
+              // $(".unit-change").click(function () {
+              //   $("#temp-fahrenheit").toggle();
+              //   $("#temp-celsius").toggle();
+              //});
             }
           );
         }
