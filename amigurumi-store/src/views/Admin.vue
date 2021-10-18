@@ -5,6 +5,7 @@
       <!-- <AgregarCurso /> -->
     </v-layout>
     <TablaProductos />
+    <h1> agregar colores </h1>
   </div>
 </template>
 
