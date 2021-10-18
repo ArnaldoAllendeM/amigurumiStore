@@ -1,9 +1,15 @@
 <template>
-  <div class="smear big" :style="{'background-image': 'url(' + this.$attrs.producto['imagen-gris'] + ')'}">
+
+  <div
+    class="smear big"
+    :style="{
+      'background-image': 'url(' + this.$attrs.producto['imagen-gris'] + ')',
+    }"
+  >
     <span
       class="overlay"
       :style="{
-        'background-color': this.$attrs.color,        
+        'background-color': this.$attrs.color,
       }"
     ></span>
     <h3>{{ productoEnVista2 }}</h3>
@@ -11,19 +17,18 @@
 </template>
 
 <script>
-import {mapGetters, mapState} from 'vuex'
+import { mapGetters, mapState } from "vuex";
 export default {
   props: {},
   computed: {
-    ...mapGetters(['getProduct']),
+    ...mapGetters(["getProduct"]),
     productoEnVista2() {
       console.log(this.getProduct);
       return this.getProduct.imagen;
     },
   },
   methods: {
-    ...mapState(['productoEnVista']),
-    
+    ...mapState(["productoEnVista"]),
   },
 };
 </script>

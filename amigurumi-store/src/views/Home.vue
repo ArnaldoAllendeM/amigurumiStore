@@ -25,7 +25,8 @@
       </v-col>
     </v-row>
     <ApiClima />
-    <FormInput @submit="handleFormSubmit"/>
+    <Testimonials />
+    <Form @submit="handleFormSubmit" />
   </div>
 </template>
 
@@ -35,7 +36,7 @@ import CharacterCard from "../components/CharacterCard.vue";
 import ApiClima from "../components/ApiClima.vue";
 import FormInput from "../components/FormInput.vue";
 import SectionCallToAction from "../components/SectionCallToAction.vue";
-
+import Testimonials from "../components/Testimonials.vue";
 export default {
   data: () => ({
     name: "Home",
@@ -46,6 +47,7 @@ export default {
     ApiClima,
     CharacterCard,
     SectionCallToAction,
+    Testimonials,
   },
   methods: {
     async handleFormSubmit(dataForm) {
