@@ -80,14 +80,15 @@ export default new Vuex.Store({
     //   //  state.carrito.push(producto)
     //   console.log(producto);
     // },
-    DISMINUIRCANTIDAD(state, id) {
+    DISMINUIRCANTIDAD(state, $index) {
       // cantidad mayor a 1
       // confirmación a través de un alert, usar action / revisar la vista del carro**
+      state.carrito[$index].cantidad--;
     },
-    ELIMINARDELCARRO(state, producto) {
-      // si cantidad es 1, crear un botón de eliminar
-      const index = state.carrito.findIndex((item) => item.id === producto.id);
-      state.carrito.splice(index, 1);
+    ELIMINARDELCARRO(state, $index) {
+      // // si cantidad es 1, crear un botón de eliminar
+      // const index = state.carrito.findIndex((item) => item.id === producto.id);
+      state.carrito.splice($index, 1);
     },
     AGREGARALCARRO(state, producto) {
       // console.log("hola");
@@ -98,12 +99,17 @@ export default new Vuex.Store({
       console.log(state.mensajes)
       const index = state.carrito.findIndex((p) => p.id === producto.id);
       if (index != -1) {
-        const { ...productoActualizado } = state.carrito[index];
-        productoActualizado.cantidad++;
-        state.carrito[index] = productoActualizado;
+        // state.carrito[index].cantidad++;
+
+        // const { ...productoActualizado } = state.carrito[index];
+        // productoActualizado.cantidad++;
+        // state.carrito[index] = productoActualizado;
       } else {
         state.carrito.push(producto);
       }
+    },
+    AUMENTARCANTIDADCARRITO(state, $index){
+      state.carrito[$index].cantidad++;
     },
     GUARDAR_PRODUCTO(state, producto){
       state.productoEnVista = producto;
@@ -137,7 +143,7 @@ export default new Vuex.Store({
         .then((querySnapshot) => {
           let productos = [];
           querySnapshot.forEach(
-            (doc) => productos.push({ id: doc.id, ...doc.data() }),
+            (doc) => productos.push({ uuid: doc.id, ...doc.data() }),
             console.log(productos)
           );
           context.commit("SET_DATA", productos);
@@ -152,7 +158,7 @@ export default new Vuex.Store({
         .then((querySnapshot) => {
           let patrones = [];
           querySnapshot.forEach(
-            (doc) => patrones.push({ id: doc.id, ...doc.data() }),
+            (doc) => patrones.push({ uuid: doc.id, ...doc.data() }),
             console.log(patrones)
           );
           context.commit("SET_DATA_PATRONES", patrones);
@@ -165,7 +171,7 @@ export default new Vuex.Store({
       })
     },
     agregarACarrito({ commit, state }, producto) {
-      let nuevoProducto = { ...producto};
+      const nuevoProducto = { ...producto};
       // let messagesAux = {...messages}
       // console.log(messagesAux)
       // console.log(nuevoProducto)
@@ -185,7 +191,12 @@ export default new Vuex.Store({
       //   commit("AUMENTARCANTIDAD", nuevoProducto);
       // } else {
       //   console.log("agregaralcarro");
+      const index = state.carrito.findIndex((p) => p.id === nuevoProducto.id);
+      if (index != -1) {
+        commit("AUMENTARCANTIDADCARRITO", index)
+      } else {
         commit("AGREGARALCARRO", nuevoProducto);
+      }
       // }
     },
     borrarDelCarrito({ commit, state }, id) {
@@ -201,13 +212,11 @@ export default new Vuex.Store({
       });
     },
     bajarLaCantidad({ commit, state }, id) {
-      state.carrito.map((producto) => {
-        if (producto.id == id && producto.cantidad > 1) {
-          producto.cantidad--;
-          commit("DISMINUIRCANTIDAD", id);
+      state.carrito.forEach((producto, $index) => {
+        if (producto.id == id && producto.cantidad > 1) {         
+          commit("DISMINUIRCANTIDAD", $index);
         } else if (producto.id == id && producto.cantidad == 1) {
-          producto.cantidad;
-          commit("ELIMINARDELCARRO", id);
+          commit("ELIMINARDELCARRO", $index);
         }
       });
     },
@@ -235,8 +244,34 @@ export default new Vuex.Store({
         commit("AGREGARALCARRO", nuevoProducto);
       }
     },
-    
-
+    borrarPatrones(context, patron) {
+      const firebaseApp = context.rootState.firebase
+      console.log(patron)
+      Firebase.firestore(firebaseApp)
+        .collection('patrones')
+        .doc(patron.uuid)
+        .delete()
+        .then(() => {
+          console.log(patron)
+          context.dispatch('getPatrones')
+        })
+    },
+    borrarAmigurumis(context, amigurumis) {
+      const firebaseApp = context.rootState.firebase
+      console.log({amigurumis})
+      Firebase.firestore(firebaseApp)
+        .collection('amigurumis')
+        .doc(amigurumis.uuid)
+        .delete()
+        .then(() => {
+          console.log(amigurumis)
+          context.dispatch('getAmigurumis')
+        }) .catch((error) => {
+          console.log(patron)
+          console.error('Error removing document: ', error);
+       })
+        
+    },
   },
   modules: {}
 });

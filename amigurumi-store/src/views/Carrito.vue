@@ -61,6 +61,7 @@ this.enviarDataCarrito(this.stringArray);
       // this.carrito.forEach((number, index) => this.stringArray.push(number.) console.log(`${index}:${number.cantidad}`))
       },
     verForm(){
+      console.log(this.carrito);
       console.log(this.carrito[0]);
       if(this.carrito[0]==undefined){
         return false

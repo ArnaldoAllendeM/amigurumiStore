@@ -25,11 +25,10 @@
         <v-list-item
           v-for="([icon, text, link], i) in items"
           :key="i"
-          link
-          @click="$vuetify.goTo(link)"
+           @click= $router.push({path:link})
         >
-          <v-list-item-icon class="justify-center">
-            <v-icon>{{ icon }}</v-icon>
+          <v-list-item-icon link :to="{link}" class="justify-center">
+            <v-icon link :to="{link}">{{ icon }}</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title class="subtitile-1">{{
@@ -124,9 +123,9 @@ export default {
     drawer: null,
     isXs: false,
     items: [
-      ["mdi-home-outline", "Inicio", "#inicio"],
-      ["mdi-check-all", "Productos", "#productos"],
-      ["mdi-xbox", "Patrones", "#patrones"],
+      ["mdi-home-outline", "Inicio", "/home"],
+      ["mdi-check-all", "Productos", "/productos"],
+      ["mdi-xbox", "Patrones", "/patrones"],
       ["mdi-white-balance-incandescent", "Crea tu Amigurumi", "#amigotumi"],
       ["mdi-message-processing", "Contactanos", "#contacto"],
       ["mdi-cart", "Ver Carrito", "#carrito"],
