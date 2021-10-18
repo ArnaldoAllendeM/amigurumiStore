@@ -1,0 +1,72 @@
+<template>
+  <div>
+    <v-hover v-slot="{ hover }">
+      <v-card
+        v-ripple
+        class="mx-auto card pb-5"
+        max-width="500px"
+        :elevation="hover ? 12 : 2"
+        @click="$emit('click', producto)"
+      >
+        <v-img :src="producto.imagen" height="200px"></v-img>
+
+        <v-card-subtitle class="card-subtitle"> Amigurumi </v-card-subtitle>
+        <v-card-title class="card-title"> {{ producto.nombre }}</v-card-title>
+        <v-card-text class="card-price">
+          ${{ producto.precio.sm }}
+        </v-card-text>
+        <div class="text-center">
+          <v-btn
+            @click="$router.push({ path: `/detalle/${getId}` })"
+            class="button"
+            >Ver amigurumi</v-btn
+          >
+        </div>
+      </v-card>
+    </v-hover>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    producto: { type: Object, required: true },
+  },
+  computed: {
+    getId() {
+      return this.producto.id;
+    },
+  },
+};
+</script>
+
+<style scoped>
+.card {
+  transition: all 0.2s linear;
+  cursor: pointer;
+}
+
+.button {
+  background: #e74f8a !important;
+  color: #ffff;
+  text-decoration: none;
+  box-shadow: none;
+}
+
+.card-subtitle {
+  text-transform: uppercase;
+  padding-bottom: 0;
+}
+
+.card-title {
+  font-family: "Rubik", sans-serif !important;
+  font-weight: 300;
+  padding-top: 0;
+  margin: 0;
+}
+
+.card-price {
+  color: #fe70aa !important;
+  font-size: 1.2rem;
+}
+</style>

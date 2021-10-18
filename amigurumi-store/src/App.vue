@@ -1,98 +1,60 @@
 <template>
-  <div>
-    <v-card class="overflow-hidden">
-      <v-app-bar
-        absolute
-        height=""
-        color="#6A76AB"
-        dark
-        shrink-on-scroll
-        prominent
-        src="https://picsum.photos/1920/1080?random"
-        fade-img-on-scroll
-        scroll-target="#scrolling-techniques-4"
-      >
-        <template v-slot:img="{ props }">
-          <v-img
-            v-bind="props"
-            gradient="to top right, rgba(100,115,201,.7), rgba(25,32,72,.7)"
-          ></v-img>
-        </template>
-
-        <v-app-bar-nav-icon></v-app-bar-nav-icon>
-
-        <v-toolbar-title>Amigorumi</v-toolbar-title>
-
-        <v-spacer></v-spacer>
-
-        <v-btn icon>
-          <v-icon>mdi-magnify</v-icon>
-        </v-btn>
-
-        <v-btn icon>
-          <v-icon>mdi-heart</v-icon>
-        </v-btn>
-
-        <v-menu bottom left>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn icon color="yellow" v-bind="attrs" v-on="on">
-              <v-icon>mdi-dots-vertical</v-icon>
-            </v-btn>
-          </template>
-
-          <v-list>
-            <v-list-item v-for="(item, i) in items" :key="i">
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </v-menu>
-
-        <template v-slot:extension>
-          <v-tabs align-with-title>
-            <v-tab>Tab 1</v-tab>
-            <v-tab>Tab 2</v-tab>
-            <v-tab>Tab 3</v-tab>
-          </v-tabs>
-        </template>
-      </v-app-bar>
-      <v-sheet
-        id="scrolling-techniques-4"
-        class="overflow-y-auto"
-        max-height="600"
-      >
-        <v-container style="height: 260px"></v-container>
-      </v-sheet>
-    </v-card>
-    <Carrousel />
-    <v-container>
-      <v-row no-gutters>
-        <Cards />
-      </v-row>
-    </v-container>
+  <v-app>
+    <Navigation />
+    <v-main>
+      <router-view />
+    </v-main>
     <Footer />
-  </div>
+  </v-app>
 </template>
 
 <script>
-import Navbar from "./components/Navbar.vue";
-import Carrousel from "./components/Carrousel.vue";
-import Cards from "./components/Cards.vue";
+import Navigation from "./components/Navigation.vue";
 import Footer from "./components/Footer.vue";
 export default {
   data: () => ({
     name: "App",
-    items: [
-      { title: "Click Me" },
-      { title: "Click Me" },
-      { title: "Click Me" },
-      { title: "Click Me 2" },
-    ],
+    fab: null,
+    color: "",
+    flat: null,
   }),
+
   components: {
-    Navbar,
-    Carrousel,
-    Cards,
+    Navigation,
     Footer,
+  },
+  methods: {
+    updateColor(color) {
+      this.color = color;
+    },
   },
 };
 </script>
+<style lang="scss">
+/**Estilos de fuente para todo el sitio */
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600;700&display=swap");
+
+* {
+  font-family: "Karla", sans-serif !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Rubik", sans-serif !important;
+  color: #fe70aa;
+  font-weight: 700;
+}
+
+body {
+  font-family: "Karla", sans-serif;
+  color: #677294 !important;
+  font-weight: 400;
+  font-size: 1rem;
+  letter-spacing: 0px;
+}
+</style>
