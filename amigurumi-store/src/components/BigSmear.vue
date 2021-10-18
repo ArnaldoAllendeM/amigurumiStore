@@ -1,5 +1,5 @@
 <template>
-  <div class="smear big" :style="{'background-image': 'url(' + this.$attrs.producto.imagen + ')'}">
+  <div class="smear big" :style="{'background-image': 'url(' + this.$attrs.producto['imagen-gris'] + ')'}">
     <span
       class="overlay"
       :style="{
