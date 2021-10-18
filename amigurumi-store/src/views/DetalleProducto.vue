@@ -1,10 +1,7 @@
 <template>
   <!-- Color Input, CSS Color Picker/> -->
   <div>
-    <div class="original">
-      <h2>background image</h2>
-    </div>
-    <v-card class="mx-auto" max-width="500">
+    <v-card class="mx-auto mb-5" max-width="500" height="100vh">
       <v-container>
         <v-flex>
           <v-img text-center>
@@ -12,13 +9,13 @@
             <v-card-title>{{ producto.nombre }}</v-card-title>
           </v-img>
         </v-flex>
-        <v-container class="px-0" fluid>
-          <v-radio-group v-model="size" row>
-            <v-radio label="SM (10 cm) $10.000" value="sm"></v-radio>
-            <v-radio label="MD (15 cm) $15.000" value="md"></v-radio>
-            <v-radio label="LG (20 cm) $20.000" value="lg"></v-radio>
-          </v-radio-group>
-        </v-container>
+        <!-- <v-container class="px-0" fluid> -->
+        <v-radio-group v-model="size" row>
+          <v-radio label="SM (10 cm) $10.000" value="sm"></v-radio>
+          <v-radio label="MD (15 cm) $15.000" value="md"></v-radio>
+          <v-radio label="LG (20 cm) $20.000" value="lg"></v-radio>
+        </v-radio-group>
+        <!-- </v-container> -->
         <v-card-subtitle class="pb-0"> Amigurumi </v-card-subtitle>
 
         <v-card-text class="text--primary">
@@ -42,7 +39,7 @@
         ></v-textarea>
 
         <v-card-actions>
-          <v-btn @click="addToCart()"  color="orange" text>
+          <v-btn @click="addToCart()" color="orange" text>
             Agregar al Carro
           </v-btn>
 
@@ -110,9 +107,9 @@ export default {
         color: this.color,
         size: this.size,
         precio: this.precio,
-        cantidad: 1,        
+        cantidad: 1,
       };
-      console.log(this.messages)
+      console.log(this.messages);
       this.agregarACarrito(nuevoProducto);
     },
   },
