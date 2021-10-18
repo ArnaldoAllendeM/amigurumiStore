@@ -1,9 +1,7 @@
 <template>
   <!-- Color Input, CSS Color Picker/> -->
   <div>
-    <div class="original">
-      <h2>background image</h2>
-    </div>
+   
     <v-card class="mx-auto" max-width="500">
       <v-container>
         <v-flex>

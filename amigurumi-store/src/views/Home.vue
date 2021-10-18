@@ -2,17 +2,17 @@
   <div>
     <Carrousel />
     <SectionCallToAction />
-    <div class="contenedor-titulo">
-      <!-- titles -->
+    <!-- <div class="contenedor-titulo">
+      
       <h2 class="titulo-h2">Productos</h2>
       <p class="title-desc">
         Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris
         sit amet orci.
       </p>
-    </div>
+    </div> -->
 
     <!-- sección cards -->
-    <v-row class="p-5">
+    <!-- <v-row class="p-5">
       <v-col
         v-for="producto in $store.state.productos"
         :key="producto.id"
@@ -23,7 +23,7 @@
           @click="$router.push({ path: `/detalle/${$event.id}` })"
         />
       </v-col>
-    </v-row>
+    </v-row> -->
     <ApiClima />
     <Testimonials />
     <Form @submit="handleFormSubmit" />
@@ -32,7 +32,7 @@
 
 <script>
 import Carrousel from "../components/Carrousel.vue";
-import CharacterCard from "../components/CharacterCard.vue";
+// import CharacterCard from "../components/CharacterCard.vue";
 import ApiClima from "../components/ApiClima.vue";
 import FormInput from "../components/FormInput.vue";
 import SectionCallToAction from "../components/SectionCallToAction.vue";
@@ -45,7 +45,7 @@ export default {
     Carrousel,
     FormInput,
     ApiClima,
-    CharacterCard,
+    // CharacterCard,
     SectionCallToAction,
     Testimonials,
   },

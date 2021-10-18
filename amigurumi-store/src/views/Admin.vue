@@ -6,6 +6,7 @@
     </v-layout>
     <TablaProductos />
     <h1> agregar colores </h1>
+    <h1> Pedidos </h1>
   </div>
 </template>
 
