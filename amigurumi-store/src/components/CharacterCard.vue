@@ -44,6 +44,7 @@ export default {
 .card {
   transition: all 0.2s linear;
   cursor: pointer;
+  background-color:#dfe7e7 ;
 }
 
 .button {
