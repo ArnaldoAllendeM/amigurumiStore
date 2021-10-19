@@ -5,28 +5,28 @@
         v-model="name"
         :counter="10"
         :rules="nameRules"
-        label="Name"
+        label="Nombre"
         required
       ></v-text-field>
 
       <v-text-field
         v-model="email"
         :rules="emailRules"
-        label="E-mail"
+        label="Correo"
         required
       ></v-text-field>
       <v-textarea
           outlined
           auto-grow
           v-model="message"
-          label="Outlined textarea"
+          label="Ingrese su mensaje"
         ></v-textarea>
 
       <v-select
         v-model="subject"
         :items="items"
         :rules="[(v) => !!v || 'Item is required']"
-        label="Item"
+        label="Seleccione opciones"
         required
       ></v-select>     
 
