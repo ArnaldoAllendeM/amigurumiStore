@@ -26,7 +26,7 @@
     </v-row> -->
     <ApiClima />
     <Testimonials />
-    <Form @submit="handleFormSubmit" />
+    <!-- <Form @submit="handleFormSubmit" /> -->
   </div>
 </template>
 
@@ -34,7 +34,7 @@
 import Carrousel from "../components/Carrousel.vue";
 // import CharacterCard from "../components/CharacterCard.vue";
 import ApiClima from "../components/ApiClima.vue";
-import FormInput from "../components/FormInput.vue";
+// import FormInput from "../components/FormInput.vue";
 import SectionCallToAction from "../components/SectionCallToAction.vue";
 import Testimonials from "../components/Testimonials.vue";
 export default {
@@ -43,7 +43,7 @@ export default {
   }),
   components: {
     Carrousel,
-    FormInput,
+    // FormInput,
     ApiClima,
     // CharacterCard,
     SectionCallToAction,
