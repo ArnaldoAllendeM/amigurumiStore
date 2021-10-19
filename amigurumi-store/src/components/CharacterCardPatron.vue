@@ -12,9 +12,7 @@
 
         <v-card-subtitle class="card-subtitle"> Amigurumi </v-card-subtitle>
         <v-card-title class="card-title"> {{ producto.nombre }}</v-card-title>
-        <v-card-text class="card-price">
-          ${{ producto.precio }}
-        </v-card-text>
+        <v-card-text class="card-price"> ${{ producto.precio }} </v-card-text>
         <div class="text-center">
           <v-btn
             @click="$router.push({ path: `/patrones/${getId}` })"
@@ -44,6 +42,7 @@ export default {
 .card {
   transition: all 0.2s linear;
   cursor: pointer;
+  background-color: #fff8fb;
 }
 
 .button {

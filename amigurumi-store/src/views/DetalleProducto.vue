@@ -1,52 +1,49 @@
 <template>
   <!-- Color Input, CSS Color Picker/> -->
   <div>
-   
-    <v-card class="mx-auto" max-width="500">
-      <v-container>
-        <v-flex>
-          <v-img text-center>
-            <BigSmear :color="color" :producto="producto" />
-            <v-card-title>{{ producto.nombre }}</v-card-title>
-          </v-img>
-        </v-flex>
-        <v-container class="px-0" fluid>
-          <v-radio-group v-model="size" row>
-            <v-radio label="SM (10 cm) $10.000" value="sm"></v-radio>
-            <v-radio label="MD (15 cm) $15.000" value="md"></v-radio>
-            <v-radio label="LG (20 cm) $20.000" value="lg"></v-radio>
-          </v-radio-group>
-        </v-container>
-        <v-card-subtitle class="pb-0"> Amigurumi </v-card-subtitle>
+    <v-card class="mx-5 my-5 p-5" max-width="100vw">
+      <v-flex>
+        <v-img text-center>
+          <BigSmear :color="color" :producto="producto" />
+          <v-card-title>{{ producto.nombre }}</v-card-title>
+        </v-img>
+      </v-flex>
+      <!-- <v-container class="px-0" fluid> -->
+      <v-radio-group v-model="size" row>
+        <v-radio label="SM (10 cm) $10.000" value="sm"></v-radio>
+        <v-radio label="MD (15 cm) $15.000" value="md"></v-radio>
+        <v-radio label="LG (20 cm) $20.000" value="lg"></v-radio>
+      </v-radio-group>
+      <!-- </v-container> -->
+      <v-card-subtitle class="pb-0"> Amigurumi </v-card-subtitle>
 
-        <v-card-text class="text--primary">
-          <div>Whitehaven Beach</div>
+      <v-card-text class="text--primary">
+        <div>Whitehaven Beach</div>
 
-          <div>Whitsunday Island, Whitsunday Islands</div>
-        </v-card-text>
-        <!-- Implementacion de libreria /> -->
-        <div class="form__field">
-          <div class="form__label">
-            <strong>Please choose a color:</strong>
-            <v-swatches v-model="color" inline></v-swatches>
-          </div>
+        <div>Whitsunday Island, Whitsunday Islands</div>
+      </v-card-text>
+      <!-- Implementacion de libreria /> -->
+      <div class="form__field">
+        <div class="form__label">
+          <strong>Please choose a color:</strong>
+          <v-swatches v-model="color" inline></v-swatches>
         </div>
-        <v-textarea
-          outlined
-          auto-grow
-          name="input-7-4"
-          label="Outlined textarea"
-          value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
-        ></v-textarea>
+      </div>
+      <v-textarea
+        outlined
+        auto-grow
+        name="input-7-4"
+        label="Outlined textarea"
+        value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
+      ></v-textarea>
 
-        <v-card-actions>
-          <v-btn @click="addToCart()"  color="orange" text>
-            Agregar al Carro
-          </v-btn>
+      <v-card-actions>
+        <v-btn @click="addToCart()" color="orange" text>
+          Agregar al Carro
+        </v-btn>
 
-          <v-btn color="orange" text> Añadir a Favoritos </v-btn>
-        </v-card-actions>
-      </v-container>
+        <v-btn color="orange" text> Añadir a Favoritos </v-btn>
+      </v-card-actions>
     </v-card>
   </div>
 </template>
@@ -108,9 +105,9 @@ export default {
         color: this.color,
         size: this.size,
         precio: this.precio,
-        cantidad: 1,        
+        cantidad: 1,
       };
-      console.log(this.messages)
+      console.log(this.messages);
       this.agregarACarrito(nuevoProducto);
     },
   },
