@@ -25,10 +25,10 @@
         <v-list-item
           v-for="([icon, text, link], i) in items"
           :key="i"
-           @click= $router.push({path:link})
+          @click="$router.push({ path: link })"
         >
-          <v-list-item-icon link :to="{link}" class="justify-center">
-            <v-icon link :to="{link}">{{ icon }}</v-icon>
+          <v-list-item-icon link :to="{ link }" class="justify-center">
+            <v-icon link :to="{ link }">{{ icon }}</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title class="subtitile-1">{{
@@ -43,12 +43,13 @@
       app
       :color="color"
       :flat="flat"
+      :height="90"
       dark
       class="px-15"
       :class="{ expand: flat }"
     >
       <v-toolbar-title>
-        <v-img src="@/assets/img/logo.png" max-width="50px" />
+        <v-img src="@/assets/logo-menu.png" max-width="190px" />
       </v-toolbar-title>
       <v-spacer />
       <v-app-bar-nav-icon
@@ -76,17 +77,15 @@
           <v-icon>mdi-cart</v-icon>
         </v-btn> -->
         <v-badge
-        :content="this.$store.state.mensajes"
-        :value="this.$store.state.mensajes"
-        color="green"
-        overlap
-      >
-      <v-btn to="/carrito" text>
-        <v-icon large>
-          mdi-cart
-        </v-icon>
-        </v-btn>
-      </v-badge>
+          :content="this.$store.state.mensajes"
+          :value="this.$store.state.mensajes"
+          color="green"
+          overlap
+        >
+          <v-btn to="/carrito" text>
+            <v-icon> mdi-cart </v-icon>
+          </v-btn>
+        </v-badge>
         <v-btn to="/login" text>
           <v-icon>mdi-login</v-icon>
         </v-btn>
@@ -94,27 +93,6 @@
     </v-app-bar>
   </div>
 </template>
-
-<style scoped>
-.v-toolbar {
-  transition: 0.6s;
-}
-
-.expand {
-  height: 80px !important;
-  padding-top: 10px;
-}
-
-.mdi-menu:before {
-  content: "\F35C";
-  left: 180% !important;
-  position: absolute !important;
-}
-
-.v-app-bar {
-  background-color: #e74f8a !important;
-}
-</style>
 
 <script>
 export default {
@@ -154,7 +132,30 @@ export default {
   mounted() {
     this.onResize();
     window.addEventListener("resize", this.onResize, { passive: true });
-    console.log(this.$store.state.mensajes)
+    console.log(this.$store.state.mensajes);
   },
 };
 </script>
+
+<style scoped>
+.v-toolbar {
+  transition: 0.6s;
+}
+
+.expand {
+  height: 80px !important;
+  padding-top: 10px;
+}
+
+.mdi-menu:before {
+  content: "\F35C";
+  left: 180% !important;
+  position: absolute !important;
+}
+
+.v-app-bar {
+  background-color: #e74f8a !important;
+}
+</style>
+
+
