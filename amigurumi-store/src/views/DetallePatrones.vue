@@ -1,24 +1,19 @@
 <template>
   <!-- Color Input, CSS Color Picker/> -->
   <div>
-    <div class="original">
-      <h2>background image</h2>
-    </div>
-    <v-card class="mx-auto" max-width="500">
+    <v-card class="mx-auto mb-5" max-width="500" height="100vh">
       <v-container>
         <v-flex>
           <v-img text-center>
             <BigSmear :color="color" :producto="patron" />
-            <v-card-title >{{patron.nombre }}</v-card-title>
-            <v-card-title >{{patron.precio }}</v-card-title>
+            <v-card-title>{{ patron.nombre }}</v-card-title>
+            <v-card-title>{{ patron.precio }}</v-card-title>
           </v-img>
         </v-flex>
-        <v-card-subtitle class="pb-0">
-          Patrón
-        </v-card-subtitle>
+        <v-card-subtitle class="pb-0"> Patrón </v-card-subtitle>
 
         <v-card-text class="text--primary">
-          <div>{{patron.descripcion}}</div>
+          <div>{{ patron.descripcion }}</div>
         </v-card-text>
         <!-- Implementacion de libreria /> -->
         <div class="form__field">
@@ -54,7 +49,7 @@ import CharacterCardPatron from "../components/CharacterCardPatron.vue";
 import Smear from "../components/Smear.vue";
 import BigSmear from "../components/BigSmear.vue";
 
-import {mapActions} from "vuex";
+import { mapActions } from "vuex";
 export default {
   //importacion de componente de libreria
   components: { CharacterCardPatron, BigSmear, Smear, VSwatches },
@@ -85,10 +80,10 @@ export default {
     // el usuario ya debe haber elegido un tamaño y un color (Validar)
     // Tamaño, color y precio, que el precio varíe según el tamaño
     // agregar cantidad, debe comenzar en 1 (si cambia color o tamaño se vuelve un nuevo producto) find en la store con los 3 parámetros
-    
+
     addToCartPatrones() {
       // if()si estan seleccionadas todas las opciones
-      this.priceBySize
+      this.priceBySize;
       const nuevoProducto = {
         nombre: this.patron.nombre,
         id: this.patron.id + this.size + this.color,
@@ -98,7 +93,7 @@ export default {
         cantidad: 1,
       };
       // console.log(nuevoProducto)
-      this.agregarPatrones(nuevoProducto)
+      this.agregarPatrones(nuevoProducto);
     },
   },
 };
