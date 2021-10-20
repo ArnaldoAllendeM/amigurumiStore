@@ -2,27 +2,18 @@
   <!-- Color Input, CSS Color Picker/> -->
   <div>
     <v-card class="mx-auto mb-5" max-width="500" height="100vh">
-      <v-container>
         <v-flex>
-          <v-img text-center>
-            <BigSmear :color="color" :producto="patron" />
+          <v-img :src="patron.imagen" max-width="300" height="300"></v-img>
             <v-card-title>{{ patron.nombre }}</v-card-title>
             <v-card-title>{{ patron.precio }}</v-card-title>
-          </v-img>
-        </v-flex>
+          </v-flex>
         <v-card-subtitle class="pb-0"> Patrón </v-card-subtitle>
 
         <v-card-text class="text--primary">
           <div>{{ patron.descripcion }}</div>
         </v-card-text>
         <!-- Implementacion de libreria /> -->
-        <div class="form__field">
-          <div class="form__label">
-            <strong>Please choose a color:</strong>
-            <v-swatches v-model="color" inline></v-swatches>
-          </div>
-        </div>
-        <v-textarea
+       <v-textarea
           outlined
           auto-grow
           name="input-7-4"
@@ -35,7 +26,7 @@
             Agregar al Carro
           </v-btn>
         </v-card-actions>
-      </v-container>
+     
     </v-card>
   </div>
 </template>
