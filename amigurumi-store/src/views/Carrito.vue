@@ -13,14 +13,15 @@
       <template v-slot:[`item.cantidad`]="{ item }">
         {{ item.cantidad.toLocaleString() }}
       </template>
-      <template v-slot:[`item.id`]="{ item }">
-        {{ item.id.toLocaleString() }}
+      <template v-slot:[`item.precio`]="{ item }">
+        {{ item.precio.toLocaleString() }}
       </template>
       <template v-slot:[`item.imagen`]="{ item }">
         <v-img :src="item.imagen" max-width="50"> </v-img>
       </template>
       <template v-slot:[`item.size`]="{ item }">
-        {{ item.size.toLocaleString() }}
+         {{ item.size.toLocaleString() }}
+        <!-- {{ parseInt(item.precio) * parseInt(item.cantidad) }} AGREGAR PRECIO TOTAL EN OTRO SLOT -->
       </template>
      <template v-slot:[`item.action`]="{ item }">
           <v-btn :disabled="cargando" @click="subirCantidad(item.id)">(+)</v-btn>
@@ -67,8 +68,8 @@ export default {
         value: "cantidad",
       },
       {
-        text: "Id",
-        value: "id",
+        text: "Precio",
+        value: "precio",
       },
       {
         text: "Imagen",
@@ -135,7 +136,6 @@ export default {
   },
   computed: {
     ...mapState(["carrito"]),
-
     // this.enviarDataCarrito(this.carrito);
   },
 };
