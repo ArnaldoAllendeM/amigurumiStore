@@ -4,11 +4,9 @@
     <v-card class="mx-auto mb-5" max-width="500" height="100vh">
       <v-container>
         <v-flex>
-          <v-img text-center>
-            <BigSmear :color="color" :producto="patron" />
-            <v-card-title>{{ patron.nombre }}</v-card-title>
-            <v-card-title>{{ patron.precio }}</v-card-title>
-          </v-img>
+          <v-img :src="producto.imagen" height="200px"></v-img>
+          <v-card-title>{{ patron.nombre }}</v-card-title>
+          <v-card-title>{{ patron.precio }}</v-card-title>
         </v-flex>
         <v-card-subtitle class="pb-0"> Patrón </v-card-subtitle>
 

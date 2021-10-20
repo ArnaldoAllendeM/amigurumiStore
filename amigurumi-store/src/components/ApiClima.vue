@@ -123,6 +123,7 @@
     </div>
   </div>
 </template>
+
 <style lang="scss" scoped>
 body {
   background: #20262e;
