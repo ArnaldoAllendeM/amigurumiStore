@@ -100,7 +100,6 @@ export default {
 .seo_features_content h2 {
   font-size: 30px;
   line-height: 40px;
-  color: #263b5e;
   font-weight: 600;
   margin-bottom: 25px;
 }

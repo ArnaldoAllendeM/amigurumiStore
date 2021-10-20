@@ -1,5 +1,13 @@
 <template>
-  <div>
+  <section class="patrones">
+    <div class="text-center">
+      <h2 class="mt-10">Patrones</h2>
+      <h6 class="mb-0">
+        Figuras sencillas elaboradas con imaginación artesanal.
+        <br />Fabricación 100% nacional.
+      </h6>
+    </div>
+
     <v-row class="p-5">
       <v-col
         v-for="patron in $store.state.patrones"
@@ -12,7 +20,7 @@
         />
       </v-col>
     </v-row>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -31,4 +39,19 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.patrones h2 {
+  font-size: 30px;
+  line-height: 40px;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.patrones h6 {
+  font-size: 18px;
+  font-weight: 400;
+  color: #263b5e;
+  line-height: 30px;
+  margin-bottom: 35px;
+}
+</style>
