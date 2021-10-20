@@ -2,39 +2,16 @@
   <div>
     <Carrousel />
     <SectionCallToAction />
-    <!-- <div class="contenedor-titulo">
-      
-      <h2 class="titulo-h2">Productos</h2>
-      <p class="title-desc">
-        Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris
-        sit amet orci.
-      </p>
-    </div> -->
-
-    <!-- sección cards -->
-    <!-- <v-row class="p-5">
-      <v-col
-        v-for="producto in $store.state.productos"
-        :key="producto.id"
-        class="col-12 col-sm-12 col-md-6 col-lg-3"
-      >
-        <CharacterCard
-          :producto="producto"
-          @click="$router.push({ path: `/detalle/${$event.id}` })"
-        />
-      </v-col>
-    </v-row> -->
-    <ApiClima />
+    <v-col cols="12" class="pr-md-9 d-flex align-center justify-center">
+      <ApiClima />
+    </v-col>
     <Testimonials />
-    <!-- <Form @submit="handleFormSubmit" /> -->
   </div>
 </template>
 
 <script>
 import Carrousel from "../components/Carrousel.vue";
-// import CharacterCard from "../components/CharacterCard.vue";
 import ApiClima from "../components/ApiClima.vue";
-// import FormInput from "../components/FormInput.vue";
 import SectionCallToAction from "../components/SectionCallToAction.vue";
 import Testimonials from "../components/Testimonials.vue";
 export default {
@@ -43,9 +20,7 @@ export default {
   }),
   components: {
     Carrousel,
-    // FormInput,
     ApiClima,
-    // CharacterCard,
     SectionCallToAction,
     Testimonials,
   },

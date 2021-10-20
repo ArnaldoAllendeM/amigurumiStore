@@ -1,7 +1,20 @@
 <template>
-  <section class="nosotros mt-10">
+  <section class="nosotros">
+    <v-parallax dark src="https://i.imgur.com/j3GdVMa.jpg">
+      <v-row align="center" justify="center">
+        <v-col class="text-center" cols="12">
+          <h2 class="text-h3 font-weight-bold mb-4">Tía Ximena</h2>
+          <p class="subheading">
+            Emprendimiento dedicado a tejer Amigurumis que se convierten en un
+            <br />
+            acompañante para tí o un entretenido regalo para alguien especial.
+          </p>
+        </v-col>
+      </v-row>
+    </v-parallax>
+
     <v-container>
-      <v-row class="px-4 px-md-0 mb-14">
+      <v-row class="px-4 px-md-0 my-14">
         <v-col cols="12" md="6" lg="6" class="text-center">
           <img
             class="img-fluid mb-0"
@@ -9,12 +22,12 @@
             alt=""
           />
         </v-col>
-        <v-col cols="12" md="6" lg="6" class="pr-md-9">
-          <h2 class="mb-5">¿Qué es una tía Ximena?</h2>
-          <p>
-            Emprendimiento dedicado a tejer Amigurumis que se convierten en un
-            acompañante para tí o un entretenido regalo para alguien especial.
-          </p>
+        <v-col
+          cols="12"
+          md="6"
+          lg="6"
+          class="pr-md-9 d-flex justify-center flex-column"
+        >
           <h2 class="mb-5">¿Qué es un amigurumi?</h2>
           <p>
             El amigurumi es en Japón algo más que un simple pasatiempo, ya que
@@ -49,4 +62,8 @@ export default {};
 </script>
 
 <style scoped>
+.caca {
+  z-index: 1000;
+  color: black;
+}
 </style>
