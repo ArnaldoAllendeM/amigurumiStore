@@ -10,7 +10,7 @@
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 207.33 207.33"
       >
-        <title>Weather</title>
+        <title>ApiClima</title>
         <g class="cls-1">
           <g id="Layer_2" data-name="Layer 2">
             <g id="Layer_1-2" data-name="Layer 1">
@@ -40,7 +40,7 @@
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 207.33 207.33"
       >
-        <title>Weather</title>
+        <title>Clima</title>
         <g class="cls-4">
           <rect
             x="12.76"
@@ -76,7 +76,7 @@
             viewBox="0 0 75.01 105.05"
             class="ic_humidity"
           >
-            <title>humidityDrop</title>
+            <title>Humedad</title>
             <g id="Layer_2" data-name="Layer 2">
               <g id="Layer_1-2" data-name="Layer 1">
                 <path
@@ -179,7 +179,8 @@ body {
     width: 320px;
     height: 580px;
     margin: 0 auto;
-    background: linear-gradient(to bottom, #3773c1 0%, #7db9e8 100%);
+    background: white;
+    color: black;
     border-radius: 8px;
     transition: all 0.2s;
 
@@ -187,7 +188,7 @@ body {
     h4 {
       font-family: "Source Sans Pro", sans-serif;
       font-size: 2rem;
-      color: #fff;
+      color: black;
       padding: 20px 0 20px;
       font-weight: 200;
     }
@@ -199,7 +200,7 @@ body {
       h1 {
         font-size: 5rem;
         font-weight: 700;
-        color: #fff;
+        color: black;
         span {
           font-size: 2rem;
           vertical-align: top;
@@ -327,10 +328,10 @@ export default {
       if (!navigator.geolocation) {
         this.errorMsg = "Geolocation is not supported by your browser";
         this.getCity = this.errorMsg;
-        console.warn(this.errorMsg);
+       
         return;
       }
-      console.log("Getting current position..");
+      
       var options = { timeout: 80000 };
       navigator.geolocation.getCurrentPosition(
         this.success,
@@ -388,7 +389,7 @@ export default {
         vm.getDay4 = response.data.list[3].dt;
         vm.getDay4Temp = response.data.list[3].temp.day;
         vm.getDay4Conditions = response.data.list[3].weather[0].description;
-        console.log("My weather API:" + myCurrentWeatherApi);
+        
       }),
         axios.get(myUvIndexApi).then(function (response) {
           vm.getUvIndex = response.data.value;
@@ -429,7 +430,7 @@ export default {
   },
   created: function () {
     this.getLocation();
-    console.log("Ready Freddie!");
+ 
   },
 };
 </script>

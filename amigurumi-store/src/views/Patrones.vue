@@ -15,7 +15,7 @@
         class="col-12 col-sm-12 col-md-6 col-lg-3"
       >
         <CharacterCardPatron
-          :producto="patron"
+          :patron="patron"
           @click="$router.push({ path: `/patrones/${$event.id}` })"
         />
       </v-col>

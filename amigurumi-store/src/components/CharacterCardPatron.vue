@@ -6,13 +6,13 @@
         class="mx-auto card pb-5"
         max-width="500px"
         :elevation="hover ? 12 : 2"
-        @click="$emit('click', producto)"
+        @click="$emit('click', patron)"
       >
-        <v-img :src="producto.imagen" height="200px"></v-img>
+        <v-img :src="patron.imagen" height="200px"></v-img>
 
         <v-card-subtitle class="card-subtitle"> Amigurumi </v-card-subtitle>
-        <v-card-title class="card-title"> {{ producto.nombre }}</v-card-title>
-        <v-card-text class="card-price"> ${{ producto.precio }} </v-card-text>
+        <v-card-title class="card-title"> {{ patron.nombre }}</v-card-title>
+        <v-card-text class="card-price"> ${{ patron.precio }} </v-card-text>
         <div class="text-center">
           <v-btn
             @click="$router.push({ path: `/patrones/${getId}` })"
@@ -28,11 +28,11 @@
 <script>
 export default {
   props: {
-    producto: { type: Object, required: true },
+    patron: { type: Object, required: true },
   },
   computed: {
     getId() {
-      return this.producto.id;
+      return this.patron.id;
     },
   },
 };
