@@ -14,6 +14,10 @@
       {{ item.descripcion.toLocaleString() }}
     </template>
      <template v-slot:[`item.actions`]="{ item }">
+          <v-btn icon @click="editarItemAmigurumis(item)">
+            <EditarProducto />
+          <v-icon>mdi-pencil-outline</v-icon>
+        </v-btn> 
       <v-btn icon @click="borrarItemAmigurumis(item)">
           <v-icon>mdi-delete</v-icon>
         </v-btn>
@@ -33,8 +37,11 @@
     <template v-slot:[`item.descripcion`]="{ item }">
       {{ item.descripcion.toLocaleString() }}
     </template>
-    <template v-slot:[`item.actions`]="{ item }">
-      <v-btn icon @click="borrarItemPatrones(item)">
+    <template v-slot:[`item.actions`]="{ item }">    
+      <v-btn icon @click="editarItemPatrones(item)">
+          <v-icon >mdi-pencil-outline</v-icon>
+        </v-btn>  
+      <v-btn icon @click="borrarItemPatrones(item)">        
           <v-icon>mdi-delete</v-icon>
         </v-btn>
     </template>
@@ -43,6 +50,7 @@
 </template>
 
 <script>
+import EditarProducto from "../components/EditarProducto.vue"
 export default {
 data: () => ({
     headers: [
@@ -65,10 +73,17 @@ data: () => ({
       },
     ]
   }),
+  components:{
+EditarProducto,
+  },
   methods: {
-    // editarItem(item) {
-    //   console.log(item)
-    // },
+    editarItemPatrones(item) {
+      console.log(item)
+    },
+    editarItemAmigurumis(item) {
+      console.log(item)
+    },
+    
     borrarItemPatrones(item) {
     //  prompt('Desea borrar el elemento?')
      console.log(item);

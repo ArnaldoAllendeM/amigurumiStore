@@ -2,7 +2,7 @@
   <div>
     <v-layout justify-center class="mb-4">
       <h1>Administración</h1>
-      <!-- <AgregarCurso /> -->
+      <AgregarProducto />
     </v-layout>
     <TablaProductos />
     <h1> agregar colores </h1>
@@ -11,12 +11,12 @@
 </template>
 
 <script>
+import AgregarProducto from '../components/AgregarProducto.vue'
 import TablaProductos from '../components/TablaProductos.vue'
-// import AgregarCurso from '../components/AgregarCurso.vue'
 export default {
   components: {
     TablaProductos,
-    // AgregarCurso,
+    AgregarProducto,
   }
 }
 </script>

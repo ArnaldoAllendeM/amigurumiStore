@@ -272,6 +272,13 @@ export default new Vuex.Store({
        })
         
     },
+    crearProducto(context, nuevoProducto) {
+      const firebaseApp = context.rootState.firebase
+      console.log(nuevoProducto)
+      return new Promise((resolve, reject) => {
+        Firebase.firestore(firebaseApp).collection('amigurumis').add(nuevoProducto).then(resolve, reject)
+      })
+    }
   },
   modules: {}
 });
