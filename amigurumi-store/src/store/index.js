@@ -228,21 +228,16 @@ export default new Vuex.Store({
       })
 
     },
-    agregarPatrones({ commit, state }, patron) {
-      let nuevoProducto = { ...patron };
-      
-      let verifica = null;
-      verifica = state.carrito.filter(({ id }) => id == nuevoProducto.id);
-      console.log(verifica);
-      if (verifica.length != 0) {
-        console.log("aumentarcantidad");
-        nuevoProducto.cantidad++
-        console.log(nuevoProducto);
-        commit("AUMENTARCANTIDAD", nuevoProducto);
+    agregarPatrones({ commit, state }, producto) {
+      const nuevoProducto = { ...producto};
+      console.log(nuevoProducto);
+      const index = state.carrito.findIndex((p) => p.id === nuevoProducto.id);
+      if (index != -1) {
+        commit("AUMENTARCANTIDADCARRITO", index)
       } else {
-        console.log("agregaralcarro");
         commit("AGREGARALCARRO", nuevoProducto);
       }
+      // }
     },
     borrarPatrones(context, patron) {
       const firebaseApp = context.rootState.firebase

@@ -80,10 +80,10 @@ export default {
         id: this.patron.id + this.size + this.color,
         imagen: this.patron.imagen,
         color: this.color,
-        precio: this.precio,
+        precio: this.patron.precio,
         cantidad: 1,
       };
-      // console.log(nuevoProducto)
+      console.log(nuevoProducto)
       this.agregarPatrones(nuevoProducto);
     },
   },
