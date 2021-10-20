@@ -67,8 +67,8 @@
         <v-btn to="/patrones" text>
           <span class="mr-2">Patrones</span>
         </v-btn>
-        <v-btn to="/creatuamigurumi" text>
-          <span class="mr-2">Crea tu Amigurumi</span>
+        <v-btn to="/nosotros" text>
+          <span class="mr-2">Nosotros</span>
         </v-btn>
         <v-btn to="/contactanos" text>
           <span class="mr-2">Contactanos</span>

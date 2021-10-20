@@ -123,6 +123,7 @@
     </div>
   </div>
 </template>
+
 <style lang="scss" scoped>
 body {
   background: #20262e;
@@ -183,6 +184,7 @@ body {
     color: black;
     border-radius: 8px;
     transition: all 0.2s;
+    text-align: center;
 
     h3,
     h4 {
@@ -328,10 +330,10 @@ export default {
       if (!navigator.geolocation) {
         this.errorMsg = "Geolocation is not supported by your browser";
         this.getCity = this.errorMsg;
-       
+
         return;
       }
-      
+
       var options = { timeout: 80000 };
       navigator.geolocation.getCurrentPosition(
         this.success,
@@ -389,7 +391,6 @@ export default {
         vm.getDay4 = response.data.list[3].dt;
         vm.getDay4Temp = response.data.list[3].temp.day;
         vm.getDay4Conditions = response.data.list[3].weather[0].description;
-        
       }),
         axios.get(myUvIndexApi).then(function (response) {
           vm.getUvIndex = response.data.value;
@@ -430,7 +431,6 @@ export default {
   },
   created: function () {
     this.getLocation();
- 
   },
 };
 </script>

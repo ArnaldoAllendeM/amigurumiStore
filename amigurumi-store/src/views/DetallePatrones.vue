@@ -2,31 +2,30 @@
   <!-- Color Input, CSS Color Picker/> -->
   <div>
     <v-card class="mx-auto mb-5" max-width="500" height="100vh">
-        <v-flex>
-          <v-img :src="patron.imagen" max-width="300" height="300"></v-img>
-            <v-card-title>{{ patron.nombre }}</v-card-title>
-            <v-card-title>{{ patron.precio }}</v-card-title>
-          </v-flex>
-        <v-card-subtitle class="pb-0"> Patrón </v-card-subtitle>
+      <v-flex>
+        <v-img :src="patron.imagen" max-width="300" height="300"></v-img>
+        <v-card-title>{{ patron.nombre }}</v-card-title>
+        <v-card-title>{{ patron.precio }}</v-card-title>
+      </v-flex>
+      <v-card-subtitle class="pb-0"> Patrón </v-card-subtitle>
 
-        <v-card-text class="text--primary">
-          <div>{{ patron.descripcion }}</div>
-        </v-card-text>
-        <!-- Implementacion de libreria /> -->
-       <v-textarea
-          outlined
-          auto-grow
-          name="input-7-4"
-          label="Outlined textarea"
-          value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
-        ></v-textarea>
+      <v-card-text class="text--primary">
+        <div>{{ patron.descripcion }}</div>
+      </v-card-text>
+      <!-- Implementacion de libreria /> -->
+      <v-textarea
+        outlined
+        auto-grow
+        name="input-7-4"
+        label="Outlined textarea"
+        value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
+      ></v-textarea>
 
-        <v-card-actions>
-          <v-btn @click="addToCartPatrones()" color="orange" text>
-            Agregar al Carro
-          </v-btn>
-        </v-card-actions>
-     
+      <v-card-actions>
+        <v-btn @click="addToCartPatrones()" color="orange" text>
+          Agregar al Carro
+        </v-btn>
+      </v-card-actions>
     </v-card>
   </div>
 </template>
@@ -83,7 +82,7 @@ export default {
         precio: this.patron.precio,
         cantidad: 1,
       };
-      console.log(nuevoProducto)
+      console.log(nuevoProducto);
       this.agregarPatrones(nuevoProducto);
     },
   },
