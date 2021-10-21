@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- comentario para un commit y pullcito (borrame) -->
     <Carrousel />
     <SectionCallToAction />
     <v-col cols="12" class="pr-md-9 d-flex align-center justify-center">
