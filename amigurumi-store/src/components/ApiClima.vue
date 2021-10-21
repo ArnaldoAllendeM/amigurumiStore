@@ -185,6 +185,7 @@ body {
     color: black;
     border-radius: 8px;
     transition: all 0.2s;
+    text-align: center;
 
     h3,
     h4 {
