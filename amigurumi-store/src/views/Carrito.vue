@@ -2,30 +2,22 @@
   <div>
     <v-container>
       <h2 class="my-10">Carrito de compras</h2>
-      <v-card class="mx-auto" tile>
+      <v-card class="mx-auto mb-5" tile>
         <v-data-table
+          calculate-widths
           dense
           :items="this.carrito"
           :headers="headers"
           hide-default-footer
         >
           <template v-slot:[`item.imagen`]="{ item }">
-            <v-img :src="item.imagen" max-width="50"> </v-img>
+            <v-img :src="item.imagen" max-width="100"> </v-img>
           </template>
           <template v-slot:[`item.nombre`]="{ item }">
             {{ item.nombre.toLocaleString() }}
           </template>
           <template v-slot:[`item.cantidad`]="{ item }">
-            {{ item.cantidad.toLocaleString() }}
-          </template>
-          <template v-slot:[`item.precio`]="{ item }">
-            {{ item.precio.toLocaleString() }}
-          </template>
-
-          <template v-slot:[`item.precioTotal`]="{ item }">
-            {{ parseInt(item.precio) * parseInt(item.cantidad) }}
-          </template>
-          <template v-slot:[`item.action`]="{ item }">
+            <!-- btn de añadir -->
             <v-btn
               class="mx-2 text-white font-weight-bold"
               color="#fe70aa"
@@ -34,14 +26,11 @@
               @click="subirCantidad(item.id)"
               >+</v-btn
             >
-            <v-btn
-              class="mx-2 text-white"
-              color="#fe70aa"
-              depressed
-              :disabled="cargando"
-              @click="borrarCarrito(item.id)"
-              >Borrar</v-btn
-            >
+
+            <!-- cantidad -->
+            {{ item.cantidad.toLocaleString() }}
+
+            <!-- btn de restar -->
             <v-btn
               class="mx-2 text-white font-weight-bold"
               color="#fe70aa"
@@ -51,11 +40,51 @@
               >-</v-btn
             >
           </template>
+          <template v-slot:[`item.precio`]="{ item }">
+            {{ item.precio.toLocaleString() }}
+          </template>
+
+          <template v-slot:[`item.precioTotal`]="{ item }">
+            <td
+              v-bind:style="{
+                'font-weight': '700 !important',
+                color: '#fe70aa',
+              }"
+            >
+              {{ parseInt(item.precio) * parseInt(item.cantidad) }}
+            </td>
+          </template>
+          <template v-slot:[`item.action`]="{ item }">
+            <v-btn
+              class="mx-2 text-white"
+              color="#fe70aa"
+              depressed
+              :disabled="cargando"
+              @click="borrarCarrito(item.id)"
+            >
+              <v-icon>mdi-delete</v-icon></v-btn
+            >
+          </template>
         </v-data-table>
       </v-card>
+
+      <!-- form -->
+      <v-card class="mx-auto p-5" tile>
+        <v-text-field label="Nombre" required></v-text-field>
+
+        <v-text-field label="Correo" required></v-text-field>
+
+        <v-text-field label="Teléfono" required></v-text-field>
+      </v-card>
       <!-- botón de enviar -->
-      <div v-if="verForm()">
-        <v-btn class="mt-5" :loading="cargando" @click="enviarCarrito()"
+      <div v-if="verForm()" class="mb-10">
+        <v-btn
+          class="mt-5 text-white"
+          height="2.5rem"
+          width="10rem"
+          color="#fe70aa"
+          :loading="cargando"
+          @click="enviarCarrito()"
           >Comprar</v-btn
         >
       </div>
@@ -152,4 +181,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+/* turn off min-width for all buttons */
+.v-btn {
+  min-width: 0 !important;
+}
+</style>
