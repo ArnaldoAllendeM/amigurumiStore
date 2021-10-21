@@ -69,13 +69,15 @@
       </v-card>
 
       <!-- form -->
+      <v-form @submit.prevent="handleOnSubmit" ref="form">
       <v-card class="mx-auto p-5" tile>
-        <v-text-field label="Nombre" required></v-text-field>
+        <v-text-field v-model="nombre" label="Nombre" required></v-text-field>
 
-        <v-text-field label="Correo" required></v-text-field>
+        <v-text-field v-model="correo" label="Correo" required></v-text-field>
 
-        <v-text-field label="Teléfono" required></v-text-field>
+        <v-text-field v-model="telefono" label="Teléfono" required></v-text-field>
       </v-card>
+      </v-form>
       <!-- botón de enviar -->
       <div v-if="verForm()" class="mb-10">
         <v-btn
@@ -98,6 +100,9 @@ import { mapActions, mapState } from "vuex";
 // import FormInput from "../components/FormInput.vue"
 export default {
   data: () => ({
+    nombre:"",
+    correo:"",
+    telefono:"",
     stringArray: [],
     cargando: false,
     headers: [
@@ -135,6 +140,16 @@ export default {
       "subirLaCantidad",
       "enviarDataCarrito",
     ]),
+    handleOnSubmit() {
+      if (this.$refs.form.validate()) {
+        this.$emit("submit", {
+          email: this.email,
+          name: this.name,
+          message: this.message,
+          subject: this.subject,
+        });
+      }
+    },
     bajarCantidad(id) {
       console.log(...this.carrito);
       this.bajarLaCantidad(id);
@@ -150,8 +165,9 @@ export default {
       const pedido = {
         productos: this.carrito,
         customer: {
-          nombre: "Arnaldo",
-          correo: "arnado.allendem@gmail.com",
+          nombre: this.nombre,
+          correo: this.correo,
+          telefono: this.telefono,
         },
       };
       Firebase.firestore()
