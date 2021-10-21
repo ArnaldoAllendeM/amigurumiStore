@@ -76,7 +76,7 @@
         md="3"
         class="pl-3 px-md-0 d-flex align-center justify-center"
       >
-        <v-icon large color="#fe70aa">mdi-email-outline</v-icon>
+        <v-icon large color="#fe70aa"> mdi-email-outline</v-icon>
         <span>tiaximena@gmail.com</span>
       </v-col>
 
