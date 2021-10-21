@@ -23,13 +23,6 @@
           </v-layout>
           <v-layout>
             <v-text-field
-              label="URL de la Imagen (blanco y negro)"
-              v-model="formData['imagen-gris']"
-              :rules="[$rules.required]"
-            ></v-text-field>
-          </v-layout>
-          <v-layout>
-            <v-text-field
               label="ID"
               v-model="value.id"
               :rules="[$rules.required]"
@@ -37,25 +30,12 @@
           </v-layout>
           <v-layout>
             <v-text-field
-              label="Precio SM"
-              v-model="value.precio.sm"
+              label="Precio"
+              v-model="value.precio"
               :rules="[$rules.required]"
             ></v-text-field>
           </v-layout>
-          <v-layout>
-            <v-text-field
-              label="Precio MD"
-              v-model="value.precio.md"
-              :rules="[$rules.required]"
-            ></v-text-field>
-          </v-layout>
-          <v-layout>
-            <v-text-field
-              label="Precio LG"
-              v-model="value.precio.lg"
-              :rules="[$rules.required]"
-            ></v-text-field>
-          </v-layout>
+          
           <v-layout>
             <v-text-field
               label="Tipo de producto"
@@ -108,15 +88,10 @@ const defaultProduct = () => ({
   imagen: null,
   ["imagen-gris"]: null,
   id: null,
-  precio: {
-    sm: null,
-    md: null,
-    lg: null,
-  },
+  precio: null,
   tipo: null,
   descripcion: null,
 });
-
 export default {
   props: {
     value:{
@@ -141,10 +116,10 @@ export default {
     handleFormSubmit() {
       console.log(this.value);
       
-        Firebase.firestore().collection('amigurumis').doc(this.value.uuid)
+        Firebase.firestore().collection('patrones').doc(this.value.uuid)
         .update({...this.value}).then(()=>{
           this.dialog = false;
-          this.$store.dispatch("getAmigurumis");
+          this.$store.dispatch("getPatrones");
         })      
       
     },
