@@ -10,8 +10,8 @@
       </v-flex>
       <!-- <v-container class="px-0" fluid> -->
       <v-radio-group v-model="size" row>
-        <v-radio label="SM (10 cm) $10.000" value="sm"></v-radio>
-        <v-radio label="MD (15 cm) $15.000" value="md"></v-radio>
+        <v-radio  label="SM (10 cm) $10.000" value="sm"></v-radio>
+        <v-radio class="selected_radio_button" label="MD (15 cm) $15.000" value="md"></v-radio>
         <v-radio label="LG (20 cm) $20.000" value="lg"></v-radio>
       </v-radio-group>
       <!-- </v-container> -->
@@ -37,14 +37,30 @@
         value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
       ></v-textarea>
 
-      <v-card-actions>
-        <v-btn @click="addToCart()" color="orange" text>
+      <v-card-actions>        
+        <v-btn @click="addToCart()" color="orange" class="cy_addToCart" text>
           Agregar al Carro
         </v-btn>
 
         <v-btn color="orange" text> Añadir a Favoritos </v-btn>
       </v-card-actions>
     </v-card>
+     <v-snackbar
+      v-model="snackbar"
+    >
+      {{ text }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="pink"
+          text
+          v-bind="attrs"
+          @click="snackbar = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
@@ -69,7 +85,9 @@ export default {
     producto: "",
     size: "",
     precio: 0,
-    // messages:0,
+    messages:0,
+    snackbar:false,
+    text:'hola'
   }),
   props: {
     getId: String,
@@ -97,7 +115,9 @@ export default {
     addToCart() {
       // if()si estan seleccionadas todas las opciones
       this.priceBySize;
+      console.log(this.messages)
       this.messages++;
+      this.snackbar = true;
       const nuevoProducto = {
         nombre: this.producto.nombre,
         id: this.producto.id + this.size + this.color,
@@ -108,7 +128,7 @@ export default {
         cantidad: 1,
       };
       console.log(this.messages);
-      this.agregarACarrito(nuevoProducto);
+      this.agregarACarrito(nuevoProducto, this.messages);
     },
   },
   computed: {
