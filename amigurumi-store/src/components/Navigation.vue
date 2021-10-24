@@ -62,7 +62,7 @@
           <span class="mr-2">Inicio</span>
         </v-btn>
         <v-btn to="/productos" text>
-          <span class="mr-2">Productos</span>
+          <span class="mr-2 productos">Productos</span>
         </v-btn>
         <v-btn to="/patrones" text>
           <span class="mr-2">Patrones</span>
@@ -77,12 +77,12 @@
           <v-icon>mdi-cart</v-icon>
         </v-btn> -->
         <v-badge
-          :content="this.$store.state.mensajes"
-          :value="this.$store.state.mensajes"
+        :content="totalBadge"
+          :value="true"
           color="green"
           overlap
         >
-          <v-btn to="/carrito" text>
+          <v-btn to="/carrito" class="carritoNavClick" text>
             <v-icon> mdi-cart </v-icon>
           </v-btn>
         </v-badge>
@@ -100,6 +100,7 @@ export default {
     name: "Navigation",
     drawer: null,
     isXs: false,
+    element:0,
     items: [
       ["mdi-home-outline", "Inicio", "/home"],
       ["mdi-check-all", "Productos", "/productos"],
@@ -118,6 +119,19 @@ export default {
     onResize() {
       this.isXs = window.innerWidth < 850;
     },
+    valor(){
+      const carrito = this.$store.state.carrito
+      console.log(carrito)
+      console.log(carrito.length)
+      for (let i = 0; i < carrito.length; i++) {
+       this.element = this.element + carrito[i].cantidad;        
+      }
+      console.log(this.element)
+      return this.element;
+      // console.log(this.$store.state.carrito[0].cantidad)
+// return this.$store.state.carrito.forEach(v=> v += v.cantidad)
+    },
+    
   },
 
   watch: {
@@ -127,6 +141,14 @@ export default {
           this.drawer = false;
         }
       }
+    },
+  },
+  computed:{
+    totalBadge() {
+      const { carrito } = this.$store.state;
+      return carrito.reduce((acc, value) => {
+        return acc + value.cantidad;
+      }, 0);
     },
   },
   mounted() {

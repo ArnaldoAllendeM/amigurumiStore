@@ -170,10 +170,11 @@ export default new Vuex.Store({
         Firebase.firestore(firebaseApp).collection('pedidos').add(carrito).then(resolve, reject)
       })
     },
-    agregarACarrito({ commit, state }, producto) {
+    agregarACarrito({ commit, state }, producto, messages) {
       const nuevoProducto = { ...producto};
-      // let messagesAux = {...messages}
-      // console.log(messagesAux)
+      
+      // const messagesAux = {messages}
+      console.log(messages)
       // console.log(nuevoProducto)
       // const productoCarro = state.productos.filter((productoCarro)=> productoCarro.id === nuevoProducto.id)
       // // console.log(productoCarro)

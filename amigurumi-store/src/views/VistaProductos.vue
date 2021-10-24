@@ -8,15 +8,16 @@
       </h6>
     </div>
 
-    <v-row class="p-5">
+    <v-row class="p-5 v-row">
       <v-col
         v-for="producto in $store.state.productos"
         :key="producto.id"
-        class="col-12 col-sm-12 col-md-6 col-lg-3"
+        class="col-12 col-sm-12 col-md-6 col-lg-3 v-col"
       >
         <CharacterCard
           :producto="producto"
           @click="$router.push({ path: `/detalle/${$event.id}` })"
+          class="clickCard"
         />
       </v-col>
     </v-row>

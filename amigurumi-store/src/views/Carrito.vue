@@ -66,16 +66,17 @@
             >
           </template>
         </v-data-table>
+         ${{ total }}
       </v-card>
 
       <!-- form -->
       <v-form @submit.prevent="handleOnSubmit" ref="form">
       <v-card class="mx-auto p-5" tile>
-        <v-text-field v-model="nombre" label="Nombre" required></v-text-field>
+        <v-text-field class="inputNombre" v-model="nombre" label="Nombre" required></v-text-field>
 
-        <v-text-field v-model="correo" label="Correo" required></v-text-field>
+        <v-text-field class="inputCorreo" v-model="correo" label="Correo" required></v-text-field>
 
-        <v-text-field v-model="telefono" label="Teléfono" required></v-text-field>
+        <v-text-field v-on:keyup.enter="enviarCarrito()" class="inputTelefono" v-model="telefono" label="Teléfono" required></v-text-field>
       </v-card>
       </v-form>
       <!-- botón de enviar -->
@@ -103,6 +104,7 @@ export default {
     nombre:"",
     correo:"",
     telefono:"",
+    element:0,
     stringArray: [],
     cargando: false,
     headers: [
@@ -189,10 +191,30 @@ export default {
         return true;
       }
     },
+    getTotal(){
+      console.log(this.carrito)
+      
+      for (let i = 0; i < this.carrito.length; i++) {
+         this.element =+ this.carrito[i].cantidad;
+      }
+        return this.element
+    },
+    
   },
   computed: {
     ...mapState(["carrito"]),
     // this.enviarDataCarrito(this.carrito);
+  total() {
+    const { carrito } = this;
+      return carrito.reduce((acc, value) => {
+        // const realPrice =
+        //   value.discount > 0
+        //     ? value.price - (value.discount / 100) * value.price
+        //     : value.price;
+        console.log(acc + value.precio * value.cantidad)
+        return acc + value.precio * value.cantidad;
+      }, 0);
+    },
   },
 };
 </script>

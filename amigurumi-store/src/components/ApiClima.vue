@@ -248,6 +248,9 @@ export default {
   data() {
     return {
       getCiudad: "Localizando...",
+      getTemperatura: null,
+      getHumedad: null,
+      getVelocidadViento: null,
     };
   },
   methods: {
