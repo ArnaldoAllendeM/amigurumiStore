@@ -1,52 +1,30 @@
 <template>
-<div>
-<ul>
-  <li v-for="(item, index) in items" :key="index">
-    {{item.customer.nombre}}
-    {{item.customer.correo}}
-    {{item.customer.telefono}}
-    
-    <ul>
-      <li v-for="(item,index) in item.productos" :key="item.id">
- {{index}}. {{item.nombre}} {{item.cantidad}} {{item.precio}} 
-      </li>
-    </ul>
-  </li>
-</ul>
-  <v-data-table
-    :headers="dessertHeaders"
-    :items="items"
-    :single-expand="singleExpand"
-    :expanded.sync="expanded"
-    item-key="name"
-    show-expand
-    class="elevation-1"
+  <v-card
+    class="mx-auto"
+    max-width="600"
+    tile
   >
-<h1></h1>
-     <template v-slot:top>
-        <v-toolbar flat color="white">
-          <v-toolbar-title>Expandable Table</v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-switch v-model="singleExpand" label="Single expand" class="mt-2"></v-switch>
-        </v-toolbar>
-      </template>
-    <template v-slot:expanded-item="{ headers, item }">
-      <td :colspan="headers.length" v-for="(item,index) in item.productos" :key="item.id"> 
-        {{index}}. {{item.nombre}} {{item.cantidad}} {{item.precio}} 
-      </td>
-      <td :colspan="headers.length">{{ item.customer.nombre }}
-      </td>
-      <td :colspan="headers.length">{{ item.customer.telefono }}
-      </td>
-      <td :colspan="headers.length">{{ item.productos.cantidad }}
-      </td>
-<li v-for="(item, index) in item.productos" :key="item.id">
-    {{index}}. {{item.nombre}} {{item.cantidad}} {{item.precio}}
-</li>
-    </template>
-   
-    </v-data-table>
-</div>
+    
+
+    <v-list-item two-line v-for="(item, index) in items" :key="index">
+      <v-list-item-content>
+        <v-list-item-title >
+          
+          Pedido de: {{`${item.customer.nombre}
+          `}} 
+          Correo:   
+    {{`
+    ${item.customer.correo}
+    `}}
+    Teléfono: 
+    {{item.customer.telefono}}
+    </v-list-item-title>
+        <v-list-item-subtitle  v-for="(item,index) in item.productos" :key="item.id">
+          {{index+1}}. {{item.nombre}} Cantidad: {{item.cantidad}} Precio: {{item.precio}}</v-list-item-subtitle>
+      </v-list-item-content>
+    </v-list-item>
+
+  </v-card>
 </template>
 
 <script>
@@ -107,5 +85,7 @@ import Firebase from 'firebase'
 </script>
 
 <style>
-
+.v-card{
+  margin-bottom: 3rem;
+}
 </style>

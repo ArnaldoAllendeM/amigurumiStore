@@ -47,7 +47,10 @@
     </v-card>
      <v-snackbar
       v-model="snackbar"
+      timeout=1500
+      v-show="snackbar"
     >
+   
       {{ text }}
 
       <template v-slot:action="{ attrs }">
@@ -57,7 +60,7 @@
           v-bind="attrs"
           @click="snackbar = false"
         >
-          Close
+          Cerrar
         </v-btn>
       </template>
     </v-snackbar>
@@ -87,7 +90,7 @@ export default {
     precio: 0,
     messages:0,
     snackbar:false,
-    text:'hola'
+    text:'Tu producto fue agregado al carro exitosamente!'
   }),
   props: {
     getId: String,
@@ -117,6 +120,7 @@ export default {
       this.priceBySize;
       console.log(this.messages)
       this.messages++;
+      this.snackbar = false;
       this.snackbar = true;
       const nuevoProducto = {
         nombre: this.producto.nombre,
@@ -148,4 +152,5 @@ export default {
 </script>
 
 <!-- CSS Color Picker/> -->
-<style></style>
+<style>
+</style>

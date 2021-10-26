@@ -4,34 +4,35 @@
       v-model="drawer"
       app
       temporary
-      dark
-      src="@/assets/img/bgDrawer.jpg"
+      pink accent-3
+      class="ml-auto"
+      src="https://i.imgur.com/XG8klYN.jpg"
     >
       <v-list>
         <v-list-item>
           <v-list-item-avatar>
-            <img src="@/assets/img/Logo.jpg" alt="Logo" />
+            <img src="@/assets/logo-navdrawer.png" alt="Logo" />
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title class="title">Amigurumi</v-list-item-title>
-            <v-list-item-subtitle>WEB</v-list-item-subtitle>
+            <v-list-item-title class="title pink--text text--darken-1 font-weight-bold">Amigurumis</v-list-item-title>
+            <v-list-item-subtitle class="pink--text text--darken-1 font-weight-bold">Tia Xime</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </v-list>
 
       <v-divider />
 
-      <v-list dense>
-        <v-list-item
+      <v-list dense >
+        <v-list-item class="pink--text text--darken-1 font-weight-bold"
           v-for="([icon, text, link], i) in items"
           :key="i"
           @click="$router.push({ path: link })"
         >
           <v-list-item-icon link :to="{ link }" class="justify-center">
-            <v-icon link :to="{ link }">{{ icon }}</v-icon>
+            <v-icon class="grey--text font-weight-bold" link :to="{ link }">{{ icon }}</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title class="subtitile-1">{{
+            <v-list-item-title class="subtitile-1 font-weight-bold">{{
               text
             }}</v-list-item-title>
           </v-list-item-content>
@@ -77,9 +78,9 @@
           <v-icon>mdi-cart</v-icon>
         </v-btn> -->
         <v-badge
-        :content="totalBadge"
-          :value="true"
-          color="green"
+          :content="totalBadge"
+          :value="showBadge()"
+          color="secondary"
           overlap
         >
           <v-btn to="/carrito" class="carritoNavClick" text>
@@ -105,10 +106,10 @@ export default {
       ["mdi-home-outline", "Inicio", "/home"],
       ["mdi-check-all", "Productos", "/productos"],
       ["mdi-xbox", "Patrones", "/patrones"],
-      ["mdi-white-balance-incandescent", "Crea tu Amigurumi", "#amigotumi"],
-      ["mdi-message-processing", "Contactanos", "#contacto"],
-      ["mdi-cart", "Ver Carrito", "#carrito"],
-      ["mdi-login", "Login", "#login"],
+      ["mdi-white-balance-incandescent", "Nosotros", "/nosotros"],
+      ["mdi-message-processing", "Contactanos", "/contactanos"],
+      ["mdi-cart", "Ver Carrito", "/carrito"],
+      ["mdi-login", "Login", "/login"],
     ],
   }),
   props: {
@@ -118,6 +119,11 @@ export default {
   methods: {
     onResize() {
       this.isXs = window.innerWidth < 850;
+    },
+    showBadge(){
+      if(this.totalBadge==0){
+        return false
+      }
     },
     valor(){
       const carrito = this.$store.state.carrito
@@ -148,7 +154,7 @@ export default {
       const { carrito } = this.$store.state;
       return carrito.reduce((acc, value) => {
         return acc + value.cantidad;
-      }, 0);
+      }, 0);      
     },
   },
   mounted() {
@@ -160,6 +166,9 @@ export default {
 </script>
 
 <style scoped>
+.v-navigation-drawer img{
+  background-size: 300px 100px !important;
+}
 .v-toolbar {
   transition: 0.6s;
 }

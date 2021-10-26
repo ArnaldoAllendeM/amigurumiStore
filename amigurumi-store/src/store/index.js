@@ -65,6 +65,10 @@ export default new Vuex.Store({
     SET_DATA(state, newData) {      
       state.productos = newData;
     },
+    SET_CLEARDATA(state) {      
+      state.productos = [];
+      console.log(state.productos)
+    },
     SET_DATA_PATRONES(state, newData) {      
       state.patrones = newData;
     },
@@ -132,7 +136,10 @@ export default new Vuex.Store({
           }, reject);
       });
     },
-
+    limpiarCarrito(context){
+      context.commit("SET_CLEARDATA")
+      
+    },
     //action para traer datos de firestore
     getAmigurumis(context) {
       //const firebaseApp = context.rootState.firebase;
@@ -211,6 +218,10 @@ export default new Vuex.Store({
           commit("AUMENTARCANTIDAD", id);
         }
       });
+    },
+   
+    limpiarCarrito({ commit, state }){
+    commit("SET_CLEARDATA");
     },
     bajarLaCantidad({ commit, state }, id) {
       state.carrito.forEach((producto, $index) => {
