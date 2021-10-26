@@ -27,6 +27,24 @@
         </v-btn>
       </v-card-actions>
     </v-card>
+      <v-snackbar
+      v-model="snackbar"
+      timeout=1500
+    >
+   
+      {{ text }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="pink"
+          text
+          v-bind="attrs"
+          @click="snackbar = false"
+        >
+          Cerrar
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
@@ -45,12 +63,14 @@ export default {
   components: { CharacterCardPatron, BigSmear, Smear, VSwatches },
   data: () => ({
     //color default
-    color: "#1CA085",
+    color: "",
     // Props, implementacion de colores, posibilidad de agregar custom colors.
     swatches: [[{ color: "#F493A7" }, { color: "#ff0000" }]],
     patron: "",
     size: "",
     precio: 0,
+    snackbar:false,
+    text:'Tu producto fue agregado al carro exitosamente!',
   }),
   mounted() {
     const patron = this.$store.state.patrones.find(
@@ -74,7 +94,8 @@ export default {
     addToCartPatrones() {
       // if()si estan seleccionadas todas las opciones
       this.priceBySize;
-      const nuevoProducto = {
+      this.snackbar = true;
+      const nuevoProducto = {        
         nombre: this.patron.nombre,
         id: this.patron.id + this.size + this.color,
         imagen: this.patron.imagen,

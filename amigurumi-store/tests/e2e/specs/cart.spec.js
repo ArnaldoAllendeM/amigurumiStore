@@ -21,7 +21,7 @@ describe('Camino feliz', () => {
       
       cy.get('.cy_addToCart').click()
       cy.get('.carritoNavClick').click()
-      cy.get('.inputNombre').type('{shift}carolina')
+      cy.get('.inputNombre').type('{shift}Milford')
       cy.get('.inputCorreo').type('ejemplo@ejemplo.cl')
       cy.get('.inputTelefono').type('934410585{enter}')
     })

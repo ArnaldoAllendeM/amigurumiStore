@@ -2,7 +2,8 @@
   <div>
     <v-container>
       <h2 class="my-10">Carrito de compras</h2>
-      <v-card class="mx-auto mb-5" tile>
+      <h2 class="my-10" v-if="this.carrito[0] ==undefined">Tu carrito está vacío, revisa nuestro catálogo y agrega tu amigurumi favorito!</h2>
+      <v-card class="mx-auto mb-5" tile v-if="this.carrito[0] !=undefined">
         <v-data-table
           calculate-widths
           dense
@@ -15,6 +16,13 @@
           </template>
           <template v-slot:[`item.nombre`]="{ item }">
             {{ item.nombre.toLocaleString() }}
+          </template>
+           <template v-slot:[`item.color`]="{ item }">
+             <div class="colorDiv"
+      :style="{
+        'background-color': item.color,
+      }"
+    ></div>
           </template>
           <template v-slot:[`item.cantidad`]="{ item }">
             <!-- btn de añadir -->
@@ -66,12 +74,19 @@
             >
           </template>
         </v-data-table>
-         ${{ total }}
+        <h6 class="total" v-bind:style="{
+                'font-weight': '700 !important',
+                color: '#fe70aa',
+              }">
+
+         Total: $ {{ total.toLocaleString() }}
+        </h6>
       </v-card>
 
       <!-- form -->
-      <v-form @submit.prevent="handleOnSubmit" ref="form">
+      <v-form @submit.prevent="handleOnSubmit" ref="form" v-if="this.carrito[0] !=undefined">
       <v-card class="mx-auto p-5" tile>
+        <v-card-title>Ingresa tus datos para ponernos en contacto!</v-card-title>
         <v-text-field class="inputNombre" v-model="nombre" label="Nombre" required></v-text-field>
 
         <v-text-field class="inputCorreo" v-model="correo" label="Correo" required></v-text-field>
@@ -121,7 +136,10 @@ export default {
         text: "Cantidad",
         value: "cantidad",
       },
-
+      {
+        text: "Color/tamaño",
+        value: "color",
+      },
       {
         text: "Precio Total",
         value: "precioTotal",
@@ -141,6 +159,7 @@ export default {
       "borrarDelCarrito",
       "subirLaCantidad",
       "enviarDataCarrito",
+      "limpiarCarrito"
     ]),
     handleOnSubmit() {
       if (this.$refs.form.validate()) {
@@ -176,11 +195,13 @@ export default {
         .collection("pedidos")
         .add(pedido)
         .then(() => {
+          this.$store.dispatch('limpiarCarrito');
           this.$router.push("/home");
         })
         .finally(() => {
           this.cargando = false;
         });
+        
     },
     verForm() {
       console.log(this.carrito);
@@ -204,6 +225,7 @@ export default {
   computed: {
     ...mapState(["carrito"]),
     // this.enviarDataCarrito(this.carrito);
+    
   total() {
     const { carrito } = this;
       return carrito.reduce((acc, value) => {
@@ -221,7 +243,17 @@ export default {
 
 <style lang="scss" scoped>
 /* turn off min-width for all buttons */
+.colorDiv{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
 .v-btn {
   min-width: 0 !important;
+}
+.total{
+  text-align: right;
+  padding-right: 3rem;
+  padding-bottom: 1rem;
 }
 </style>
