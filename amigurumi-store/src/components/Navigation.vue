@@ -6,7 +6,7 @@
       temporary
       pink accent-3
       class="ml-auto"
-      src="https://i.imgur.com/XG8klYN.jpg"
+      style="#FFF8FB"
     >
       <v-list>
         <v-list-item>
@@ -14,8 +14,8 @@
             <img src="@/assets/logo-navdrawer.png" alt="Logo" />
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title class="title pink--text text--darken-1 font-weight-bold">Amigurumis</v-list-item-title>
-            <v-list-item-subtitle class="pink--text text--darken-1 font-weight-bold">Tia Xime</v-list-item-subtitle>
+            <v-list-item-title style="color: #FE70AA" class="title font-weight-bold">Amigurumis</v-list-item-title>
+            <v-list-item-subtitle style="color: #FE70AA" class="font-weight-bold">Tia Xime</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -23,7 +23,7 @@
       <v-divider />
 
       <v-list dense >
-        <v-list-item class="pink--text text--darken-1 font-weight-bold"
+        <v-list-item style="color: #FE70AA" class="font-weight-bold"
           v-for="([icon, text, link], i) in items"
           :key="i"
           @click="$router.push({ path: link })"
@@ -46,6 +46,7 @@
       :flat="flat"
       :height="90"
       dark
+      mobile-breakpoint="2024"
       class="px-15"
       :class="{ expand: flat }"
     >
@@ -118,7 +119,7 @@ export default {
   },
   methods: {
     onResize() {
-      this.isXs = window.innerWidth < 850;
+      this.isXs = window.innerWidth < 1072;
     },
     showBadge(){
       if(this.totalBadge==0){

@@ -1,16 +1,15 @@
 <template>
-  <div class="slide">
+  <div class="slide d-none d-none d-lg-flex">
     <div class="ancestor" id="box-1">
       <div class="slide_text">
-        <p id="tanya_text" v-if="!isHidden">
-          “I’ve been interested in coding for a while but never taken the jump,
-          until now. I couldn’t recommend this course enough. I’m now in the job
-          of my dreams and so excited about the future.”
+        <p id="tanya_text" v-if="!isHidden">        
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente mollitia, quisquam, vitae voluptate odio recusandae magnam ullam numquam nulla quos accusantium itaque ea eaque dolor ipsam, architecto ipsum rem dolorum!
+        Eaque est ipsam facilis aliquam nemo incidunt officiis qui nostrum reiciendis quo tempore dicta quasi suscipit corporis, facere dolorum temporibus quia officia hic aut quaerat placeat similique sequi! Necessitatibus, obcaecati."
+
         </p>
         <p id="john_text" v-else>
-          “If you want to lay the best foundation possible I’d recommend taking
-          this course. The depth the instructors go into is incredible. I now
-          feel so confident about starting up as a professional developer.”
+         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa incidunt laborum autem voluptates sapiente neque exercitationem voluptatibus quidem sit modi, commodi possimus fuga a doloribus voluptate tempore harum magnam et!
+         Nemo doloribus quae voluptatum, rerum sunt, laborum ea accusantium sequi, modi molestias quo earum. Et repellendus quia numquam aspernatur dolores. Repellendus quidem quisquam dolorum, officiis sint quaerat sed exercitationem explicabo."
         </p>
         <p class="name" v-if="!isHidden">
           Tanya Sinclair <span class="profession">UX Engineer</span>

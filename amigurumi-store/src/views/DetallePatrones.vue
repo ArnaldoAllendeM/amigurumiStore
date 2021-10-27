@@ -1,30 +1,33 @@
 <template>
   <!-- Color Input, CSS Color Picker/> -->
-  <div>
-    <v-card class="mx-auto mb-5" max-width="500" height="100vh">
+  <div class="pt-5">
+    <v-card  class="mx-auto mb-5 card" max-width="500" height="680">
       <v-flex>
-        <v-img :src="patron.imagen" max-width="300" height="300"></v-img>
-        <v-card-title>{{ patron.nombre }}</v-card-title>
-        <v-card-title>{{ patron.precio }}</v-card-title>
+        <v-img :src="patron.imagen" aspect-ratio="1" max-width="100vh" height="300"></v-img>
+        <v-card-title class="pb-0 px-5">{{ patron.nombre }}</v-card-title>
+        <v-card-text class="px-5">{{ patron.descripcion }}</v-card-text>
+        <v-card-title style="color:#fe70aa" class="justify-end py-0 px-5">${{ patron.precio }}</v-card-title>
       </v-flex>
-      <v-card-subtitle class="pb-0"> Patrón </v-card-subtitle>
 
       <v-card-text class="text--primary">
-        <div>{{ patron.descripcion }}</div>
       </v-card-text>
       <!-- Implementacion de libreria /> -->
       <v-textarea
+        class="px-5"
         outlined
         auto-grow
         name="input-7-4"
-        label="Outlined textarea"
+        label="Ingrese mensaje"
         value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
       ></v-textarea>
 
-      <v-card-actions>
-        <v-btn @click="addToCartPatrones()" color="orange" text>
+      <v-card-actions >
+        <div class="text-xs-center px-4">
+
+        <v-btn @click="addToCartPatrones()" class="button justify-center" text>
           Agregar al Carro
         </v-btn>
+        </div>
       </v-card-actions>
     </v-card>
       <v-snackbar
@@ -111,4 +114,9 @@ export default {
 </script>
 
 <!-- CSS Color Picker/> -->
-<style></style>
+<style scoped>
+.card{
+  background-color: #fff8fb !important;
+}
+
+</style>

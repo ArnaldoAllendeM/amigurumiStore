@@ -86,7 +86,7 @@
       <!-- form -->
       <v-form @submit.prevent="handleOnSubmit" ref="form" v-if="this.carrito[0] !=undefined">
       <v-card class="mx-auto p-5" tile>
-        <v-card-title>Ingresa tus datos para ponernos en contacto!</v-card-title>
+        <v-card-title class="p-1" >Ingresa tus datos para ponernos en contacto!</v-card-title>
         <v-text-field class="inputNombre" v-model="nombre" label="Nombre" required></v-text-field>
 
         <v-text-field class="inputCorreo" v-model="correo" label="Correo" required></v-text-field>
@@ -137,7 +137,7 @@ export default {
         value: "cantidad",
       },
       {
-        text: "Color/tamaño",
+        text: "Color",
         value: "color",
       },
       {

@@ -6,7 +6,7 @@
     <v-col cols="12" class="pr-md-9 d-flex align-center justify-center">
       <ApiClima />
     </v-col>
-    <Testimonials />
+    <Testimonials mobile-breakpoint="sm"/>
   </div>
 </template>
 

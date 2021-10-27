@@ -67,11 +67,15 @@ export default {
   }
 
   &.big {
-    width: 300px;
-    height: 300px;
     cursor: default;
     box-shadow: none;
-
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 300px;
+  background-size: contain;
+  background-position:center;
     h3 {
       margin-top: -10px;
       text-shadow: 0px 2px 0 white;
