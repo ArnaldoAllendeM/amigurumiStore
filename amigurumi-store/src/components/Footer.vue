@@ -49,16 +49,8 @@ export default {
         link: "",
       },
       {
-        text: "mdi-twitter",
-        link: "",
-      },
-      {
-        text: "mdi-linkedin",
-        link: "",
-      },
-      {
         text: "mdi-instagram",
-        link: "https://instagram.com/joabson_arley/",
+        link: "https://www.instagram.com/amigurumi_chile/",
       },
     ],
   }),

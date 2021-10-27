@@ -20,10 +20,12 @@
                 owt to do with me haggle.
               </h6>
               <p>
-                Cheeky bugger gosh codswallop chap bamboozled blatant cracking
-                goal brown bread, pear shaped cor blimey guvnor easy peasy lemon
-                squeezy hotpot spiffing good time, chancer a spend a penny
-                spiffing I don't want no agro tinkety tonk old fruit.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+                ultricies sem et consectetur ultricies. Nunc viverra erat purus,
+                vel tempor lacus posuere quis. Curabitur mattis risus vitae est
+                tristique, nec commodo nunc faucibus. Curabitur fringilla
+                lobortis mauris eu commodo. Nulla elementum accumsan lacus, a
+                tincidunt diam sollicitudin in.
               </p>
               <v-btn
                 @click="$router.push({ path: `/productos/` })"
@@ -56,10 +58,12 @@
                 owt to do with me haggle.
               </h6>
               <p>
-                Cheeky bugger gosh codswallop chap bamboozled blatant cracking
-                goal brown bread, pear shaped cor blimey guvnor easy peasy lemon
-                squeezy hotpot spiffing good time, chancer a spend a penny
-                spiffing I don't want no agro tinkety tonk old fruit.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+                ultricies sem et consectetur ultricies. Nunc viverra erat purus,
+                vel tempor lacus posuere quis. Curabitur mattis risus vitae est
+                tristique, nec commodo nunc faucibus. Curabitur fringilla
+                lobortis mauris eu commodo. Nulla elementum accumsan lacus, a
+                tincidunt diam sollicitudin in.
               </p>
               <v-btn
                 @click="$router.push({ path: `/patrones/` })"
@@ -100,7 +104,6 @@ export default {
 .seo_features_content h2 {
   font-size: 30px;
   line-height: 40px;
-  color: #263b5e;
   font-weight: 600;
   margin-bottom: 25px;
 }

@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import VistaProductos from "../views/VistaProductos.vue";
-import CreaTuProducto from "../views/CreaTuProducto.vue";
+import Nosotros from "../views/Nosotros.vue";
 import DetalleProducto from "../views/DetalleProducto.vue";
 import DetallePatrones from "../views/DetallePatrones.vue";
 import Patrones from "../views/Patrones.vue";
@@ -38,9 +38,9 @@ const routes = [
     component: DetalleProducto
   },
   {
-    path: '/patrones/:id',
-    name: 'DetallePatrones',
-    component: DetallePatrones,
+    path: "/patrones/:id",
+    name: "DetallePatrones",
+    component: DetallePatrones
   },
   {
     path: "/carrito",
@@ -53,9 +53,9 @@ const routes = [
     component: Contactanos
   },
   {
-    path: "/producto",
-    name: "CreaTuProducto",
-    component: CreaTuProducto
+    path: "/nosotros",
+    name: "Nosotros",
+    component: Nosotros
     // children:[
     //   {
     //     path: ":id",

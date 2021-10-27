@@ -47,7 +47,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .smear {
   // background-image: url("https://m.media-amazon.com/images/I/7101fA5PhYL._AC_UL320_.jpg");
   // filter: grayscale(100%);
@@ -69,7 +69,7 @@ export default {
   background-size: cover;
   background-color: white;
   background-repeat: no-repeat;
-  margin: 5px 2px;
+  margin: auto;
   transition: all 0.3s ease;
   animation: fadeIn 1s ease;
   box-shadow: 0 0 0 1px #ccc;
@@ -81,8 +81,8 @@ export default {
   }
 
   &.big {
-    width: 300px;
-    height: 300px;
+    width: 100vh;
+    height: 50vh;
     cursor: default;
     box-shadow: none;
 
