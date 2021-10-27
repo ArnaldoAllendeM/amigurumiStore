@@ -285,6 +285,13 @@ export default new Vuex.Store({
       return new Promise((resolve, reject) => {
         Firebase.firestore(firebaseApp).collection('amigurumis').add(nuevoProducto).then(resolve, reject)
       })
+    },
+    crearPatrones(context, nuevoProducto) {
+      const firebaseApp = context.rootState.firebase
+      console.log(nuevoProducto)
+      return new Promise((resolve, reject) => {
+        Firebase.firestore(firebaseApp).collection('patrones').add(nuevoProducto).then(resolve, reject)
+      })
     }
   },
   modules: {}
