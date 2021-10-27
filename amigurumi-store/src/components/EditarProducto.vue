@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="dialog">
     <template #activator="{ on }">
-      <v-btn v-on="on" color="info"> <v-icon>mdi-pencil-outline</v-icon></v-btn>
+      <v-btn v-on="on" icon> <v-icon>mdi-pencil-outline</v-icon></v-btn>
     </template>
     <v-card>
       <v-card-title> Agregando Producto </v-card-title>
@@ -57,12 +57,6 @@
             ></v-text-field>
           </v-layout>
           <v-layout>
-            <v-text-field
-              label="Tipo de producto"
-              v-model="value.tipo"
-            ></v-text-field>
-          </v-layout>
-          <v-layout>
             <v-textarea
               outlined
               label="Descripción del producto"
@@ -71,7 +65,7 @@
             ></v-textarea>
           </v-layout>
           <v-layout justify-space-between>
-            <v-btn color="success" type="submit" :loading="loading">{{
+            <v-btn type="submit" :loading="loading">{{
               mode === "update" ? "Actualizar" : "Crear"
             }}</v-btn>
             <v-btn
@@ -113,7 +107,6 @@ const defaultProduct = () => ({
     md: null,
     lg: null,
   },
-  tipo: null,
   descripcion: null,
 });
 

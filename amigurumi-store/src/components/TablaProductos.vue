@@ -25,7 +25,10 @@
         </v-btn>
       </template>
     </v-data-table>
-
+    <v-layout justify-center class="mb-4">
+ <h1>Patrones</h1>
+    <AgregarPatron />
+    </v-layout>
     <v-data-table dense :items="this.$store.state.patrones" :headers="headers">
       <template v-slot:[`item.nombre`]="{ item }">
         {{ item.nombre.toLocaleString() }}
@@ -52,6 +55,7 @@
 <script>
 import EditarProducto from "../components/EditarProducto.vue";
 import EditarPatron from "../components/EditarPatron.vue";
+import  AgregarPatron from "../components/AgregarPatron.vue";
 export default {
   data: () => ({
     headers: [
@@ -77,6 +81,7 @@ export default {
   components: {
     EditarProducto,
     EditarPatron,
+    AgregarPatron,
   },
   methods: {
     editarItemPatrones(item) {

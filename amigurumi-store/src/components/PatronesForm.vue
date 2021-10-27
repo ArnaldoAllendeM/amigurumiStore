@@ -13,13 +13,7 @@
       <v-text-field label="ID" v-model="formData.id" :rules="[$rules.required]"></v-text-field>
     </v-layout>
     <v-layout>
-      <v-text-field label="Precio SM" v-model="formData.precio.sm" :rules="[$rules.required]"></v-text-field>
-    </v-layout>
-     <v-layout>
-      <v-text-field label="Precio MD" v-model="formData.precio.md" :rules="[$rules.required]"></v-text-field>
-    </v-layout>
-     <v-layout>
-      <v-text-field label="Precio LG" v-model="formData.precio.lg" :rules="[$rules.required]"></v-text-field>
+      <v-text-field label="Precio" v-model="formData.precio" :rules="[$rules.required]"></v-text-field>
     </v-layout>
     <v-layout>
       <v-textarea outlined label="Descripción del producto" v-model="formData.descripcion" :rules="[$rules.required]"></v-textarea>
@@ -43,11 +37,7 @@ const defaultProduct = () => ({
   imagen: null,
   ['imagen-gris']: null,
   id: null,
-  precio:{
-    sm: null,
-    md: null,
-    lg: null,
-  },
+  precio:null,
   descripcion: null
 })
 

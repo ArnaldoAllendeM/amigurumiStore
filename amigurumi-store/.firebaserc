@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "form-cb4c4"
-  }
+    "proyecto-amigurumi": "proyecto-amigurumi",
+    "default": "proyecto-amigurumi"
+  },
+  "targets": {}
 }
