@@ -69,6 +69,8 @@
       <div class="ClimaContainer">
         <h1>{{ getTemperatura | RedondearValor }}<span>°C</span></h1>
       </div>
+        <h6>{{ getCondiciones}}
+            </h6>
       <div class="DetallesClima">
         <div class="humedad">
           <svg
@@ -179,7 +181,7 @@ body {
 
   #container {
     width: 320px;
-    height: 580px;
+    height: 400px;
     margin: 0 auto;
     background: white;
     color: black;
@@ -240,7 +242,7 @@ body {
     }
   }
 }
-</style>>
+</style>
 
 
 <script >
@@ -251,6 +253,7 @@ export default {
       getTemperatura: null,
       getHumedad: null,
       getVelocidadViento: null,
+      getCondiciones:null,
     };
   },
   methods: {
@@ -282,7 +285,7 @@ export default {
       let api = "41c06d8f13cfbd976e5123eb5821a4e6";
 
       let ApiClima =
-        "https://api.openweathermap.org/data/2.5/forecast/daily/?lat=" +
+        "https://api.openweathermap.org/data/2.5/weather?lat=" +
         this.latitude +
         "&lon=" +
         this.longitude +
@@ -291,14 +294,14 @@ export default {
         "&cnt=4&units=metric";
 
       axios.get(ApiClima).then(function (response) {
-        geo.getCiudad = response.data.city.name;
+        console.log(response.data)
+        geo.getCiudad = response.data.name;
         //dia actual
-        geo.getHumedad = response.data.list[0].humidity;
-        geo.getVelocidadViento = response.data.list[0].speed;
-        geo.getTemperatura = response.data.list[0].temp.max;
-        geo.getCondiciones = response.data.list[0].weather[0].main;
-        geo.getDetalleCondiciones =
-          response.data.list[0].weather[0].description;
+        geo.getHumedad = response.data.main.humidity;
+        geo.getVelocidadViento = response.data.wind.speed;
+        console.log(response.data)
+        geo.getTemperatura = response.data.main.temp;
+        geo.getCondiciones = response.data.weather[0].main;
       });
     },
   },

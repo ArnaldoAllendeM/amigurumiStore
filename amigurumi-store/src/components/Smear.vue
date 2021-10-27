@@ -69,7 +69,7 @@ export default {
   background-size: cover;
   background-color: white;
   background-repeat: no-repeat;
-  margin: 5px 2px;
+  margin: auto;
   transition: all 0.3s ease;
   animation: fadeIn 1s ease;
   box-shadow: 0 0 0 1px #ccc;
@@ -81,8 +81,8 @@ export default {
   }
 
   &.big {
-    width: 300px;
-    height: 300px;
+    width: 100vh;
+    height: 50vh;
     cursor: default;
     box-shadow: none;
 
