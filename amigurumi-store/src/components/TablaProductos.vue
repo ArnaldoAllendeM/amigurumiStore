@@ -44,7 +44,7 @@
       </template>
       <template v-slot:[`item.actions`]="{ item }">
         <EditarPatron :value="item" />
-        <v-btn icon @click="borrarItemAmigurumis(item)">
+        <v-btn icon @click="borrarItemPatrones(item)">
           <v-icon>mdi-delete</v-icon>
         </v-btn>
       </template>

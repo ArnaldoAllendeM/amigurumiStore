@@ -9,12 +9,12 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     user: null, //variable para sesión
-    productoEnVista:null,
+    productoEnVista: null,
     count: 0,
     carrito: [],
-    patrones:[],
+    patrones: [],
     productos: [],
-    mensajes:0,
+    mensajes: 0,
   },
   getters: {
     getProductDetail: (state) => (payload) => {
@@ -35,41 +35,37 @@ export default new Vuex.Store({
         return {
           nombre,
           imagen,
-          id
+          id,
         };
       });
 
       return result;
     },
-    getProduct:(state)=>(id)=>{
-      console.log('producto')
+    getProduct: (state) => (id) => {
+      console.log("producto");
 
-      const producto = state.productos.filter(
-        (producto) => producto.id == id
-        );
-        console.log(producto)
-        console.log(id)
+      const producto = state.productos.filter((producto) => producto.id == id);
+      console.log(producto);
+      console.log(id);
       return producto;
-    }
+    },
   },
 
   mutations: {
-
-    
     //mutation de login:
     SET_USER(state, newUser) {
       state.user = newUser;
     },
 
     //PARA CARDS de firestore
-    SET_DATA(state, newData) {      
+    SET_DATA(state, newData) {
       state.productos = newData;
     },
-    SET_CLEARDATA(state) {      
-      state.productos = [];
-      console.log(state.productos)
+    SET_CLEARDATA(state) {
+      state.carrito = [];
+      console.log(state.carrito);
     },
-    SET_DATA_PATRONES(state, newData) {      
+    SET_DATA_PATRONES(state, newData) {
       state.patrones = newData;
     },
     AUMENTARCANTIDAD(state, producto) {
@@ -100,11 +96,10 @@ export default new Vuex.Store({
       // console.log(state.carrito);
       // console.log(messages)
       // state.mensajes=messages;
-      console.log(state.mensajes)
+      console.log(state.mensajes);
       const index = state.carrito.findIndex((p) => p.id === producto.id);
       if (index != -1) {
         // state.carrito[index].cantidad++;
-
         // const { ...productoActualizado } = state.carrito[index];
         // productoActualizado.cantidad++;
         // state.carrito[index] = productoActualizado;
@@ -112,17 +107,17 @@ export default new Vuex.Store({
         state.carrito.push(producto);
       }
     },
-    AUMENTARCANTIDADCARRITO(state, $index){
+    AUMENTARCANTIDADCARRITO(state, $index) {
       state.carrito[$index].cantidad++;
     },
-    GUARDAR_PRODUCTO(state, producto){
+    GUARDAR_PRODUCTO(state, producto) {
       state.productoEnVista = producto;
-    }
+    },
   },
   actions: {
-    guardarProducto(context, productoEnVista){
+    guardarProducto(context, productoEnVista) {
       let productoenVista = { ...productoenVista };
-      context.commit("GUARDAR_PRODUCTO", productoEnVista)
+      context.commit("GUARDAR_PRODUCTO", productoEnVista);
     },
     //actions del Login
     login(context, credentials) {
@@ -136,9 +131,8 @@ export default new Vuex.Store({
           }, reject);
       });
     },
-    limpiarCarrito(context){
-      context.commit("SET_CLEARDATA")
-      
+    limpiarCarrito(context) {
+      context.commit("SET_CLEARDATA");
     },
     //action para traer datos de firestore
     getAmigurumis(context) {
@@ -172,43 +166,28 @@ export default new Vuex.Store({
         });
     },
     enviarDataCarrito(context, carrito) {
-      const firebaseApp = context.rootState.firebase
-      return new Promise((resolve, reject) => {
-        Firebase.firestore(firebaseApp).collection('pedidos').add(carrito).then(resolve, reject)
-      })
+      context.commit("SET_CLEARDATA", carrito)
     },
     agregarACarrito({ commit, state }, producto, messages) {
-      const nuevoProducto = { ...producto};
-      
-      // const messagesAux = {messages}
-      console.log(messages)
-      // console.log(nuevoProducto)
-      // const productoCarro = state.productos.filter((productoCarro)=> productoCarro.id === nuevoProducto.id)
-      // // console.log(productoCarro)
-      // productoCarro.cantidad = 1;
-      // commit('AGREGARALCARRO', productoCarro);
+      const nuevoProducto = { ...producto };
+      console.log(messages);
       let verifica = null;
       verifica = state.carrito.filter(({ id }) => id == nuevoProducto.id);
       console.log(verifica);
-      // if (verifica.length != 0) {
-      //   console.log("aumentarcantidad");
-      //   nuevoProducto.cantidad++;
-      //   let cantidadTotal = cantidadTotal++;
-      //   console.log(cantidadTotal)
-      //   console.log(nuevoProducto);
-      //   commit("AUMENTARCANTIDAD", nuevoProducto);
-      // } else {
-      //   console.log("agregaralcarro");
       const index = state.carrito.findIndex((p) => p.id === nuevoProducto.id);
       if (index != -1) {
-        commit("AUMENTARCANTIDADCARRITO", index)
+        commit("AUMENTARCANTIDADCARRITO", index);
       } else {
         commit("AGREGARALCARRO", nuevoProducto);
       }
       // }
     },
     borrarDelCarrito({ commit, state }, id) {
-      commit("ELIMINARDELCARRO", id);
+      state.carrito.forEach((producto, $index) => {
+        if (producto.id == id) {
+          commit("ELIMINARDELCARRO", $index);
+        }
+      });
     },
 
     subirLaCantidad({ commit, state }, id) {
@@ -219,13 +198,13 @@ export default new Vuex.Store({
         }
       });
     },
-   
-    limpiarCarrito({ commit, state }){
-    commit("SET_CLEARDATA");
+
+    limpiarCarrito({ commit, state }) {
+      commit("SET_CLEARDATA");
     },
     bajarLaCantidad({ commit, state }, id) {
       state.carrito.forEach((producto, $index) => {
-        if (producto.id == id && producto.cantidad > 1) {         
+        if (producto.id == id && producto.cantidad > 1) {
           commit("DISMINUIRCANTIDAD", $index);
         } else if (producto.id == id && producto.cantidad == 1) {
           commit("ELIMINARDELCARRO", $index);
@@ -235,64 +214,75 @@ export default new Vuex.Store({
     traerFormDataFromHome(context, dataForm) {
       const firebaseApp = context.rootState.firebase;
       return new Promise((resolve, reject) => {
-
-        Firebase.firestore(firebaseApp).collection('formulario').add(dataForm).then(resolve, reject)
-      })
-
+        Firebase.firestore(firebaseApp)
+          .collection("formulario")
+          .add(dataForm)
+          .then(resolve, reject);
+      });
     },
     agregarPatrones({ commit, state }, producto) {
-      const nuevoProducto = { ...producto};
+      const nuevoProducto = { ...producto };
       console.log(nuevoProducto);
       const index = state.carrito.findIndex((p) => p.id === nuevoProducto.id);
       if (index != -1) {
-        commit("AUMENTARCANTIDADCARRITO", index)
+        commit("AUMENTARCANTIDADCARRITO", index);
       } else {
         commit("AGREGARALCARRO", nuevoProducto);
       }
       // }
     },
     borrarPatrones(context, patron) {
-      const firebaseApp = context.rootState.firebase
-      console.log(patron)
+      const firebaseApp = context.rootState.firebase;
+      console.log(patron);
       Firebase.firestore(firebaseApp)
-        .collection('patrones')
+        .collection("patrones")
         .doc(patron.uuid)
         .delete()
         .then(() => {
-          console.log(patron)
-          context.dispatch('getPatrones')
+          console.log(patron);
+          context.dispatch("getPatrones");
         })
+        .catch((error) => {
+          console.log(patron);
+          console.error("Error removing document: ", error);
+        });
     },
     borrarAmigurumis(context, amigurumis) {
-      const firebaseApp = context.rootState.firebase
-      console.log({amigurumis})
+      const firebaseApp = context.rootState.firebase;
+      console.log({ amigurumis });
       Firebase.firestore(firebaseApp)
-        .collection('amigurumis')
+        .collection("amigurumis")
         .doc(amigurumis.uuid)
         .delete()
         .then(() => {
-          console.log(amigurumis)
-          context.dispatch('getAmigurumis')
-        }) .catch((error) => {
-          console.log(patron)
-          console.error('Error removing document: ', error);
-       })
-        
+          console.log(amigurumis);
+          context.dispatch("getAmigurumis");
+        })
+        .catch((error) => {
+          console.log(patron);
+          console.error("Error removing document: ", error);
+        });
     },
     crearProducto(context, nuevoProducto) {
-      const firebaseApp = context.rootState.firebase
-      console.log(nuevoProducto)
+      const firebaseApp = context.rootState.firebase;
+      console.log(nuevoProducto);
       return new Promise((resolve, reject) => {
-        Firebase.firestore(firebaseApp).collection('amigurumis').add(nuevoProducto).then(resolve, reject)
-      })
+        Firebase.firestore(firebaseApp)
+          .collection("amigurumis")
+          .add(nuevoProducto)
+          .then(resolve, reject);
+      });
     },
     crearPatrones(context, nuevoProducto) {
-      const firebaseApp = context.rootState.firebase
-      console.log(nuevoProducto)
+      const firebaseApp = context.rootState.firebase;
+      console.log(nuevoProducto);
       return new Promise((resolve, reject) => {
-        Firebase.firestore(firebaseApp).collection('patrones').add(nuevoProducto).then(resolve, reject)
-      })
-    }
+        Firebase.firestore(firebaseApp)
+          .collection("patrones")
+          .add(nuevoProducto)
+          .then(resolve, reject);
+      });
+    },
   },
-  modules: {}
+  modules: {},
 });

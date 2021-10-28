@@ -9,6 +9,7 @@ import Patrones from "../views/Patrones.vue";
 import Carrito from "../views/Carrito.vue";
 import Contactanos from "../views/Contactanos.vue";
 import Login from "../views/Login.vue";
+import $store from "../store/index"
 
 Vue.use(VueRouter);
 
@@ -83,5 +84,17 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 });
-
+router.beforeEach((to, from, next) => {
+  console.log('funcion que se ejecuta en cada cambio de ruta')
+  if (to.meta.login) {
+    const user = $store.state.user
+    if (user) {
+      next()
+    } else {
+      next('login')
+    }
+  } else {
+    next()
+  }
+})
 export default router;
