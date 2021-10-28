@@ -195,7 +195,7 @@ export default {
         .collection("pedidos")
         .add(pedido)
         .then(() => {
-          this.$store.dispatch('limpiarCarrito');
+          this.enviarDataCarrito(this.carrito)
           this.$router.push("/home");
         })
         .finally(() => {
